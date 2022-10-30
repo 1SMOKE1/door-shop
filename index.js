@@ -52,6 +52,6 @@ app.use('/api/consultation-form', consultationFormRouter);
 app.use('/uploads', express.static('uploads'));
 app.use('/', express.static('dist/door_shop_angular'))
 
-app.get('', (req, res) => {
+app.get('/', (req, res) => {
   res.send('Hellow World')
 })
