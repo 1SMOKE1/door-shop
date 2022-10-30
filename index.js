@@ -53,5 +53,5 @@ app.use('/uploads', express.static('uploads'));
 app.use('/', express.static('dist/door_shop_angular'))
 
 app.get('/', (req, res) => {
-  res.sendFile('client/dist/door_shop_angular/index.html')
+  res.sendFile('/client/dist/door_shop_angular/index.html')
 })
