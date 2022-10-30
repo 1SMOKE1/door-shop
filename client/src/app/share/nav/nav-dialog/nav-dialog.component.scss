@@ -1,0 +1,25 @@
+@import 'mixins';
+@import 'colors';
+
+.nav-dialog{
+  &-wrap{
+    padding: 20px;
+  }
+  &-btn{
+    outline: none;
+    border: none;
+    background-color: $c1;
+    &-wrap{
+      display: flex;
+      justify-content: flex-end;
+      
+    }
+    
+  }
+  
+  
+}
+
+::ng-deep .mat-dialog-container{
+  padding: 0 !important;
+}

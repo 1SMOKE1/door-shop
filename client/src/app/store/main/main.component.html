@@ -1,0 +1,97 @@
+<dsa-header></dsa-header>
+
+<dsa-nav (emitScrollAction)="emitScrollAction($event)"></dsa-nav>
+
+
+<dsa-nav-logo></dsa-nav-logo>
+<main class="main">
+  <div class="container">
+    <section class="door-photos">
+      <div class="img-wrap" href="#">
+        <img class="img" src="assets/section_door_in_or_through/door_through.png" alt="">
+      </div>
+      <div class="img-wrap" href="#">
+        <img class="img" src="assets/section_door_in_or_through/door_in.png" alt="">
+      </div>
+    </section>
+    <section class="second-nav">
+      <div *ngFor="let link of links" class="link-wrap">
+        <p class="link" href="#">{{link}}</p>
+      </div>
+    </section>
+    <dsa-line></dsa-line>
+    <section  class="our-manufacturers">
+      <dsa-our-manufacturers></dsa-our-manufacturers>
+      <h3 class="our-manufacturers-subtitle">
+        <span class="margin-right-135">Ми пропонуємо високий рівень технічних знань,</span><br><span class="margin-left-135">професіоналізм, безпеку, надійність, комфорт.</span>
+      </h3>
+      <div class="our-manufacturers-info">
+        <div class="our-manufacturers-card">
+          <div class="our-manufacturers-img-wrap">
+            <img class="our-manufacturers-img" src="assets/section_our_manufacturers/info/yakist.png" alt="">
+          </div>
+          <p class="our-manufacturers-card-text">
+            Наш асортимент  
+            складається з  моделей,
+             в якості яких 
+            ми впевнені на 100%.</p>
+        </div>
+        <div class="our-manufacturers-card">
+          <div class="our-manufacturers-img-wrap">
+            <img class="our-manufacturers-img" src="assets/section_our_manufacturers/info/garantiy.png" alt="">
+          </div>
+          <p class="our-manufacturers-card-text">
+            Надаємо гарантію 
+            на двері та фурнітуру, 
+            як і на всю нашу продукцію.</p>
+        </div>
+        <div class="our-manufacturers-card">
+          <div class="our-manufacturers-img-wrap">
+            <img class="our-manufacturers-img" src="assets/section_our_manufacturers/info/klienti.png" alt="">
+          </div>
+          <p class="our-manufacturers-card-text">Ми маємо довіру найбільших
+            будівельних компаній та корпорацій, 
+           архітекторів та дизайнерів, 
+           власників приватних будинків.</p>
+        </div>
+        <div class="our-manufacturers-card">
+          <div class="our-manufacturers-img-wrap">
+            <img class="our-manufacturers-img" src="assets/section_our_manufacturers/info/rozvitok.png" alt="">
+          </div>
+          <p class="our-manufacturers-card-text">
+            Прагнемо постійного розвитку, стежимо за інноваціями та трендами, щоб запропонувати найкращі двері для Вашого комфорту.</p>
+        </div>
+      </div>
+    </section>
+    <dsa-line ></dsa-line>
+    <section #chooseDoor class="choose-door">
+      <div class="container"> 
+        <h1 class="choose-door-title">{{'підібрати двері і розрахувати вартість' | uppercase}}</h1>
+        <form class="choose-door-form" [formGroup]="consultationForm">
+          <input formControlName="name" type="text" placeholder="Ім'я">
+          <input formControlName="phone" type="tel" placeholder="Телефон">
+          <button 
+            (click)="sendConsultationForm()"
+            [disabled]="consultationForm.invalid" 
+            >{{'Залишити запит' | uppercase}}</button>
+        </form>
+      </div>
+      <div class="choose-door-group">
+        <div *ngFor="let card of products| slice:0:3" class="choose-door-card">
+          <div class="choose-door-img-wrap">
+            <img class="choose-door-img" [src]="card.imageSrc" alt="">
+          </div>
+          <h5 class="choose-door-text">{{card.name}}</h5>
+          <button (click)="redirectToCard(card._id)" class="choose-door-button">Докладніше</button>
+          <h4 class="choose-door-price">{{card.price}}</h4>
+        </div>
+        
+      
+      </div>
+    </section>
+  </div>
+</main>
+
+
+<dsa-footer></dsa-footer>
+

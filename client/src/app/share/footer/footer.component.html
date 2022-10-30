@@ -1,0 +1,29 @@
+<footer class="footer">
+  <div class="container">
+    <img class="logo" src="assets/header/logo.svg" alt="" />
+    <div class="info-block">
+      <h3>{{ "послуги" | uppercase }}</h3>
+      <a [routerLink]="'/door-measurement'">Замір</a>
+      <a [routerLink]="'/door-installation'">Монтаж</a>
+      <a [routerLink]="'/how-order'">Оплата та доставка</a>
+      <a [routerLink]="'/guarantee'">Гарантії</a>
+      <a [routerLink]="'/certificates'">Сертіфікати</a>
+    </div>
+    <div class="info-block">
+      <h3>{{ "партнерам" | uppercase }}</h3>
+      <a [routerLink]="'/designers-builders'">Дизайнерам та будівникам</a>
+      <!-- <a href="">Наші клієнти</a> -->
+      <a [routerLink]="'/comments'">Відгуки клієнтів</a>
+    </div>
+    <div class="info-block">
+      <h3>{{ "контакти" | uppercase }}</h3>
+      <a class="phone" href="tel:+380673223322">+38(067)322-33-22</a>
+      <a class="phone" href="tel:+380503223322">+38(050)322-33-22</a>
+      <div class="info-block-icons">
+        <img src="assets/header/icons/inst.svg" alt="" />
+        <img src="assets/header/icons/facebook.svg" alt="" />
+        <img src="assets/header/icons/youtube.svg" alt="" />
+      </div>
+    </div>
+  </div>
+</footer>

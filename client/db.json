@@ -1,0 +1,388 @@
+{
+  "our-works": [
+    {
+      "imageSrc": "/assets/carousel/work_1.jpg",
+      "imageAlt": 1
+    },
+    {
+      "imageSrc": "/assets/carousel/work_2.jpg",
+      "imageAlt": 2
+    },
+    {
+      "imageSrc": "/assets/carousel/work_3.jpg",
+      "imageAlt": 3
+    },
+    {
+      "imageSrc": "/assets/carousel/work_4.jpg",
+      "imageAlt": 4
+    },
+    {
+      "imageSrc": "/assets/carousel/work_5.jpg",
+      "imageAlt": 5
+    },
+    {
+      "imageSrc": "/assets/carousel/work_6.jpg",
+      "imageAlt": 6
+    },
+    {
+      "imageSrc": "/assets/carousel/work_7.jpg",
+      "imageAlt": 7
+    },
+    {
+      "imageSrc": "/assets/carousel/work_8.jpg",
+      "imageAlt": 8
+    },
+    {
+      "imageSrc": "/assets/carousel/work_9.jpg",
+      "imageAlt": 9
+    },
+    {
+      "imageSrc": "/assets/carousel/work_10.jpg",
+      "imageAlt": 10
+    },
+    {
+      "imageSrc": "/assets/carousel/work_11.jpg",
+      "imageAlt": 11
+    },
+    {
+      "imageSrc": "/assets/carousel/work_12.jpg",
+      "imageAlt": 12
+    },
+    {
+      "imageSrc": "/assets/carousel/work_13.jpg",
+      "imageAlt": 13
+    },
+    {
+      "imageSrc": "/assets/carousel/work_14.jpg",
+      "imageAlt": 14
+    },
+    {
+      "imageSrc": "/assets/carousel/work_15.jpg",
+      "imageAlt": 15
+    },
+    {
+      "imageSrc": "/assets/carousel/work_16.jpg",
+      "imageAlt": 16
+    },
+    {
+      "imageSrc": "/assets/carousel/work_17.jpg",
+      "imageAlt": 17
+    },
+    {
+      "imageSrc": "/assets/carousel/work_18.jpg",
+      "imageAlt": 18
+    },
+    {
+      "imageSrc": "/assets/carousel/work_19.jpg",
+      "imageAlt": 19
+    },
+    {
+      "imageSrc": "/assets/carousel/work_20.jpg",
+      "imageAlt": 20
+    },
+    {
+      "imageSrc": "/assets/carousel/work_21.jpg",
+      "imageAlt": 21
+    },
+    {
+      "imageSrc": "/assets/carousel/work_22.jpg",
+      "imageAlt": 22
+    },
+    {
+      "imageSrc": "/assets/carousel/work_23.jpg",
+      "imageAlt": 23
+    },
+    {
+      "imageSrc": "/assets/carousel/work_24.jpg",
+      "imageAlt": 24
+    },
+    {
+      "imageSrc": "/assets/carousel/work_25.jpg",
+      "imageAlt": 25
+    },
+    {
+      "imageSrc": "/assets/carousel/work_26.jpg",
+      "imageAlt": 26
+    },
+    {
+      "imageSrc": "/assets/carousel/work_27.jpg",
+      "imageAlt": 27
+    },
+    {
+      "imageSrc": "/assets/carousel/work_28.jpg",
+      "imageAlt": 28
+    },
+    {
+      "imageSrc": "/assets/carousel/work_29.jpg",
+      "imageAlt": 29
+    },
+    {
+      "imageSrc": "/assets/carousel/work_30.jpg",
+      "imageAlt": 30
+    },
+    {
+      "imageSrc": "/assets/carousel/work_31.jpg",
+      "imageAlt": 31
+    }
+  ],
+  "our-comments": [
+    {
+      "imageSrc": "/assets/comments/habr_1.png",
+      "imageAlt": 1
+    },
+    {
+      "imageSrc": "/assets/comments/habr_2.png",
+      "imageAlt": 2
+    },
+    {
+      "imageSrc": "/assets/comments/habr_3.png",
+      "imageAlt": 3
+    },
+    {
+      "imageSrc": "/assets/comments/habr_4.png",
+      "imageAlt": 4
+    },
+    {
+      "imageSrc": "/assets/comments/habr_5.png",
+      "imageAlt": 5
+    },
+    {
+      "imageSrc": "/assets/comments/habr_6.png",
+      "imageAlt": 6
+    }
+  ],
+  "products": [
+    {
+      "name": "door_1",
+      "id": 1,
+      "price": 3000,
+      "imageSrc": "",
+      "installationPrice": "1400",
+      "brand": "Деякий-бренд",
+      "country": "Україна",
+      "guarantee_time": "12 місяців",
+      "state": "Нові",
+      "in_stock": "В наявності",
+      "type_of_product": "Двері міжкімнатні",
+      "door_leaf_material": "",
+      "door_frame_material": "",
+      "door_purpose": "",
+      "door_fill": "",
+      "door_application": "",
+      "door_opening_method": "",
+      "door_type": "",
+      "door_opening_type": ""
+    },
+    {
+      "id": 2,
+      "name": "door_2",
+      "price": 2000,
+      "brand": "Деякий-бренд",
+      "imageSrc": "assets/catalog/door_2.png"
+    },
+    {
+      "id": 3,
+      "name": "door_3",
+      "price": 3000,
+      "brand": "Деякий-бренд",
+      "imageSrc": "assets/catalog/door_3.png"
+    },
+    {
+      "id": 5,
+      "name": "door_5",
+      "price": 5000,
+      "brand": "Деякий-бренд",
+      "imageSrc": "assets/catalog/door_2.png"
+    },
+    {
+      "id": 6,
+      "name": "door_6",
+      "price": 6000,
+      "brand": "Деякий-бренд",
+      "imageSrc": "assets/catalog/door_3.png"
+    },
+    {
+      "id": 7,
+      "name": "door_7",
+      "price": 7000,
+      "brand": "Деякий-бренд",
+      "imageSrc": "assets/catalog/door_1.png"
+    },
+    {
+      "id": 8,
+      "name": "door_8",
+      "price": 8000,
+      "brand": "Деякий-бренд",
+      "imageSrc": "assets/catalog/door_2.png"
+    },
+    {
+      "id": 9,
+      "name": "door_9",
+      "price": 9000,
+      "brand": "Деякий-бренд",
+      "imageSrc": "assets/catalog/door_3.png"
+    },
+    {
+      "id": 10,
+      "name": "door_10",
+      "price": 10000,
+      "brand": "Деякий-бренд",
+      "imageSrc": "assets/catalog/door_1.png"
+    },
+    {
+      "name": "adasd",
+      "price": "2000",
+      "installationPrice": "adada",
+      "brand": "dasdsad",
+      "country": "dadad",
+      "state": "adadad",
+      "in_stock": "Немає в наявності",
+      "type_of_products": "Двері міжкімнатні",
+      "count_of_sealing_counturs": 12,
+      "door_leaf_material": "dadd",
+      "door_frame_material": "dada",
+      "door_fill": "ada",
+      "door_purpose": "asdadad",
+      "door_application": "adsad",
+      "door_opening_method": "dad",
+      "door_type": "dadad",
+      "door_opening_type": "dadada",
+      "id": 12
+    },
+    {
+      "name": "sadas",
+      "price": "ada",
+      "installationPrice": "ada",
+      "brand": "dadas",
+      "country": "dasd",
+      "state": "dad",
+      "in_stock": "Немає в наявності",
+      "type_of_products": "Фурнітура",
+      "count_of_sealing_counturs": 2,
+      "door_leaf_material": "dadasda",
+      "door_frame_material": "dadas",
+      "door_fill": "dadada",
+      "door_purpose": "adad",
+      "door_application": "dada",
+      "door_opening_method": "ada",
+      "door_type": "ad",
+      "door_opening_type": "dad",
+      "id": 13
+    },
+    {
+      "name": "dad",
+      "price": 123,
+      "installationPrice": "123",
+      "brand": "asd",
+      "country": "dadad",
+      "state": "dad",
+      "in_stock": "Немає в наявності",
+      "type_of_products": "Двері міжкімнатні",
+      "count_of_sealing_counturs": 0,
+      "door_leaf_material": "",
+      "door_frame_material": "",
+      "door_fill": "",
+      "door_purpose": "",
+      "door_application": "",
+      "door_opening_method": "",
+      "door_type": "",
+      "door_opening_type": "",
+      "id": 14
+    },
+    {
+      "name": "add",
+      "price": 123,
+      "installationPrice": "123",
+      "brand": "asda",
+      "country": "asdasd",
+      "state": "adsad",
+      "in_stock": "Немає в наявності",
+      "type_of_products": "Двері міжкімнатні",
+      "count_of_sealing_counturs": 0,
+      "door_leaf_material": "",
+      "door_frame_material": "",
+      "door_fill": "",
+      "door_purpose": "",
+      "door_application": "",
+      "door_opening_method": "",
+      "door_type": "",
+      "door_opening_type": "",
+      "id": 15
+    },
+    {
+      "name": "furnitura__1",
+      "id": 16,
+      "price": 200,
+      "imageSrc": "",
+      "installationPrice": "250",
+      "brand": "VASYA",
+      "country": "Ukraine",
+      "guarantee_time": "12 місяців",
+      "state": "New",
+      "in_stock": "Немає в наявності",
+      "type_of_product": "Фурнітура",
+      "door_leaf_material": "",
+      "door_frame_material": "",
+      "door_purpose": "",
+      "door_fill": "",
+      "door_application": "",
+      "door_opening_method": "",
+      "door_type": "",
+      "door_opening_type": ""
+    },
+    {
+      "name": "Фурнітура 1",
+      "price": 200,
+      "installationPrice": "280",
+      "brand": "Категорія",
+      "country": "Китай",
+      "state": "Новий",
+      "in_stock": "В наявності",
+      "type_of_product": "Фурнітура",
+      "count_of_sealing_counturs": 0,
+      "door_leaf_material": "",
+      "door_frame_material": "",
+      "door_fill": "",
+      "door_purpose": "",
+      "door_application": "",
+      "door_opening_method": "",
+      "door_type": "",
+      "door_opening_type": "",
+      "id": 17
+    }
+  ],
+  "orders": [
+    {
+      "name": "Anton",
+      "phone": "+380954895875",
+      "address": "Кожем`яки 9",
+      "email": "kamyshan19@gmail.com",
+      "cartLines": [
+        {
+          "product": {
+            "id": 2,
+            "name": "door_2",
+            "price": 2000,
+            "brand": "Деякий-бренд",
+            "imageSrc": "assets/catalog/door_2.png"
+          },
+          "quantity": 3
+        },
+        {
+          "product": {
+            "id": 7,
+            "name": "door_7",
+            "price": 7000,
+            "brand": "Деякий-бренд",
+            "imageSrc": "assets/catalog/door_1.png"
+          },
+          "quantity": 3
+        }
+      ],
+      "shiped": false,
+      "total_cost": 27000,
+      "kindOfPayvment": "Термінал",
+      "id": 1
+    }
+  ]
+}

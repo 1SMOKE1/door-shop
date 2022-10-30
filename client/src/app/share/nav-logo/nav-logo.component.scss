@@ -1,0 +1,25 @@
+.nav{
+  &-logo-container{
+    max-width: 650px;
+    margin: 0 auto;
+    padding: 0 15px;
+  }
+
+  &-logo{
+    margin-top: 35px;
+    &-img{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 28px 0;
+    }
+  }
+}
+
+.logo-img{
+  height: 100px;
+  transition: all .3s ease;
+  &:hover{
+    transform: scale(1.1);
+  }
+}

@@ -1,0 +1,19 @@
+<div class="carousel-btns-wrap">
+  <img class="carousel-btn left" src="assets/carousel_arrows/arrow_left.png" (click)="moveLeft()">
+  <div class="carousel-wrap" #carouselWrap>
+    <div class="carousel-line" #carouselLine>
+      <img class="carousel-img" 
+      *ngFor="let image of images" 
+      [src]="image.imageSrc"
+      [alt]="image.imageAlt">
+    </div>
+  </div>
+  <img class="carousel-btn right" src="assets/carousel_arrows/arrow_right.png" (click)="moveRight()">
+</div>
+
+
+
+
+
+
+

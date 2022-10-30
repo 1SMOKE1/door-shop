@@ -1,0 +1,134 @@
+<dsa-header></dsa-header>
+<dsa-nav></dsa-nav>
+<dsa-nav-logo></dsa-nav-logo>
+<main class="main">
+  <div class="container">
+    <section  class="card">
+      <h2 class="card-title font-h2">Вхідні металеві двері бренд “Портала”</h2>
+      <div class="card-flex-wrapper">
+        <div class="card-first-block">
+          <div class="card-img-wrap">
+            <img class="card-img-big" [src]="product?.imageSrc" alt="">
+          </div>
+          <div class="card-photos-group-wrap">
+            <div *ngFor="let photo of photoArr"  class="card-photos-wrap">
+              <img class="card-img-small" [src]="product?.imageSrc" alt="">
+            </div>
+          </div>
+        </div>
+        <div class="card-info-wrap">
+          <div class="info-left-block">
+            <p class="info-title font-p-sm c8">В наявності</p>
+            <button class="info-btn bg2 c1" (click)="toBasket()" ><img class="info-icon-basket" src="assets/header/basket.png" alt="">{{'купити'|uppercase}}</button>
+            <div class="info-phone-group">
+              <div class="info-phone-wrap">
+                <img class="info-phone-icon" src="assets/catalog/icons/phone_icon.svg" alt="">
+                <p class="info-phone-tel font-p-sm c7">0503332233</p>
+              </div>
+              <div class="info-phone-wrap">
+                <img class="info-phone-icon" src="assets/catalog/icons/phone_icon.svg" alt="">
+                <p class="info-phone-tel font-p-sm c7">0503332233</p>
+              </div>
+            </div>
+            <button [routerLink]="'/how-order'" class="info-btn-link font-p-sm bg1">Доставка і оплата</button>
+            <p class="info-p-add c2">
+              <span class="info-p-span text-underline">Безкоштовна доставка</span>: Доставка в по місту у подарунок, при купівлі товару на суму від 30 000 грн.
+            </p>
+          </div>
+          <div class="info-right-block">
+            <div class="info-price-wrap info-price-wrap-big bg9">
+              <p class="font-p">{{product?.price}}</p>
+            </div>
+            <div class="info-add-price">
+              <mat-expansion-panel 
+                                 class="mat-expansion-panel-header-titel"
+                                 >
+              <mat-expansion-panel-header>
+                <mat-panel-title class="mat-panel-title">
+                  ціна з монтажем
+                </mat-panel-title>
+                </mat-expansion-panel-header>
+                  <div class="drop-body">
+                    <div class="info-price-wrap info-price-wrap-small bg9">
+                      <p class="font-p-sm">{{product?.installationPrice}}</p>
+                    </div>
+                  </div>
+              </mat-expansion-panel>
+            </div>
+            
+          </div>
+          
+          
+        </div>
+      </div>
+    </section>
+    <section class="info">
+      <div class="info-table-wrap">
+        <h2 class="info-title">{{'Характеристика'|uppercase}}</h2>
+        <table class="info-table">
+          <tr>
+            <th>Виробник</th>
+            <td>{{product?.brand}}</td>
+          </tr>
+          <tr>
+            <th>Країна виробник</th>
+            <td>{{product?.country}}</td>
+          </tr>
+          <tr>
+            <th>Гарантійний термін</th>
+            <td>{{product?.guarantee_time}}</td>
+          </tr>
+          <tr *ngIf="product?.type_of_product === 'Двері вхідні' ">
+            <th>Кількість ущільнюючих контурів</th>
+            <td>{{product?.count_of_sealing_conturs}}</td>
+          </tr>
+          <tr *ngIf="product?.type_of_product === 'Двері міжкімнатні' ">
+            <th>Оздоблення поверхні міжкімнатніх дверей</th>
+            <td>{{product?.door_area_material}}</td>
+          </tr>
+          <tr *ngIf="product?.type_of_product === 'Двері міжкімнатні' || product?.type_of_product === 'Двері вхідні' ">
+            <th>Матеріал  дверного полотна</th>
+            <td>{{product?.door_leaf_material}}</td>
+          </tr>
+          <tr *ngIf="product?.type_of_product === 'Двері міжкімнатні' || product?.type_of_product === 'Двері вхідні' ">
+            <th>Матеріал дверної коробки</th>
+            <td>{{product?.door_frame_material}}</td>
+          </tr>
+          <tr *ngIf="product?.type_of_product === 'Двері міжкімнатні' || product?.type_of_product === 'Двері вхідні' ">
+            <th>Призначення двері</th>
+            <td>{{product?.door_purpose}}</td>
+          </tr>
+          <tr *ngIf="product?.type_of_product === 'Двері міжкімнатні' || product?.type_of_product === 'Двері вхідні' ">
+            <th>Наповнення дверей</th>
+            <td>{{product?.door_fill}}</td>
+          </tr>
+          <tr *ngIf="product?.type_of_product === 'Двері міжкімнатні' || product?.type_of_product === 'Двері вхідні' ">
+            <th>Тип дверей</th>
+            <td>{{product?.door_type}}</td>
+          </tr>
+          <tr *ngIf="product?.type_of_product === 'Двері міжкімнатні' || product?.type_of_product === 'Двері вхідні' ">
+            <th>Тип відкривання двері</th>
+            <td>{{product?.door_opening_type}}</td>
+          </tr>
+          <tr *ngIf="product?.type_of_product === 'Двері міжкімнатні' ">
+            <th>Расспродаж</th>
+            <td>{{product?.sail}}</td>
+          </tr>
+          <tr *ngIf="product?.type_of_product === 'Двері вхідні' ">
+            <th>Стан</th>
+            <td>{{product?.state}}</td>
+          </tr>
+          
+        </table>
+      </div>
+      <div class="info-table-wrap">
+        <h2 class="info-title">{{'Опис'|uppercase}}</h2>
+        <div class="info-table-block">
+          <p>{{product?.description ? product?.description : 'Опис товару відсутній'}}</p>
+        </div>
+      </div>
+    </section>
+  </div>
+</main>
+<dsa-footer></dsa-footer>
+

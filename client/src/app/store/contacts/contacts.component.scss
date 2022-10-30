@@ -1,0 +1,25 @@
+@import 'mixins';
+@import 'colors';
+
+.container{
+  @include container(1400px);
+}
+
+
+.main{
+  margin: 40px 0 870px 0;
+}
+
+.about{
+  color: $c2;
+  margin-bottom: 100px; 
+  &-title{
+    margin: 175px 0 65px 0;
+    text-align: center;
+    @include fontMain(700, 2.85rem, 46px);
+  }
+  &-text{
+    @include fontMain(400, 1.5rem, 27.6px);
+  }
+}
+

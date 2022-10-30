@@ -1,0 +1,99 @@
+@import 'colors';
+@import 'mixins';
+
+.products{
+  &-title{
+    margin: 20px 0;
+  }
+  &-card-list{
+    margin-bottom: 20px;
+  }
+  &-create-btn{
+    border: none;
+    outline: none;
+    padding: 5px 10px;
+    background-color: $c6;
+    margin-bottom: 20px;
+    transition: all .3s ease;
+    border-radius: 10px;
+    cursor: pointer;
+
+  }
+}
+
+.card{
+  width: 100%;
+  background-color: #fff;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 10px;
+  &:last-child{
+    margin-bottom: 0;
+  }
+  &-title{
+    text-align: center;
+    margin: 20px 0;
+  }
+  &-body{
+    display: flex;
+  }
+  &-description{
+    width: 50%;
+  }
+  &-img-wrap{
+    width: 50%;
+    display: flex;
+    justify-content: center;
+  }
+  &-img{
+    width: 100px;
+    height: 200px;
+  }
+  &-item{
+    margin-bottom: 5px;
+    &:first-child{
+      margin-top: 10px;
+    }
+  }
+  &-btn{
+    padding: 5px 10px;
+    border: none;
+    outline: none;
+    background-color: $c6;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 10px;
+    &:last-child{
+      margin-right: 0;
+    }
+    @media(max-width: 650px){
+      margin-bottom: 10px;
+    }
+    &-wrap{
+      display: flex;
+      flex-wrap: wrap;
+    }
+  }
+  &-line{
+    margin: 5px 0;
+  }
+  &-add-info{
+    display: none;
+  }
+  &-add-item{
+    margin-bottom: 5px;
+    &:first-child{
+      margin-top: 10px;
+    }
+  }
+}
+
+.show{
+  display: block;
+}
+
+::ng-deep .cdk-overlay-pane{
+  max-width: 90vw !important;
+}
+
+

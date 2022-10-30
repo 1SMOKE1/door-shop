@@ -1,0 +1,60 @@
+@import 'colors';
+@import 'mixins';
+
+
+.header{
+  height: auto;
+  padding: 20px;
+  background-color: $c6;
+}
+
+.nav{
+  &-list{
+    margin-top: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    @media(max-width: 500px){
+      flex-direction: column;
+    }
+  }
+  &-item{
+    margin-right: 20px;
+    &:last-child{
+      margin-right: 0;
+    }
+    @media(max-width: 500px){
+      margin: 0 0 10px 0;
+      &:last-child{
+        margin: 0;
+      }
+    }
+  }
+  &-link{
+    padding: 5px 10px;
+    background-color: $c2;
+    color: $c1
+  }
+}
+
+.container{
+  @include container(1200px)
+}
+
+.main{
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: 1fr;
+  grid-template-areas: 
+    'main main main main main main main';
+  position: relative;
+  &-wrap{
+    min-height: 100vh;
+    background-color: $c4;
+  }
+  &-content{
+    grid-area: main;
+  }
+ 
+}
+
+

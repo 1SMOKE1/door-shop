@@ -1,0 +1,46 @@
+<h1 class="font-h1 products-title" align="center">Продукти</h1>
+<button class=" font-h2 products-create-btn" (click)="createCard()">Створити нову картку Товару</button>
+<div class="products-card-list">
+  <div class="card" *ngFor="let product of products" >
+    <h2 class="card-title font-h4">Картка продукту ID:{{product._id}}</h2>
+    <div class="card-body">
+      <div class="card-img-wrap">
+        <img class="card-img" [src]="product.imageSrc" alt="">
+      </div>
+      <div class="card-description font-p-sm">
+        <h2 class="font-h4 font-bold">Загальні характеристики</h2>
+        <p class="card-item">Назва продукту: {{product.name}}</p>
+        <p class="card-item">Виробник: {{product.brand}}</p>
+        <p class="card-item">Ціна: {{product.price}}</p>
+        <p class="card-item">Ціна з інсталяцією: {{product.installationPrice}}</p>
+        <p class="card-item">Країна виробника: {{product.country}}</p>
+        <p class="card-item">Час Гарантії: {{product.guarantee_time}}</p>
+        <p class="card-item">Стан: {{product.state}}</p>
+        <p class="card-item">Наявність: {{product.in_stock}}</p>
+        <p class="card-item">Тип продукту: {{product.type_of_product}}</p>
+        <hr class="card-line" color="#8B9EA2" size="1px" width="60%" >
+        <div class="card-btn-wrap">
+          <button *ngIf="product.type_of_product !== 'Фурнітура'" (click)="getSelected(product)" class="card-btn font-p-sm">Додаткові характеристики</button>
+          <button (click)="updateCard(product)" class="card-btn">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button (click)="deleteCard(product._id)" class="card-btn">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </div>
+        <div [ngClass]="selectedCard?._id == product._id ? 'show' : ''" class="card-add-info">
+          <p class="card-add-item">Кількість ущільнюючих контурів: {{product.count_of_sealing_conturs ? product.count_of_sealing_conturs : 'не вказане поле' }}</p>
+          <p class="card-add-item">Матеріал дверного полотна: {{product.door_leaf_material ? product.door_leaf_material : 'не вказане поле' }}</p>
+          <p class="card-add-item">Матеріал дверної коробки: {{product.door_frame_material ? product.door_frame_material : 'не вказане поле' }}</p>
+          <p class="card-add-item">Призначення двері: {{product.door_purpose ? product.door_purpose : 'не вказане поле' }}</p>
+          <p class="card-add-item">Наповнення дверей: {{product.door_fill ? product.door_fill : "не вказане поле"}}</p>
+          <p class="card-add-item">Застосування дверей: {{product.door_application ? product.door_application : "не вказане поле"}}</p>
+          <p class="card-add-item">Метод відкривання дверей: {{product.door_opening_method ? product.door_opening_method : 'не вказане поле'}}</p>
+          <p class="card-add-item">Тип дверей: {{product.door_type ? product.door_type : 'не вказане поле'}}</p>
+          <p class="card-add-item">Тип відкривання дверей: {{product.door_opening_type ? product.door_opening_type : 'не вказане поле'}}</p>
+          <p class="card-add-item">Опис: {{product.description}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

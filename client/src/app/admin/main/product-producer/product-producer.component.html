@@ -1,0 +1,95 @@
+<div class="product_producer-wrap">
+  <h1 mat-dialog-title align="center">Виробник</h1>
+
+  <form [formGroup]="productProducerForm">
+    <div mat-dialog-content class="clear-scroll-x">
+      <div class="form-field-wrap">
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>Виробник</mat-label>
+          <input
+            formControlName="producerName"
+            matInput
+            placeholder="Впишіть нового виробника"
+          />
+          <mat-error
+            *ngIf="
+              productProducerForm.get('producerName')!.errors &&
+              productProducerForm.get('producerName')!.dirty
+            "
+          >
+            This is Required field
+          </mat-error>
+        </mat-form-field>
+
+        <button
+          class="btn-confirm"
+          type="button"
+          mat-raised-button
+          color="primary"
+          (click)="complete()"
+        >
+          OK
+        </button>
+      </div>
+
+      <div class="product-form-input">
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-select
+            class="form-field-input"
+            formControlName="filtrationField"
+            matInput
+            placeholder="Тип продукту"
+          >
+            <mat-option value="Двері вхідні">Двері вхідні</mat-option>
+            <mat-option value="Двері міжкімнатні">Двері міжкімнатні</mat-option>
+            <mat-option value="Фурнітура">Фурнітура</mat-option>
+          </mat-select>
+          <mat-error
+            *ngIf="
+              productProducerForm.get('filtrationField')?.invalid ||
+              (productProducerForm.get('filtrationField')?.touched &&
+                productProducerForm.get('filtrationField')?.dirty)
+            "
+          >
+            Обов'язкове поле
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <mat-list>
+        <ng-container *ngFor="let productProducer of productProducers">
+          <mat-list-item>
+            <div class="list-item-wrap">
+              <div class="list-item">
+                <p>
+                  Виробник: {{ productProducer.producerName }}
+                </p>
+                <p>
+                  ФП: {{productProducer.filtrationField}}
+                </p>
+              </div>
+              <div>
+                <button (click)="edit(productProducer)" mat-icon-button>
+                  <mat-icon>mode_edit_outline</mat-icon>
+                </button>
+                <button
+                  mat-icon-button
+                  (click)="delete(productProducer._id || 'undefined')"
+                >
+                  <mat-icon>delete</mat-icon>
+                </button>
+              </div>
+            </div>
+          </mat-list-item>
+          <mat-divider></mat-divider>
+        </ng-container>
+        <mat-list-item *ngIf="productProducers.length === 0"
+          >Empty</mat-list-item
+        >
+      </mat-list>
+      <div align="end">
+        <button class="btn-close" type="button" mat-button mat-dialog-close>close</button>
+      </div>
+    </div>
+  </form>
+</div>

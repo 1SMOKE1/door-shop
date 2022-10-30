@@ -1,0 +1,29 @@
+<div class="auth-wrap">
+  <h1 class="font-h1-title" align="center">Вхід</h1>
+  <form [formGroup]="loginForm" class="login-form">
+    <h2>Логін(email)</h2>
+    <mat-form-field appearance="outline" class="form-field">
+      <mat-label>{{'логін(email)' | titlecase}}</mat-label>
+      <input class="form-field-input" type="text" formControlName="email" matInput placeholder="Введіть своє ім'я">
+      <mat-error class="form-field-error" *ngIf="loginForm.get('email')?.invalid || (loginForm.get('email')?.touched && loginForm.get('email')?.dirty)">
+        Обов'язкове поле
+      </mat-error>
+    </mat-form-field>
+
+
+
+    
+    <h2>Пароль</h2>
+    <mat-form-field appearance="outline" class="form-field">
+      <mat-label>Enter your password</mat-label>
+      <input formControlName="password" class="form-field-input" matInput [type]="hidePassword ? 'password' : 'text'">
+      <button class="btn-show-password" mat-icon-button matSuffix (click)="hidePassword = !hidePassword" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hidePassword">
+        <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+      </button>
+      <mat-error class="form-field-error" *ngIf="loginForm.get('password')?.invalid || (loginForm.get('password')?.touched && loginForm.get('password')?.dirty)">
+        Обов'язкове поле
+      </mat-error>
+    </mat-form-field>
+    <button class="btn-in" type="button" (click)="submit()">Увійти</button>
+  </form>
+</div>

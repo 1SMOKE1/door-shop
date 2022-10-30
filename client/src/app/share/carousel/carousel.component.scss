@@ -1,0 +1,37 @@
+@import 'colors';
+
+.carousel{
+  &-wrap{
+    width: 100%;
+    overflow-x: hidden;
+  }
+  &-line{
+    display: flex;
+    width: 100%;
+    transition: all 1.5s ease;
+  }
+  &-img{
+    width: 400px;
+    height: 400px;
+  }
+  &-btns-wrap{
+    display: flex;
+    align-items: center;
+  }
+  &-btn{
+    cursor: pointer;
+    min-width: 40px;
+    transition: all .3s ease;
+    &:hover,
+    &:active{
+      opacity: 0.8;
+    }
+  }
+}
+
+.left{
+  margin-right: 10px;
+}
+.right{
+  margin-left: 10px;
+}

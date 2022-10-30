@@ -1,0 +1,28 @@
+<dsa-header></dsa-header>
+<dsa-nav></dsa-nav>
+<dsa-nav-logo></dsa-nav-logo>
+<main class="main">
+  <div class="container">
+    <section class="catalog">
+      <h1 class="catalog-title font-h1-title">
+        {{'каталог'|uppercase}}
+      </h1>
+      <div class="catalog-wrap">
+        <div class="catalog-sidebar">
+          <dsa-sidebar (filterSlider)="getFilterSlider($event)" (filteredProducts)="getFilteredProducts($event)" (search)="getSearch($event)" class="catalog-sidebar"></dsa-sidebar>
+        </div>
+        <div class="catalog-cards-wrap">
+          <div *ngFor="let product of doors | filter:search" class="card">
+            <img class="card-img" [src]="product.imageSrc" alt="">
+            <div class="card-body">
+              <h3 class="card-title">{{product.name}}</h3>
+              <button class="card-btn" (click)="cardBigRedirect(product._id)">Купити</button>
+              <h3 class="card-price">{{product.price}}</h3>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</main>
+<dsa-footer></dsa-footer>
