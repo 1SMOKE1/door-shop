@@ -2,9 +2,9 @@
   "name": "door-shop-angular",
   "version": "0.0.0",
   "scripts": {
-    "ng": "NPM_CONFIG_PRODUCTION=false && ng",
-    "start": "ng serve --proxy-config proxy.conf.json",
-    "build": "ng build",
+    "ng": "ng",
+    "start": "NPM_CONFIG_PRODUCTION=false ng serve --proxy-config proxy.conf.json",
+    "build": "ng build --prod",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
