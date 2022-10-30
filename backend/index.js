@@ -23,8 +23,6 @@ app.use(cors());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
-// mongodb://localhost:27017/door_shop
-
 mongoose.connect('mongodb+srv://kamyshan19:kamyshan19@door-shop.yqrrsud.mongodb.net/?retryWrites=true&w=majority', {
   useUnifiedTopology: true,
   useNewUrlParser: true,
@@ -50,8 +48,9 @@ app.use('/api/our-works', ourWorksRoutes);
 app.use('/api/our-comments', ourCommentsRouter);
 app.use('/api/consultation-form', consultationFormRouter);
 app.use('/uploads', express.static('uploads'));
-app.use('/', express.static('dist/door_shop_angular'))
+app.use('/', express.static(path.join(__dirname, 'door_shop_angular')));
 
-app.get('/', (req, res) => {
-  res.sendFile('/client/dist/door_shop_angular/index.html')
-})
+app.use((req, res) => {
+  res.sendFile(__dirname, 'door_shop_angular', 'index.html');
+}) 
+
