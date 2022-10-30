@@ -50,7 +50,7 @@ app.use('/api/consultation-form', consultationFormRouter);
 app.use('/uploads', express.static('uploads'));
 app.use('/', express.static(path.join(__dirname, 'door_shop_angular', 'index.html')));
 
-app.use((req, res) => {
+app.use('/*', (req, res) => {
   res.sendFile(__dirname, 'door_shop_angular', 'index.html');
 }) 
 
