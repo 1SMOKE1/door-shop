@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const morgan = require('morgan');
 const cors = require('cors');
 const path = require('path');
-
+const app = express();
 
 
 
@@ -15,7 +15,7 @@ const ourWorksRoutes = require('./routes/ourWork');
 const ourCommentsRouter = require('./routes/ourComment');
 const consultationFormRouter = require('./routes/consultationForm')
 
-const app = express();
+
 
 const PORT = process.env.PORT || 5000;
 
@@ -51,7 +51,7 @@ app.use('/api/consultation-form', consultationFormRouter);
 app.use('/uploads', express.static('uploads'));
 app.use(express.static('public'));
 
-app.get('*', (req, res) => {
+app.get('/*', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 }) 
 
