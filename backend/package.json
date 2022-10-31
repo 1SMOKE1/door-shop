@@ -6,12 +6,13 @@
   "scripts": {
     "start-backend": "nodemon index.js",
     "start": "node index.js",
-    "build": "npm i"
+    "build": "npm install"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "nodemon": "^2.0.20",
     "body-parser": "^1.20.1",
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",

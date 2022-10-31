@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import { ProductI } from '../interfaces/product';
 import { Order } from '../models/order.model';
 import { productProducerI } from '../interfaces/productProducer';
-
+import { BASE_URL } from './constants/urls';
 
 
 
@@ -17,7 +17,7 @@ export class DataBaseService {
   constructor(private http: HttpClient)  {}
 
   public getOurWorks(): Observable<carouselImageI[]>{
-    return this.http.get<carouselImageI[]>('http://localhost:5000/api/our-works');
+    return this.http.get<carouselImageI[]>(BASE_URL + '/api/our-works');
   }
 
   public createOurWorks(image: File | null): Observable<carouselImageI>{
@@ -25,7 +25,7 @@ export class DataBaseService {
     if(image){
       formData.append('image', image, image.name);
     }
-    return this.http.post<carouselImageI>('http://localhost:5000/api/our-works', formData);
+    return this.http.post<carouselImageI>(BASE_URL + '/api/our-works', formData);
   } 
 
   public updateOurWorks(id: string, image: File | null): Observable<carouselImageI>{
@@ -33,15 +33,15 @@ export class DataBaseService {
     if(image){
       formData.append('image', image, image.name);
     }
-    return this.http.put<carouselImageI>('http://localhost:5000/api/our-works/' + id, formData)
+    return this.http.put<carouselImageI>(BASE_URL + '/api/our-works/' + id, formData)
   }
 
   public deleteOurWorks(id: string): Observable<carouselImageI>{
-    return this.http.delete<carouselImageI>('http://localhost:5000/api/our-works/' + id);
+    return this.http.delete<carouselImageI>(BASE_URL + '/api/our-works/' + id);
   }
 
   public getOurComments(): Observable<carouselImageI[]>{
-    return this.http.get<carouselImageI[]>('http://localhost:5000/api/our-comments'); 
+    return this.http.get<carouselImageI[]>(BASE_URL + '/api/our-comments'); 
   }
 
   public createOurComments(image: File | null): Observable<carouselImageI>{
@@ -49,7 +49,7 @@ export class DataBaseService {
     if(image){
       formData.append('image', image, image.name);
     }
-    return this.http.post<carouselImageI>('http://localhost:5000/api/our-comments', formData);
+    return this.http.post<carouselImageI>(BASE_URL + '/api/our-comments', formData);
   }
 
   public updateOurComments(id: string, image: File | null): Observable<carouselImageI>{
@@ -57,11 +57,11 @@ export class DataBaseService {
     if(image){
       formData.append('image', image, image.name);
     }
-    return this.http.put<carouselImageI>('http://localhost:5000/api/our-comments/' + id, formData)
+    return this.http.put<carouselImageI>(BASE_URL + '/api/our-comments/' + id, formData)
   }
 
   public deleteOurComments(id: string): Observable<carouselImageI>{
-    return this.http.delete<carouselImageI>('http://localhost:5000/api/our-comments/' + id);
+    return this.http.delete<carouselImageI>(BASE_URL + '/api/our-comments/' + id);
   }
 
   public createProduct(product: ProductI, image: File | null): Observable<ProductI>{
@@ -93,7 +93,7 @@ export class DataBaseService {
       formData.append('image', image, image.name);
     }
 
-    return this.http.post<ProductI>('http://localhost:5000/api/products', formData)
+    return this.http.post<ProductI>(BASE_URL + '/api/products', formData)
   }
 
   public updateProduct(product: ProductI, image: File | null): Observable<ProductI>{
@@ -123,50 +123,50 @@ export class DataBaseService {
     if(image){
       formData.append('image', image, image.name);
     }
-    return this.http.put<ProductI>(`http://localhost:5000/api/products/${product._id}`, formData)
+    return this.http.put<ProductI>(BASE_URL + `/api/products/${product._id}`, formData)
   }
 
   public deleteProduct(id: string): Observable<ProductI>{
-    return this.http.delete<ProductI>(`http://localhost:5000/api/products/${id}`)
+    return this.http.delete<ProductI>(BASE_URL + `/api/products/${id}`)
   }
 
   public getProducts(): Observable<ProductI[]>{
-    return this.http.get<ProductI[]>('http://localhost:5000/api/products')
+    return this.http.get<ProductI[]>(BASE_URL + '/api/products')
   }
 
   public createOrder(order: Order): Observable<Order>{
-    return this.http.post<Order>('http://localhost:5000/api/orders', order)
+    return this.http.post<Order>(BASE_URL + '/api/orders', order)
   }
 
   public getOrders(): Observable<Order[]>{
-    return this.http.get<Order[]>('http://localhost:5000/api/orders')
+    return this.http.get<Order[]>(BASE_URL + '/api/orders')
   }
 
   public compliteOrder(order: Order): Observable<Order>{
-    return this.http.put<Order>(`http://localhost:5000/api/orders/${order._id}`, order);
+    return this.http.put<Order>(BASE_URL + `/api/orders/${order._id}`, order);
   }
 
   public deleteOrder(id: string): Observable<Order>{
-    return this.http.delete<Order>(`http://localhost:5000/api/orders/${id}`)
+    return this.http.delete<Order>(BASE_URL + `/api/orders/${id}`)
   }
 
   public getProductProducers(): Observable<productProducerI[]>{
-    return this.http.get<productProducerI[]>('http://localhost:5000/api/product-producers')
+    return this.http.get<productProducerI[]>(BASE_URL + '/api/product-producers')
   }
 
   public createProductProducer(productProducer: productProducerI): Observable<productProducerI>{
-    return this.http.post<productProducerI>(`http://localhost:5000/api/product-producers`, productProducer);
+    return this.http.post<productProducerI>(BASE_URL + `/api/product-producers`, productProducer);
   }
 
   public updateProductProducer(productProducer: productProducerI): Observable<productProducerI>{
-    return this.http.put<productProducerI>(`http://localhost:5000/api/product-producers/${productProducer._id}`, productProducer)
+    return this.http.put<productProducerI>(BASE_URL + `/api/product-producers/${productProducer._id}`, productProducer)
   }
 
   public deleteProductProducer(id: string): Observable<productProducerI>{
-    return this.http.delete<productProducerI>(`http://localhost:5000/api/product-producers/${id}`);
+    return this.http.delete<productProducerI>(BASE_URL + `/api/product-producers/${id}`);
   }
 
   public sendConsultaionForm(userData: {name: string, phone: string}): Observable<{name: string, phone: string}>{
-    return this.http.post<{name: string, phone: string}>('http://localhost:5000/api/consultation-form', userData);
+    return this.http.post<{name: string, phone: string}>(BASE_URL + '/api/consultation-form', userData);
   }
 }

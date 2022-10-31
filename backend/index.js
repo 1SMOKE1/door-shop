@@ -20,9 +20,13 @@ const consultationFormRouter = require('./routes/consultationForm')
 const PORT = process.env.PORT || 5000;
 
 app.use(morgan('dev'));
-app.use(cors());
+app.use(cors({
+  credentials: true,
+  origin:['http://localhost:4200']
+}));
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
+app.use(express.json());
 
 mongoose.connect('mongodb+srv://kamyshan19:kamyshan19@door-shop.yqrrsud.mongodb.net/?retryWrites=true&w=majority', {
   useUnifiedTopology: true,
@@ -51,7 +55,7 @@ app.use('/api/consultation-form', consultationFormRouter);
 app.use('/uploads', express.static('uploads'));
 app.use(express.static('public'));
 
-app.get('/*', (req, res) => {
+app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 }) 
 
