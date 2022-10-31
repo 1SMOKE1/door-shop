@@ -24,21 +24,6 @@ app.use(cors());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
-
-
-app.use('/api/products', productRoutes);
-app.use('/api/orders', orderRoutes);
-app.use('/api/product-producers', productProducerRoutes);
-app.use('/api/our-works', ourWorksRoutes);
-app.use('/api/our-comments', ourCommentsRouter);
-app.use('/api/consultation-form', consultationFormRouter);
-app.use('/uploads', express.static('uploads'));
-app.use(express.static('public'));
-
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'index.html'));
-}) 
-
 mongoose.connect('mongodb+srv://kamyshan19:kamyshan19@door-shop.yqrrsud.mongodb.net/?retryWrites=true&w=majority', {
   useUnifiedTopology: true,
   useNewUrlParser: true,
@@ -56,4 +41,19 @@ mongoose.connect('mongodb+srv://kamyshan19:kamyshan19@door-shop.yqrrsud.mongodb.
     console.log('Website served on http://localhost:' + PORT)
   });
 })
+
+app.use('/api/products', productRoutes);
+app.use('/api/orders', orderRoutes);
+app.use('/api/product-producers', productProducerRoutes);
+app.use('/api/our-works', ourWorksRoutes);
+app.use('/api/our-comments', ourCommentsRouter);
+app.use('/api/consultation-form', consultationFormRouter);
+app.use('/uploads', express.static('uploads'));
+app.use(express.static('public'));
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+}) 
+
+
 
