@@ -48,7 +48,6 @@ export class CarouselComponent implements OnInit, AfterViewInit, DoCheck{
     this.images$?.
       subscribe((images: carouselImageI[]) => {
         this.images = images;
-        console.log(this.images);
         this.countOfSets = 
         this.images.length % 3 === 0 
         ? this.images.length / 3

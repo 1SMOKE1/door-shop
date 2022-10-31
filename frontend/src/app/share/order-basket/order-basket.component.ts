@@ -3,7 +3,7 @@ import { DOCUMENT } from '@angular/common';
 import { Component,
    ElementRef,
    Inject,
-   OnInit, ViewChild, AfterViewInit, DoCheck, ContentChild, TemplateRef } from '@angular/core';
+   OnInit, ViewChild, AfterViewInit, DoCheck, TemplateRef } from '@angular/core';
 
 import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
@@ -19,7 +19,7 @@ import { DataBaseService } from '../data-base.service';
   templateUrl: './order-basket.component.html',
   styleUrls: ['./order-basket.component.scss']
 })
-export class OrderBasketComponent implements OnInit, AfterViewInit, DoCheck {
+export class OrderBasketComponent implements OnInit, AfterViewInit {
   window: Window | null;
   sendForm: boolean = false;
   @ViewChild('orderForm', {static: false}) public elemOrderForm!: ElementRef;
@@ -42,8 +42,6 @@ export class OrderBasketComponent implements OnInit, AfterViewInit, DoCheck {
 
   ngOnInit(): void {
     this.getCarts();
-    
-    // emptyBasket.style.width = this.emptyBasket.nativeElement - 240 + 'px';
   }
 
   clearCarts(): void{
@@ -68,7 +66,6 @@ export class OrderBasketComponent implements OnInit, AfterViewInit, DoCheck {
   toOrderForm(): void{
     const carouselLine = this.carouselLine.nativeElement as HTMLElement;
     carouselLine.style.transform = (`translate(-${carouselLine.offsetWidth / 2}px)`)
-    console.log(carouselLine.offsetWidth);
     const orderForm = this.elemOrderForm.nativeElement as HTMLElement;
     setTimeout(() => {
       orderForm.scrollIntoView({block: 'start', behavior: 'smooth'})
@@ -97,8 +94,6 @@ export class OrderBasketComponent implements OnInit, AfterViewInit, DoCheck {
   ngAfterViewInit(): void {
     if(this.emptyBasket){
       const emptyBasket = this.emptyBasket.elementRef.nativeElement.previousElementSibling.children[2] as HTMLElement;
-      console.log(this.window!.innerWidth);
-      console.log(emptyBasket.offsetWidth)
     }
     
     const adaptiveFn = (): void => {
@@ -110,13 +105,10 @@ export class OrderBasketComponent implements OnInit, AfterViewInit, DoCheck {
         orderBasket.style.width = this.window!.innerWidth - 240 + 'px';
         const carouselLine = this.carouselLine?.nativeElement as HTMLElement;
         carouselLine.style.width = (this.window!.innerWidth - 240) * 2 + 'px';
-        
-        // emptyBasket.style.width = this.window!.innerWidth - 240 + 'px';
         if(this.window!.innerWidth <= 550){
           carouselWrap.style.width = this.window!.innerWidth - 30 + 'px';
           orderBasket.style.width = this.window!.innerWidth - 30 + 'px';
           carouselLine.style.width = (this.window!.innerWidth - 30) * 2 + 'px';
-          // emptyBasket.style.width = this.emptyBasket.nativeElement - 30 + 'px';
         }
        
         for(const child of carouselLine.children as any){
@@ -130,23 +122,5 @@ export class OrderBasketComponent implements OnInit, AfterViewInit, DoCheck {
     adaptiveFn();
   }
 
-  ngDoCheck(): void {
-    // this.adaptiveTableMobile(500);
-    // this.adaptiveTableMobile(1000);
-  }
-
-  private adaptiveTableMobile(screenW: number){
-    if(this.window!.innerWidth <= screenW){
-      
-      if(this.carouselLine && this.carouselWrap){
-        const carouselWrap = this.carouselWrap?.nativeElement as HTMLElement;
-        const carouselLine = this.carouselLine?.nativeElement as HTMLElement;
-        carouselLine.style.width = carouselWrap.offsetWidth * 2 + 'px'
-        for(const child of carouselLine.children as any){
-          child.style.width = carouselWrap.offsetWidth + 'px';
-          child.style.height = 'auto';
-        }
-      }
-    }
-  }
+  
 }
