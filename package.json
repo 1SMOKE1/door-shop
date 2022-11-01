@@ -1,6 +1,7 @@
 {
   "name": "door_shop",
   "version": "1.0.0",
+  "main": "index.js",
   "scripts": {
     "start": "npm cache clean --force && npm install && node index.js",
     "prebuild": "cd backend && npm cache clean --force && npm run build",
