@@ -2,12 +2,28 @@
   "name": "door_shop",
   "version": "1.0.0",
   "scripts": {
-    "start": "cd backend && npm cache clean --force && cd .. && node index.js",
+    "start": "npm cache clean --force && npm i && node index.js",
     "prebuild": "cd backend && npm cache clean --force && npm run build",
     "build": "cd frontend && npm link @angular/cli && npm run build"
   },
   "engines": {
     "node": "v14.18.0",
     "npm": "8.19.1"
+  },
+  "dependencies": {
+    "nodemon": "^2.0.20",
+    "body-parser": "^1.20.1",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "moment": "^2.29.4",
+    "mongoose": "^6.6.5",
+    "morgan": "^1.10.0",
+    "multer": "^1.4.5-lts.1",
+    "nodemailer": "^6.8.0",
+    "strapi-provider-email-nodemailer": "^3.6.10"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
   }
 }
