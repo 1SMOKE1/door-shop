@@ -2,7 +2,7 @@
   "name": "door_shop",
   "version": "1.0.0",
   "scripts": {
-    "start": "cd backend && npm cache clean --force && node index.js",
+    "start": "cd backend && npm cache clean --force && cd .. && node index.js",
     "prebuild": "cd backend && npm cache clean --force && npm run build",
     "build": "cd frontend && npm link @angular/cli && npm run build"
   },
