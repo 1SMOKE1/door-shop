@@ -53,12 +53,16 @@ app.use('/api/our-works', ourWorksRoutes);
 app.use('/api/our-comments', ourCommentsRouter);
 app.use('/api/consultation-form', consultationFormRouter);
 app.use('/uploads', express.static('uploads'));
-app.use(express.static('backend'));
-app.use(express.static('public')); // app.use(express.static('public'))
+app.use('/app', express.static('backend'));
+app.use(express.static('public')); 
 
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 }) 
+
+app.get('../*', (req, res) => {
+  res.send(path.join(__dirname, 'public'))
+})
 
 
 
