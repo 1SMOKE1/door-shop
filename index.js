@@ -1,9 +1,9 @@
-const bodyParser = require('/backend/node_modules/body-parser');
-const express = require('/backend/node_modules/express');
-const mongoose = require('/backend/node_modules/mongoose');
-const morgan = require('/backend/node_modules/morgan');
-const cors = require('/backend/node_modules/cors');
-const path = require('/backend/node_modules/path');
+const bodyParser = require('body-parser');
+const express = require('express');
+const mongoose = require('mongoose');
+const morgan = require('morgan');
+const cors = require('cors');
+const path = require('path');
 const app = express();
 
 
