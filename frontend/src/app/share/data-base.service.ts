@@ -65,14 +65,13 @@ export class DataBaseService {
   }
 
   public createProduct(product: ProductI, image: File | null): Observable<ProductI>{
-    console.log(product.guarantee_time)
     const formData = new FormData();
     formData.append('name', product.name);
     formData.append('price', product.price.toString());
     formData.append('installationPrice', product.installationPrice.toString());
     formData.append('brand', product.brand);
     formData.append('country', product.country);
-    formData.append('guarantee_time', '12 Місяців');
+    formData.append('guarantee_time', product.guarantee_time);
     formData.append('state', product.state);
     formData.append('in_stock', product.in_stock);
     formData.append('type_of_product', product.type_of_product);
@@ -87,7 +86,7 @@ export class DataBaseService {
     formData.append('door_opening_type', product.door_opening_type);
     formData.append('door_area_material', product.door_area_material);
     formData.append('sail', product.sail);
-    formData.append('home_page', product.home_page.toString())
+    formData.append('home_page', product.home_page ? product.home_page.toString() : 'false')
     formData.append('description', product.description);
     if(image){
       formData.append('image', image, image.name);
