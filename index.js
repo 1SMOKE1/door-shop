@@ -8,12 +8,12 @@ const app = express();
 
 
 
-const productRoutes = require('./backend/routes/product');
-const orderRoutes = require('./backend/routes/order');
-const productProducerRoutes = require('./backend/routes/productProducer');
-const ourWorksRoutes = require('./backend/routes/ourWork');
-const ourCommentsRouter = require('./backend/routes/ourComment');
-const consultationFormRouter = require('./backend/routes/consultationForm')
+const productRoutes = require('routes/product');
+const orderRoutes = require('routes/order');
+const productProducerRoutes = require('routes/productProducer');
+const ourWorksRoutes = require('routes/ourWork');
+const ourCommentsRouter = require('routes/ourComment');
+const consultationFormRouter = require('routes/consultationForm')
 
 
 
