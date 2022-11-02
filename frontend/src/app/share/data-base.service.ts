@@ -71,7 +71,7 @@ export class DataBaseService {
     formData.append('installationPrice', product.installationPrice.toString());
     formData.append('brand', product.brand);
     formData.append('country', product.country);
-    formData.append('guarantee_time', product.guarantee_time);
+    formData.append('guarantee_time', '12 Місяців');
     formData.append('state', product.state);
     formData.append('in_stock', product.in_stock);
     formData.append('type_of_product', product.type_of_product);
