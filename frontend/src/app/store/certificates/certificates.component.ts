@@ -22,7 +22,8 @@ export class CertificatesComponent implements OnInit {
 
   public showImg(e: Event): void{
     let cur = e.target as HTMLImageElement;
-    let img = cur.src.slice(22);
+    let img = cur.src;
+    console.log(img)
     let dialogRef = this.dialog.open(ShowCertificateComponent, {
       data: img
     })
