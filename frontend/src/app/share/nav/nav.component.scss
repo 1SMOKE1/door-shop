@@ -15,9 +15,8 @@
 }
 
 .nav{
-  max-width: 1335px;
-  margin: 0 auto;
   color: $c2;
+  background-color: $c10;
   display: flex;
   justify-content: space-between;
   &-menu{
@@ -25,7 +24,7 @@
     flex-wrap:wrap;
     justify-content: space-evenly;
     padding: 0;
-    margin: 80px 0 35px 0;
+    margin: 80px 0 15px 0;
     @media (max-width: 1065px) {
       margin: 120px 0 35px 0;
       justify-content: space-evenly;
@@ -44,7 +43,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  color: $c2;
+  color: $c6;
   position: relative;
   font-size: 18px;
   perspective: 1000px;

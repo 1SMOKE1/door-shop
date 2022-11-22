@@ -5,15 +5,15 @@
 
 <dsa-nav-logo></dsa-nav-logo>
 <main class="main">
+  <section class="door-photos">
+    <div class="img-wrap" href="#">
+      <img class="img" src="assets/section_door_in_or_through/door_through.png" alt="">
+    </div>
+    <div class="img-wrap" href="#">
+      <img class="img" src="assets/section_door_in_or_through/door_in.png" alt="">
+    </div>
+  </section>
   <div class="container">
-    <section class="door-photos">
-      <div class="img-wrap" href="#">
-        <img class="img" src="assets/section_door_in_or_through/door_through.png" alt="">
-      </div>
-      <div class="img-wrap" href="#">
-        <img class="img" src="assets/section_door_in_or_through/door_in.png" alt="">
-      </div>
-    </section>
     <section class="second-nav">
       <div *ngFor="let link of links" class="link-wrap">
         <p class="link" href="#">{{link}}</p>

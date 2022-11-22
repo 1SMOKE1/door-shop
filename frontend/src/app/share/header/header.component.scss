@@ -6,7 +6,7 @@
   z-index: 1000;
   width: 100%;
   min-height: 55px;
-  background: #D08821;
+  background: $c6;
   color: #ffffff;
   @include fontHeaderFooter();
   &-wrap{

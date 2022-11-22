@@ -12,7 +12,9 @@
 .door-photos{
   display: flex;
   justify-content: space-between;
-  padding: 0 125px;
+  background-color: $c11;
+  padding: 16.5px 265px 13.5px 265px;
+  margin: 0 auto;
   margin-bottom: 20px;
   @media(max-width:1310px){
     padding: 0;
@@ -55,15 +57,14 @@
   transition: all .3s ease-out;
   @include fontMain(700);
   text-align: center;
-  border: 0 solid rgba(0, 0, 0, 0.2);
+  border: 5px solid $c12;
   &:hover{
-    border: 0.25px solid rgba(0, 0, 0, 0.2);
-    box-shadow: 10px 12px 18px 2px rgba(0, 0, 0, 0.2);
+    box-shadow: 10px 12px 9px 0 rgba(0, 0, 0, 0.2);
   }
 }
 
 .link{
-  color: $c2;
+  color: $c6;
 }
 
 /* OUR MANUFACTURERS */
@@ -74,7 +75,7 @@
     margin: 60px 0 45px 0;
     @include fontMain(400, 32px, 36.8px);
     text-align: center;
-    color: $c2;
+    color: $c6;
   }
   &-info{
     display: flex;
@@ -93,7 +94,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    color: $c2;
+    color: $c11;
     &-text{
       display: inline;
       @include fontMain(400, 1.1rem, 18.4px);

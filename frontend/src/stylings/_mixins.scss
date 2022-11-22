@@ -14,6 +14,12 @@
   line-height: $lh;
 }
 
+@mixin fontBonaNova($fw:400, $fs:24px, $lh:27.6px) {
+  font-family: 'Bona Nova';
+  font-size: $fs;
+  font-weight: $fw;
+  line-height: $lh;
+}
 .p-sm{
   @include fontHeaderFooter(400, 14px, 16.1px)
 }
