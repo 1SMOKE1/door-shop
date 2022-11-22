@@ -26,19 +26,17 @@
 .our-manufacturers{
   &-title{
     text-align: center;
-    @include fontMain(0, 40px, 46px);
+    @include fontMain(400, 40px, 46px);
     color: $c6;
     margin-bottom: 42px;
+    @media(max-width: 800px){
+      @include fontMain(400, 20px, 23px);
+    }
   }
   &-logos{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    @media(max-width: 762px){
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-    }
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(4, 1fr);
   }
   &-item{
     width: 350px;
@@ -57,9 +55,11 @@
     &:nth-child(9){
       margin-bottom: 10px;
     }
-    @media(max-width: 500px){
-      width: 325px;
+    @media(max-width: 800px){
+      width: 95px;
+      height: 65px;
     }
+
   }
 }
 
