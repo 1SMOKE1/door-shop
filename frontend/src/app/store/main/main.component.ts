@@ -20,6 +20,15 @@ export class MainComponent implements OnInit {
       Validators.required,
       Validators.pattern(/^(?:\+38)?(?:\(\d{3}\)[ .-]?[0-9]{3}[ .-]?[0-9]{2}[ .-]?[0-9]{2}|\d{3}[ .-]?[0-9]{3}[ .-]?[0-9]{2}[ .-]?[0-9]{2}|\d{3}[0-9]{7})$/)]),
   })
+
+  freeSampleForm: FormGroup = new FormGroup({
+    'name': new FormControl('', Validators.required),
+    'phone': new FormControl('', [
+      Validators.required,
+      Validators.pattern(/^(?:\+38)?(?:\(\d{3}\)[ .-]?[0-9]{3}[ .-]?[0-9]{2}[ .-]?[0-9]{2}|\d{3}[ .-]?[0-9]{3}[ .-]?[0-9]{2}[ .-]?[0-9]{2}|\d{3}[0-9]{7})$/)]),
+    'address': new FormControl('', Validators.required)
+  })
+
   links: string[] = ['Наші виробники', 'Двері міжкімнатні', 'Двері вхідні', 'Вікна', 'Фурнітура'];
   products: ProductI[] = [];
   constructor(
@@ -48,6 +57,14 @@ export class MainComponent implements OnInit {
     this.dataBaseService
       .sendConsultaionForm(this.consultationForm.value)
       .subscribe((res: {name: string, phone: string}) => console.log(res));
+    this.consultationForm.reset();
+  }
+
+  sendFreeSampleForm(): void{
+    this.dataBaseService
+      .sendFreeSampleForm(this.freeSampleForm.value)
+      .subscribe((res: {name: string, phone: string, address: string}) => console.log(res))
+    this.freeSampleForm.reset();
   }
 
 

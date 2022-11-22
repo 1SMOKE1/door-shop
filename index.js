@@ -13,7 +13,9 @@ const orderRoutes = require('./routes/order');
 const productProducerRoutes = require('./routes/productProducer');
 const ourWorksRoutes = require('./routes/ourWork');
 const ourCommentsRouter = require('./routes/ourComment');
-const consultationFormRouter = require('./routes/consultationForm')
+const consultationFormRouter = require('./routes/consultationForm');
+const freeSampleFormRotuter = require('./routes/freeSampleForm');
+
 
 
 
@@ -52,6 +54,7 @@ app.use('/api/product-producers', productProducerRoutes);
 app.use('/api/our-works', ourWorksRoutes);
 app.use('/api/our-comments', ourCommentsRouter);
 app.use('/api/consultation-form', consultationFormRouter);
+app.use('/api/free-sample-form', freeSampleFormRotuter);
 app.use('/uploads', express.static('uploads'));
 app.use(express.static('public')); 
 

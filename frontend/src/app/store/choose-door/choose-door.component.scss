@@ -12,7 +12,7 @@
 
 .choose_door{
   &-title{
-    color: $c2;
+    color: $c6;
     text-align: center;
     margin-bottom: 40px;
   }
@@ -39,7 +39,7 @@
   &-btn{
     display: block;
     @include fontMain(700, 1.02rem, 18.4px);
-    background-color: $c2;
+    background-color: $c11;
     color: $c1;
     padding: 10px 5px;
     border: none;
@@ -66,7 +66,7 @@
         min-width: 421px;
         color: $c6;
         background-color: #D9D9D9;
-        border: 2px solid $c2;
+        border: 2px solid $c6;
         height: 40px;
         outline: none;
         padding-left: 13px;
@@ -83,7 +83,7 @@
       }
       & > button {
         cursor: pointer;
-        background-color: #D08821;
+        background-color: $c6;
         color: $c1;
         @include fontMain(700, 1.5rem, 27.6px);
         &:disabled{

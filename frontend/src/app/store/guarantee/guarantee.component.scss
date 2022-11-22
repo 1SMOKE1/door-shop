@@ -33,7 +33,7 @@
 
 .guarantee{
   margin-top: 80px;
-  color: $c2;
+  color: $c6;
   &-title{
     @include fontMain(700, 2.85rem, 46px);
     text-align: center;
@@ -58,6 +58,9 @@
   &-item-text{
     width: 67.5%;
     color: $c3;
+    &-disc{
+      list-style-type: disc;
+    }
   }
   &-under-text{
     margin-bottom: 42px;

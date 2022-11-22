@@ -168,4 +168,8 @@ export class DataBaseService {
   public sendConsultaionForm(userData: {name: string, phone: string}): Observable<{name: string, phone: string}>{
     return this.http.post<{name: string, phone: string}>(BASE_URL + '/api/consultation-form', userData);
   }
+
+  public sendFreeSampleForm(userData: {name: string, phone: string, address: string}): Observable<{name: string, phone: string, address: string}>{
+    return this.http.post<{name: string, phone: string, address: string}>(BASE_URL + '/api/free-sample-form', userData);
+  }
 }

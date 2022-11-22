@@ -11,9 +11,9 @@
 
 .door-photos{
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   background-color: $c11;
-  padding: 16.5px 265px 13.5px 265px;
+  padding: 15px 0;
   margin: 0 auto;
   margin-bottom: 20px;
   @media(max-width:1310px){
@@ -22,15 +22,17 @@
 }
 
 .img{
-  width: 100%;
+  width: 75%;
   max-width: 641px;
   transition: all .3s ease;
+  cursor: pointer;
   &:hover{
     transform: scale(1.1);
   }
   &-wrap{
-    cursor: pointer;
     overflow: hidden;
+    display: flex;
+    justify-content: center;
   }
 }
 
@@ -129,36 +131,40 @@
 
 /* CHOOSE DOOR */
 
-.choose-door{
+.choose-door,
+.free-sample{
   margin: 40px 0 120px 0;
-  color: $c2;
+  color: $c6;
   &-title{
     @include fontMain(400, 2.75rem, 46px);
     text-align: center;
-    margin-bottom: 85px;
+    margin-bottom: 45px;
   }
   &-form{
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
-    margin-bottom: 80px;
+    justify-content: space-evenly;
+    margin-bottom: 45px;
     @media (max-width: 1350px) {
       flex-direction: column;
       align-items: center;
       justify-content: center;
     }
+    &-wrap{ 
+      padding: 35px 0 20px 0;
+      background-color: $c14;
+    }
     & > input,
     & > button{
       width: 421px;
       color: $c6;
-      background-color: #D9D9D9;
-      border: 2px solid $c2;
+      border: 3px solid $c6;
       height: 40px;
       outline: none;
       padding-left: 13px;
       &:last-child{
         cursor: pointer;
-        background-color: #D08821;
+        background-color: $c6;
         color: $c1;
         @include fontMain(700, 1.5rem, 27.6px);
         &:hover{
@@ -176,6 +182,7 @@
   }
 
   &-group{
+    margin-top: 40px;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -243,6 +250,56 @@
   }
 }
 
+.free-sample{
+  margin: 40px 0 60px 0;
+  color: $c6;
+  &-title{
+    @include fontMain(400, 2.75rem, 46px);
+    text-align: center;
+    margin-bottom: 45px;
+  }
+  &-form{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    margin-bottom: 45px;
+    @media (max-width: 1350px) {
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    &-wrap{ 
+      padding: 35px 40px 20px 40px;
+      background-color: $c13;
+    }
+    & > input,
+    & > button{
+      width: 281px;
+      color: $c6;
+      border: 3px solid $c6;
+      height: 40px;
+      outline: none;
+      padding-left: 13px;
+      &:last-child{
+        width: 421px;
+        cursor: pointer;
+        background-color: $c6;
+        color: $c1;
+        @include fontMain(700, 1.5rem, 27.6px);
+        &:hover{
+          opacity: 0.9;
+        }
+      }
+      &:disabled{
+        background-color: rgb(185, 172, 172);
+      }
+      @media (max-width: 1350px) {
+        margin-bottom: 20px;
+        width: 300px;
+      }
+    }
+  }
+}
 
 
 

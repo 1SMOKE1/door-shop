@@ -80,5 +80,24 @@ module.exports = {
     } catch(e) {
       console.log(e);
     }
-  }
+  },
+  sendFreeSampleMessage: async function(req){
+    try{
+      console.log(req);
+      const info = await transporter.sendMail({
+        from: 'Doorshop.dp.ua@gmail.com',
+        to: 'chumak.dp.ua@gmail.com', 
+        subject: `Замовлення безкоштовного заміру З door_shop`,
+        html: `
+        <h1>Ім'я замовника: ${req.name}</h1>
+        <p>Телефон замовника: ${req.phone}</p>
+        <p>Адресса замовника: ${req.address}</p>
+        `
+      })
+      console.log(info.messageId);
+      console.log('email have send message succsessfully');
+    } catch(e) {
+      console.log(e);
+    }
+  },
 }

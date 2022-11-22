@@ -64,18 +64,40 @@
       </div>
     </section>
     <dsa-line ></dsa-line>
-    <section #chooseDoor class="choose-door">
-      <div class="container"> 
-        <h1 class="choose-door-title">{{'підібрати двері і розрахувати вартість' | uppercase}}</h1>
-        <form class="choose-door-form" [formGroup]="consultationForm">
-          <input formControlName="name" type="text" placeholder="Ім'я">
-          <input formControlName="phone" type="tel" placeholder="Телефон">
-          <button 
-            (click)="sendConsultationForm()"
-            [disabled]="consultationForm.invalid" 
-            >{{'Залишити запит' | uppercase}}</button>
-        </form>
-      </div>
+    
+  
+
+  </div>
+  <section class="free-sample">
+    <div class="free-sample-form-wrap">
+      <h1 class="free-sample-title">{{'Замовити безкоштовний замір' | uppercase}}</h1>
+      <form class="free-sample-form" [formGroup]="freeSampleForm">
+        <input formControlName="name" type="text" placeholder="Ім'я">
+        <input formControlName="phone" type="tel" placeholder="Телефон">
+        <input formControlName="address" type="text" placeholder="Адресса">        
+        <button 
+          (click)="sendFreeSampleForm()"
+          [disabled]="freeSampleForm.invalid" 
+          >{{'Безкоштовний замір' | uppercase}}</button>
+      </form>
+    </div>
+  </section>
+
+  <section #chooseDoor class="choose-door">
+    <div class="choose-door-form-wrap">
+      <h1 class="choose-door-title">{{'підібрати двері і розрахувати вартість' | uppercase}}</h1>
+      <form class="choose-door-form" [formGroup]="consultationForm">
+        <input formControlName="name" type="text" placeholder="Ім'я">
+        <input formControlName="phone" type="tel" placeholder="Телефон">        
+        <button 
+          (click)="sendConsultationForm()"
+          [disabled]="consultationForm.invalid" 
+          >{{'Залишити запит' | uppercase}}</button>
+      </form>
+
+    </div>
+    <dsa-line></dsa-line>
+    <div class="container">
       <div class="choose-door-group">
         <div *ngFor="let card of products| slice:0:3" class="choose-door-card">
           <div class="choose-door-img-wrap">
@@ -85,11 +107,10 @@
           <button (click)="redirectToCard(card._id)" class="choose-door-button">Докладніше</button>
           <h4 class="choose-door-price">{{card.price}}</h4>
         </div>
-        
-      
       </div>
-    </section>
-  </div>
+    </div>
+    
+  </section>
 </main>
 
 
