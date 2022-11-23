@@ -2,7 +2,7 @@
 
 <div #orderBasket class="order-basket" *ngIf="cartLines.length !== 0; else emptyBasket">
   <div class="order-basket-header">
-    <h2 class="order-basket-title font-h2 c2">Кошик замовлень</h2>
+    <h2 class="order-basket-title font-h2 c6">Кошик замовлень</h2>
     <button class="order-basket-close" mat-dialog-close><img src="assets/catalog/icons/close_icon.svg" alt=""></button>
   </div>
   <hr width="100%" size="0.5px" color="#999999">
@@ -29,7 +29,7 @@
             </div>
             <div class="cart-price-wrap">
               <div (click)="deleteCart(cart.product._id)" class="price-delete-wrap">
-                <p class="price-delete-btn c2">видалити</p>
+                <p class="price-delete-btn c6">видалити</p>
                 <img src="assets/catalog/icons/delete_icon.svg" alt="">
               </div>
               <div class="price-wrap">
@@ -48,7 +48,7 @@
                 <p class="price font-p">{{cartService.getTotal()}}.00 грн</p>
               </div>
             </div>
-            <button (click)="toOrderForm()" class="cart-btn-order">Оформити замовлення</button>
+            <button (click)="toOrderForm()" class="cart-btn-order c1 bg6">Оформити замовлення</button>
           </div>
         </div>
       </div>
@@ -74,14 +74,14 @@
 <ng-template #emptyBasket>
   <div [style.width]="window!.innerWidth <= 1200 ? '0' : '960px'" class="order-basket">
     <div class="order-basket-header">
-      <h2 class="order-basket-title font-h2 c2">Кошик замовлень</h2>
+      <h2 class="order-basket-title font-h2 c6">Кошик замовлень</h2>
       <button class="order-basket-close" mat-dialog-close><img src="assets/catalog/icons/close_icon.svg" alt=""></button>
     </div>
     <hr width="100%" size="0.5px" color="#999999">
     <div class="empty-basket">
       <img class="empty-basket-img" src="assets/catalog/icons/empty_basket.svg" alt="">
       <h2 class="font-h2">Кошик пустий</h2>
-      <a (click)="toCatalog()" class="font-p-big empty-bakset-text c2">Але це можна виправити <span>:-)</span></a>
+      <a (click)="toCatalog()" class="font-p-big empty-bakset-text c6">Але це можна виправити <span>:-)</span></a>
     </div>
   </div>
 </ng-template>

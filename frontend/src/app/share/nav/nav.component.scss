@@ -15,7 +15,7 @@
 }
 
 .nav{
-  color: $c2;
+  color: $c6;
   background-color: $c10;
   display: flex;
   justify-content: space-between;
@@ -75,7 +75,7 @@
     opacity: 0;
     transition: all .3s ease;
     &:hover{
-      color: $c2;
+      color: $c6;
     }
    }
    & hr{

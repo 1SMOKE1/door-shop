@@ -47,14 +47,14 @@
         </mat-error>
       </mat-form-field>
     </div>
-    <mat-radio-group formControlName="kindOfPayvment" class="radio-wrap" aria-label="Виберіть тип продукту">
+    <mat-radio-group formControlName="kindOfPayvment" class="radio-wrap" aria-label="Виберіть тип продукту" color="primary">
       <mat-radio-button class="radio-item" checked="true" value="Готівка">Готівка</mat-radio-button>
       <mat-radio-button class="radio-item" value="Термінал">Термінал</mat-radio-button>
     </mat-radio-group>
     
     <div class="button-wrap">
-      <button (click)="goBack($event)" type="button"  class="order-form-btn font-p-sm yellow">Повернутись</button>
-      <button [disabled]="orderForm.invalid" type="button" class="order-form-btn font-p-sm" (click)="submit($event)">Відправити</button>
+      <button (click)="goBack($event)" type="button"  class="order-form-btn font-p-sm yellow c1">Повернутись</button>
+      <button [disabled]="orderForm.invalid" type="button" class="order-form-btn font-p-sm c1 bg6" (click)="submit($event)">Відправити</button>
     </div>
   </form>
   

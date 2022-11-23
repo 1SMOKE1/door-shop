@@ -8,6 +8,7 @@
     <div class="sidebar-body">
       <h3 class="sidebar-title">{{'бренди'|uppercase}}</h3>
       <mat-checkbox class="sidebar-checkbox"
+        color="primary"
        *ngFor="let checkbox of comeThrowDoors"
        (change)="filtrationProducts(checkbox)">
         {{checkbox.producerName}}
@@ -30,6 +31,7 @@
     <div class="sidebar-body">
       <h3 class="sidebar-title">{{'бренди'|uppercase}}</h3>
       <mat-checkbox class="sidebar-checkbox"
+        color="primary"
        *ngFor="let checkbox of comeInDoors"
        (change)="filtrationProducts(checkbox)">
         {{checkbox.producerName}}
@@ -51,6 +53,7 @@
     <div class="mat-expansion-panel-body">
       <h3 class="sidebar-title">{{'бренди'|uppercase}}</h3>
       <mat-checkbox class="sidebar-checkbox"
+        color="primary"
        *ngFor="let checkbox of furniture"
        (change)="filtrationProducts(checkbox)">
         {{checkbox.producerName}}
@@ -73,7 +76,7 @@
 
 
   <h4 class="filter-title">Ціна</h4>
-  <mat-slider (valueChange)="changeSlider($event)" [displayWith]="formatLabel" thumbLabel min="0" step="1000" max="20000"></mat-slider>
+  <mat-slider color="primary" (valueChange)="changeSlider($event)" [displayWith]="formatLabel" thumbLabel min="0" step="1000" max="20000"></mat-slider>
 </div>
 
 
