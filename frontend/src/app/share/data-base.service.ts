@@ -261,35 +261,12 @@ export class DataBaseService {
     formData.append('inStock', entranceDoor.inStock);
     formData.append('description', entranceDoor.description);
 
-    formData.append('amountOfSealingMaterial',  
-    typeof entranceDoor.amountOfSealingMaterials === 'number' 
-    ? entranceDoor.amountOfSealingMaterials.toString() 
-    : entranceDoor.amountOfSealingMaterials.join('/'));
-
-    formData.append('fabricMaterial',
-    typeof entranceDoor.fabricMaterial === 'string' 
-    ? entranceDoor.fabricMaterial
-    : entranceDoor.fabricMaterial.join('/'));
-
-    formData.append('purpose',
-    typeof entranceDoor.purpose === 'string'
-    ? entranceDoor.purpose 
-    : entranceDoor.purpose.join('/'));
-
-    formData.append('openingMethod', 
-    typeof entranceDoor.openingMethod === 'string'
-    ? entranceDoor.openingMethod
-    : entranceDoor.openingMethod.join('/'));
-
-    formData.append('covering', 
-    typeof entranceDoor.covering === 'string'
-    ? entranceDoor.covering
-    : entranceDoor.covering.join('/'));
-
-    formData.append('frameMaterial', 
-    typeof entranceDoor.frameMaterial === 'string'
-    ? entranceDoor.frameMaterial
-    : entranceDoor.frameMaterial.join('/'));
+    formData.append('amountOfSealingMaterials',  JSON.stringify(entranceDoor.amountOfSealingMaterials))
+    formData.append('fabricMaterial', JSON.stringify(entranceDoor.fabricMaterial))
+    formData.append('purpose',JSON.stringify(entranceDoor.purpose));
+    formData.append('openingMethod', JSON.stringify(entranceDoor.openingMethod));
+    formData.append('covering', JSON.stringify(entranceDoor.covering));
+    formData.append('frameMaterial', JSON.stringify(entranceDoor.frameMaterial)); 
 
     if(image){
       formData.append('image', image, image.name);
@@ -302,6 +279,42 @@ export class DataBaseService {
 
 
     return  this.http.post<entranceDoorI>(BASE_URL + '/api/entranceDoors', formData)
+  }
+
+  public updateEntranceDoor(entranceDoor: entranceDoorI, image: File | null): Observable<entranceDoorI>{
+    const formData = new FormData();
+
+    formData.append('name', entranceDoor.name);
+    formData.append('price', entranceDoor.price.toString());
+    formData.append('installationPrice', entranceDoor.installationPrice.toString());
+    formData.append('typeOfProduct', entranceDoor.typeOfProduct);
+    formData.append('brand', entranceDoor.brand);
+    formData.append('country', entranceDoor.country);
+    formData.append('guarantee', entranceDoor.guarantee);
+    formData.append('state', entranceDoor.state);
+    formData.append('inStock', entranceDoor.inStock);
+    formData.append('description', entranceDoor.description);
+
+    formData.append('amountOfSealingMaterials',  JSON.stringify(entranceDoor.amountOfSealingMaterials))
+    formData.append('fabricMaterial', JSON.stringify(entranceDoor.fabricMaterial))
+    formData.append('purpose',JSON.stringify(entranceDoor.purpose));
+    formData.append('openingMethod', JSON.stringify(entranceDoor.openingMethod));
+    formData.append('covering', JSON.stringify(entranceDoor.covering));
+    formData.append('frameMaterial', JSON.stringify(entranceDoor.frameMaterial)); 
+
+    if(image){
+      formData.append('image', image, image.name);
+    }
+
+    formData.append('homePage', entranceDoor.homePage 
+    ? entranceDoor.homePage.toString() 
+    : 'false')
+
+    return this.http.put<entranceDoorI>(BASE_URL + '/api/entranceDoors/' + entranceDoor._id, formData)
+  }
+
+  public deleteEntranceDoor(id: string): Observable<entranceDoorI>{
+    return this.http.delete<entranceDoorI>(BASE_URL + '/api/entranceDoors/' + id)
   }
 
 

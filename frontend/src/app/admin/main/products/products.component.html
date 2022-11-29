@@ -45,6 +45,7 @@
       </div>
     </div>
   </div>
+  <h1 class="font-h1 products-title" align="center">Двері міжкімнатні</h1>
   <div class="card" *ngFor="let interiorDoor of interiorDoors" >
     <h2 class="card-title font-h4">Картка продукту ID:{{interiorDoor._id}}</h2>
     <div class="card-body">
@@ -78,6 +79,44 @@
           <p class="card-add-item">Тип відкривання: {{interiorDoor.openingType ? interiorDoor.openingType : "не вказане поле"}}</p>
           <p class="card-add-item">Тип монтажу: {{interiorDoor.installationType ? interiorDoor.installationType : "не вказане поле"}}</p>
           <p class="card-add-item">Спосіб відкривання: {{interiorDoor.openingMethod ? interiorDoor.openingMethod : 'не вказане поле'}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <h1 class="font-h1 products-title" align="center">Двері вхідні</h1>
+  <div class="card" *ngFor="let entranceDoor of entranceDoors" >
+    <h2 class="card-title font-h4">Картка продукту ID:{{entranceDoor._id}}</h2>
+    <div class="card-body">
+      <div class="card-img-wrap">
+        <img class="card-img" [src]="entranceDoor.imageSrc" alt="">
+      </div>
+      <div class="card-description font-p-sm">
+        <h2 class="font-h4 font-bold">Загальні характеристики</h2>
+        <p class="card-item">Назва продукту: {{entranceDoor.name}}</p>
+        <p class="card-item">Виробник: {{entranceDoor.brand}}</p>
+        <p class="card-item">Ціна: {{entranceDoor.price}}</p>
+        <p class="card-item">Ціна з інсталяцією: {{entranceDoor.installationPrice}}</p>
+        <p class="card-item">Країна виробника: {{entranceDoor.country}}</p>
+        <p class="card-item">Час Гарантії: {{entranceDoor.guarantee}}</p>
+        <p class="card-item">Стан: {{entranceDoor.state}}</p>
+        <p class="card-item">Наявність: {{entranceDoor.inStock}}</p>
+        <hr class="card-line" color="#8B9EA2" size="1px" width="60%" >
+        <div class="card-btn-wrap">
+          <button *ngIf="entranceDoor.typeOfProduct !== 'Фурнітура'" (click)="getSelected(entranceDoor)" class="card-btn font-p-sm">Додаткові характеристики</button>
+          <button (click)="updateEntranceDoorCard(entranceDoor)" class="card-btn">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button (click)="deleteEntranceDoorCard(entranceDoor._id)" class="card-btn">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </div>
+        <div [ngClass]="selectedCard?._id == entranceDoor._id ? 'show' : ''" class="card-add-info">
+          <p class="card-add-item">Кількість ущільнюючих контурів: {{entranceDoor.amountOfSealingMaterials ? entranceDoor.amountOfSealingMaterials : 'не вказане поле' }}</p>
+          <p class="card-add-item">Матеріал дверного полотна: {{entranceDoor.fabricMaterial ? entranceDoor.fabricMaterial : 'не вказане поле' }}</p>
+          <p class="card-add-item">Призначення двері: {{entranceDoor.purpose ? entranceDoor.purpose : 'не вказане поле' }}</p>
+          <p class="card-add-item">Спосіб відкривання: {{entranceDoor.openingMethod ? entranceDoor.openingMethod : "не вказане поле"}}</p>
+          <p class="card-add-item">Покриття: {{entranceDoor.covering ? entranceDoor.covering : "не вказане поле"}}</p>
+          <p class="card-add-item">Матеріал дверної коробки: {{entranceDoor.frameMaterial ? entranceDoor.frameMaterial : 'не вказане поле'}}</p>
         </div>
       </div>
     </div>

@@ -87,12 +87,6 @@ router.put('/:id', upload.single('image'), async(req, res) => {
 
 
 
-    finishingTheSurface = JSON.parse(finishingTheSurface);
-    frameMaterial = JSON.parse(frameMaterial);
-    structuralFeatures = JSON.parse(structuralFeatures);
-    openingType = JSON.parse(openingType);
-    installationType = JSON.parse(installationType);
-    openingMethod = JSON.parse(openingMethod);
 
 
     const updatedProd = new interiorDoor({
@@ -119,40 +113,20 @@ router.put('/:id', upload.single('image'), async(req, res) => {
     if(req.file){
       updatedProd.imageSrc = req.file.path;
     }
-
     
+    updatedProd._id = req.params.id;
     
-    
-  
+    updatedProd.finishingTheSurface = JSON.parse(finishingTheSurface);
+    updatedProd.frameMaterial = JSON.parse(frameMaterial);
+    updatedProd.structuralFeatures = JSON.parse(structuralFeatures);
+    updatedProd.openingType = JSON.parse(openingType);
+    updatedProd.installationType = JSON.parse(installationType);
+    updatedProd.openingMethod = JSON.parse(openingMethod);
 
     const updated = await interiorDoor.findByIdAndUpdate(
       req.params.id,
       updatedProd
     )
-
-   
-
-
-
-
-
-
-    
-
-
-    
- 
-
-    // const del = await interiorDoor.deleteOne(
-    //   {_id: req.params.id}
-    // );
-
-    // if(req.file){
-    //   updatedProd.imageSrc = req.file.path;
-    // }
-
-    // await updatedProd.save();
-    
 
 
     res.status(201).json(updated);

@@ -48,12 +48,12 @@ router.post('/', upload.single('image'), async(req, res) => {
       installationPrice,
       inStock,
       description,
-      amountOfSealingMaterials,
-      fabricMaterial,
-      purpose,
-      openingMethod,
-      covering,
-      frameMaterial,
+      amountOfSealingMaterials: JSON.parse(amountOfSealingMaterials),
+      fabricMaterial: JSON.parse(fabricMaterial),
+      purpose: JSON.parse(purpose),
+      openingMethod: JSON.parse(openingMethod),
+      covering: JSON.parse(covering),
+      frameMaterial: JSON.parse(frameMaterial),
       homePage,
       imageSrc
     })
@@ -79,7 +79,7 @@ router.put('/:id', upload.single('image'), async(req, res) => {
 
     const {imageSrc} = req.file ? req.file.path : '';
 
-    const update = new entranceDoor({
+    const updateProd = new entranceDoor({
       typeOfProduct,
       name,
       brand,
@@ -100,15 +100,28 @@ router.put('/:id', upload.single('image'), async(req, res) => {
       imageSrc
     })
     if(req.file){
-      update.imageSrc = req.file.path;
+      updateProd.imageSrc = req.file.path;
     }
+    
+    updateProd._id = req.params.id;
+
+    updateProd.amountOfSealingMaterials = JSON.parse(amountOfSealingMaterials);
+    updateProd.fabricMaterial = JSON.parse(fabricMaterial);
+    updateProd.purpose = JSON.parse(purpose);
+    updateProd.openingMethod = JSON.parse(openingMethod);
+    updateProd.covering = JSON.parse(covering);
+    updateProd.frameMaterial = JSON.parse(frameMaterial);
+
 
     const updated = await entranceDoor.findByIdAndUpdate(
       req.params.id,
-      update
+      updateProd
     )
 
-    res.status(200).json(updated)
+
+
+
+    res.status(201).json(updated)
   } catch(err) {
     res.status(500).json(err)
   }

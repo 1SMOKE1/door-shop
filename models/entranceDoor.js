@@ -43,27 +43,27 @@ const entranceDoor = new Schema({
     require: true,
   },
   amountOfSealingMaterials: {
-    type: Number,
+    type: [{type: Number, default: 1}],
     require: true
   },
   fabricMaterial: {
-    type: String,
+    type: [{type: String, default: undefined}],
     require: true
   },
   purpose: {
-    type: String,
+    type: [{type: String, default: undefined}],
     require: true,
   },
   openingMethod: {
-    type: String,
+    type: [{type: String, default: undefined}],
     require: true,
   },
   covering: {
-    type: String,
+    type: [{type: String, default: undefined}],
     require: true,
   },
-  fabricMaterial: {
-    type: String,
+  frameMaterial: {
+    type: [{type: String, default: undefined}],
     require: true
   },
   imageSrc: {

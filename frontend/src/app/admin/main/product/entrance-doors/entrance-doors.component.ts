@@ -7,6 +7,7 @@ import { DataBaseService } from 'src/app/share/data-base.service';
 import { ProductProducerComponent } from '../../product-producer/product-producer.component';
 import { map } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { entranceDoorModel } from 'src/app/models/entranceDoor.model';
 
 
 @Component({
@@ -18,7 +19,7 @@ export class EntranceDoorsComponent implements OnInit {
   @ViewChild('inputFileRef', {static: true}) public inputFile!: ElementRef;
   productProducers: productProducerI[] = [];
   entranceDoorForm: FormGroup = new FormGroup({
-    'typeOfProduct': new FormControl({value: 'Двері вхідні', disabled: true}), // +
+    'typeOfProduct': new FormControl('Двері вхідні'), // +
     'brand': new FormControl('', Validators.required), // +
     'name': new FormControl('', Validators.required), // + 
     'price': new FormControl(0, Validators.required),// +
@@ -28,12 +29,12 @@ export class EntranceDoorsComponent implements OnInit {
     'guarantee': new FormControl('', Validators.required), // +
     'homePage': new FormControl(''), // +
     'state': new FormControl('', Validators.required), // +
-    'amountOfSealingMaterials': new FormControl([] || '', Validators.required), //+
-    'fabricMaterial': new FormControl([] || '', Validators.required), //+
-    'purpose': new FormControl([] || '', Validators.required), //+
-    'openingMethod': new FormControl([] || '', Validators.required), //+
-    'covering': new FormControl([] || '', Validators.required), //+
-    'frameMaterial': new FormControl([] || '', Validators.required),
+    'amountOfSealingMaterials': new FormControl([], Validators.required), //+
+    'fabricMaterial': new FormControl([], Validators.required), //+
+    'purpose': new FormControl([], Validators.required), //+
+    'openingMethod': new FormControl([], Validators.required), //+
+    'covering': new FormControl([], Validators.required), //+
+    'frameMaterial': new FormControl([], Validators.required),
     'description': new FormControl(''),
   })
   public image: File | null = null;
@@ -72,12 +73,21 @@ export class EntranceDoorsComponent implements OnInit {
       .subscribe((prodsProducers: productProducerI[]) => this.productProducers =  prodsProducers)
   }
 
-  public slashStylingOfFormField(fieldName: string): string{
-    if(this.entranceDoorForm.get(fieldName)?.value === ''
-    || this.entranceDoorForm.get(fieldName)?.value === null){
+  public slashStylingOfFormField(fieldName: string): string | []{
+    console.log(this.entranceDoorForm.get(fieldName)?.value)
+    if(this.isEditMode()){
+      if(fieldName === 'amountOfSealingMaterials'){
+        return []
+      } 
+      return ''
+    } else {
+      
+      if(this.entranceDoorForm.get(fieldName)?.value === ''
+      || this.entranceDoorForm.get(fieldName)?.value === null){
       return ''
     } 
-    return this.entranceDoorForm.get(fieldName)?.value.join('/')
+      return this.entranceDoorForm.get(fieldName)?.value.join('/')
+    }
   }
 
   public triggerInput(): void{
@@ -102,7 +112,36 @@ export class EntranceDoorsComponent implements OnInit {
 
   public submit(): void{
     if(this.isEditMode()){
+      const prod = new entranceDoorModel(
+        this.entranceDoorForm.value.typeOfProduct,
+        this.entranceDoorForm.value.brand,
+        this.entranceDoorForm.value.name,
+        this.entranceDoorForm.value.country,
+        this.entranceDoorForm.value.guarantee,
+        this.entranceDoorForm.value.state,
+        this.entranceDoorForm.value.price,
+        this.entranceDoorForm.value.installationPrice,
+        this.entranceDoorForm.value.inStock,
+        this.entranceDoorForm.value.description,
+        this.entranceDoor._id,
+        this.entranceDoorForm.value.amountOfSealingMaterials,
+        this.entranceDoorForm.value.fabricMaterial,
+        this.entranceDoorForm.value.purpose,
+        this.entranceDoorForm.value.openingMethod,
+        this.entranceDoorForm.value.covering,
+        this.entranceDoorForm.value.frameMaterial,
+        this.entranceDoor.imageSrc,
+        this.entranceDoorForm.value.homePage
+      )
 
+      this.dataBaseService
+        .updateEntranceDoor(prod, this.image)
+        .subscribe((res: entranceDoorI) => {
+          console.log(res);
+          this.snackbar.open('Продукт було успішно редаговано', 'X', {
+            duration: 2000
+          });
+        })
     } else {
       this.dataBaseService
       .createEntranceDoor(this.entranceDoorForm.value, this.image)

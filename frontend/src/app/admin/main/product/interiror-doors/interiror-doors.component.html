@@ -377,17 +377,10 @@
           [disabled]="interiorDoorForm.invalid"
           class="product-form-btn font-p-sm"
           (click)="submit()"
-          > Створити
+          > {{isEditMode() ? 'Редагувати' : 'Створити'}}
         </button>
       </div>
         
-    
-
-      
-      
-
-
-      
     </form>
   </div>
 </div>

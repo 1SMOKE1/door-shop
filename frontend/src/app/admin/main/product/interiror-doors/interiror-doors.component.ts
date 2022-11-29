@@ -34,7 +34,7 @@ export class InterirorDoorsComponent implements OnInit {
     'openingType': new FormControl([], Validators.required), 
     'installationType': new FormControl([], Validators.required), 
     'openingMethod': new FormControl([], Validators.required),
-    'description': new FormControl('', Validators.required),
+    'description': new FormControl(''),
   })
   public image: File | null = null;
   public imagePreview: string = '';
@@ -132,14 +132,18 @@ export class InterirorDoorsComponent implements OnInit {
       this.dataBaseService
         .updateInteriorDoor(prod, this.image)
         .subscribe(() => {
-          console.log('updated interiorDoor')
+          this.snackbar.open('Продукт було успішно відредаговано', 'X', {
+            duration: 2000
+          });
         })
     } else {
       this.dataBaseService
       .createInteriorDoor(this.interiorDoorForm.value, this.image)
       .subscribe(() => {
         this.interiorDoorForm.reset();
-        this.snackbar.open('Продукт було успішно створено', 'X');
+        this.snackbar.open('Продукт було успішно створено', 'X', {
+          duration: 2000
+        });
       })
     }
   }

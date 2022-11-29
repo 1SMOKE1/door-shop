@@ -120,5 +120,20 @@ export class ProductsComponent implements OnInit {
     .subscribe(() => this.getEntranceDoor())
   }
 
+  public updateEntranceDoorCard(entranceDoor: entranceDoorI): void{
+    const dialogRef = this.dialog.open(EntranceDoorsComponent, {
+      data: entranceDoor
+    })
+
+    dialogRef.afterClosed()
+    .subscribe(() => this.getEntranceDoor())
+  }
+
+  public deleteEntranceDoorCard(id: string): void{
+    this.dataBaseService
+     .deleteEntranceDoor(id)
+     .subscribe(() => this.getEntranceDoor())
+  }
+
 
 }
