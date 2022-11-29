@@ -6,6 +6,8 @@ import { ProductI } from '../interfaces/product';
 import { Order } from '../models/order.model';
 import { productProducerI } from '../interfaces/productProducer';
 import { BASE_URL } from './constants/urls';
+import { interiorDoorI } from '../interfaces/interiorDoorI';
+import { entranceDoorI } from '../interfaces/entranceDoor';
 
 
 
@@ -172,4 +174,135 @@ export class DataBaseService {
   public sendFreeSampleForm(userData: {name: string, phone: string, address: string}): Observable<{name: string, phone: string, address: string}>{
     return this.http.post<{name: string, phone: string, address: string}>(BASE_URL + '/api/free-sample-form', userData);
   }
+
+  public getInteriorDoor(): Observable<interiorDoorI[]>{
+    return this.http.get<interiorDoorI[]>(BASE_URL + '/api/interiorDoors')
+  }
+
+  public createInteriorDoor(interiorDoor: interiorDoorI, image: File | null): Observable<interiorDoorI>{
+    const formData = new FormData();
+    formData.append('name', interiorDoor.name);
+    formData.append('price', interiorDoor.price.toString());
+    formData.append('installationPrice', interiorDoor.installationPrice.toString());
+    formData.append('typeOfProduct', interiorDoor.typeOfProduct);
+    formData.append('brand', interiorDoor.brand);
+    formData.append('country', interiorDoor.country);
+    formData.append('guarantee', interiorDoor.guarantee);
+    formData.append('state', interiorDoor.state);
+    formData.append('inStock', interiorDoor.inStock);
+    formData.append('description', interiorDoor.description);
+    formData.append('finishingTheSurface', JSON.stringify(interiorDoor.finishingTheSurface));
+    formData.append('frameMaterial', JSON.stringify(interiorDoor.frameMaterial));
+    formData.append('structuralFeatures', JSON.stringify(interiorDoor.structuralFeatures));
+    formData.append('openingType', JSON.stringify(interiorDoor.openingType));
+    formData.append('installationType', JSON.stringify(interiorDoor.installationType));
+    formData.append('openingMethod', JSON.stringify(interiorDoor.openingMethod));
+
+    if(image){
+      formData.append('image', image, image.name);
+    }
+
+    formData.append('homePage', interiorDoor.homePage 
+    ? interiorDoor.homePage.toString() 
+    : 'false')
+    console.log(formData);
+    return this.http.post<interiorDoorI>(BASE_URL + '/api/interiorDoors', formData)
+  }
+
+  public updateInteriorDoor(interiorDoor: interiorDoorI, image: File | null): Observable<interiorDoorI>{
+    const formData = new FormData();
+    formData.append('name', interiorDoor.name);
+    formData.append('price', interiorDoor.price.toString());
+    formData.append('installationPrice', interiorDoor.installationPrice.toString());
+    formData.append('typeOfProduct', interiorDoor.typeOfProduct);
+    formData.append('brand', interiorDoor.brand);
+    formData.append('country', interiorDoor.country);
+    formData.append('guarantee', interiorDoor.guarantee);
+    formData.append('state', interiorDoor.state);
+    formData.append('inStock', interiorDoor.inStock);
+    formData.append('description', interiorDoor.description);
+
+    formData.append('finishingTheSurface', JSON.stringify(interiorDoor.finishingTheSurface));
+    formData.append('frameMaterial', JSON.stringify(interiorDoor.frameMaterial));
+    formData.append('structuralFeatures', JSON.stringify(interiorDoor.structuralFeatures));
+    formData.append('openingType', JSON.stringify(interiorDoor.openingType));
+    formData.append('installationType', JSON.stringify(interiorDoor.installationType));
+    formData.append('openingMethod', JSON.stringify(interiorDoor.openingMethod));
+
+    if(image){
+      formData.append('image', image, image.name);
+    }
+
+    formData.append('homePage', interiorDoor.homePage 
+    ? interiorDoor.homePage.toString() 
+    : 'false')
+    return this.http.put<interiorDoorI>(BASE_URL + `/api/interiorDoors/${interiorDoor._id}`, formData)
+  }
+  
+  public deleteInteriorDoor(id: string): Observable<interiorDoorI>{
+    return this.http.delete<interiorDoorI>(BASE_URL + `/api/interiorDoors/${id}`)
+  }
+
+  public getEntranceDoor(): Observable<entranceDoorI[]>{
+    return this.http.get<entranceDoorI[]>(BASE_URL + '/api/entranceDoors')
+  }
+
+  public createEntranceDoor(entranceDoor: entranceDoorI, image: File | null): Observable<entranceDoorI>{
+    const formData = new FormData();
+
+    formData.append('name', entranceDoor.name);
+    formData.append('price', entranceDoor.price.toString());
+    formData.append('installationPrice', entranceDoor.installationPrice.toString());
+    formData.append('typeOfProduct', entranceDoor.typeOfProduct);
+    formData.append('brand', entranceDoor.brand);
+    formData.append('country', entranceDoor.country);
+    formData.append('guarantee', entranceDoor.guarantee);
+    formData.append('state', entranceDoor.state);
+    formData.append('inStock', entranceDoor.inStock);
+    formData.append('description', entranceDoor.description);
+
+    formData.append('amountOfSealingMaterial',  
+    typeof entranceDoor.amountOfSealingMaterials === 'number' 
+    ? entranceDoor.amountOfSealingMaterials.toString() 
+    : entranceDoor.amountOfSealingMaterials.join('/'));
+
+    formData.append('fabricMaterial',
+    typeof entranceDoor.fabricMaterial === 'string' 
+    ? entranceDoor.fabricMaterial
+    : entranceDoor.fabricMaterial.join('/'));
+
+    formData.append('purpose',
+    typeof entranceDoor.purpose === 'string'
+    ? entranceDoor.purpose 
+    : entranceDoor.purpose.join('/'));
+
+    formData.append('openingMethod', 
+    typeof entranceDoor.openingMethod === 'string'
+    ? entranceDoor.openingMethod
+    : entranceDoor.openingMethod.join('/'));
+
+    formData.append('covering', 
+    typeof entranceDoor.covering === 'string'
+    ? entranceDoor.covering
+    : entranceDoor.covering.join('/'));
+
+    formData.append('frameMaterial', 
+    typeof entranceDoor.frameMaterial === 'string'
+    ? entranceDoor.frameMaterial
+    : entranceDoor.frameMaterial.join('/'));
+
+    if(image){
+      formData.append('image', image, image.name);
+    }
+
+    formData.append('homePage', entranceDoor.homePage 
+    ? entranceDoor.homePage.toString() 
+    : 'false')
+
+
+
+    return  this.http.post<entranceDoorI>(BASE_URL + '/api/entranceDoors', formData)
+  }
+
+
 }

@@ -1,0 +1,393 @@
+<div mat-dialog-content class="create-product-wrap">
+  <h1 class="create-product-title font-h1-title">Форма {{isEditMode() ? 'редагування' : 'створення'}} продукта</h1>
+  <div class="product-form-input">
+    <form class="product-form" [formGroup]="interiorDoorForm">
+
+
+      <div class="product-form-input">
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-select
+            class="form-field-input"
+            formControlName="brand"
+            matInput
+            placeholder="Виробник"
+          >
+          <mat-option *ngFor="let brand of productProducers" [value]="brand.producerName">{{brand.producerName}} ФП:{{brand.filtrationField}}</mat-option>
+          </mat-select>
+          <mat-error
+            *ngIf="
+              interiorDoorForm.get('brand')?.invalid ||
+              (interiorDoorForm.get('brand')?.touched &&
+                interiorDoorForm.get('brand')?.dirty)
+            "
+          >
+            Обов'язкове поле
+          </mat-error>
+        </mat-form-field>
+        <button (click)="openProductProducerDialog()" class="btn-add-producer" mat-icon-button >
+          <mat-icon>add</mat-icon>
+        </button>
+      </div>
+
+
+      <div class="product-form-input">
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>{{ "Назва продукту" | titlecase }}</mat-label>
+          <input
+            class="form-field-input"
+            type="text"
+            formControlName="name"
+            matInput
+            placeholder="Введіть назву продукту"
+          />
+          <mat-error
+            *ngIf="
+              interiorDoorForm.get('name')?.invalid ||
+              (interiorDoorForm.get('name')?.touched && 
+              interiorDoorForm.get('name')?.dirty)
+            "
+          >
+            Обов'язкове поле
+          </mat-error>
+        </mat-form-field>
+      </div>
+  
+      <div class="product-form-input">
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>{{ "Ціна" | titlecase }}</mat-label>
+          <input
+            class="form-field-input"
+            type="number"
+            formControlName="price"
+            matInput
+            placeholder="Введіть ціну продукта"
+          />
+          <mat-error
+            *ngIf="
+              interiorDoorForm.get('price')?.invalid ||
+              (interiorDoorForm.get('price')?.touched &&
+                interiorDoorForm.get('price')?.dirty)
+            "
+          >
+            Обов'язкове поле
+          </mat-error>
+        </mat-form-field>
+      </div>
+  
+      <div class="product-form-input">
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>{{ "Ціна з Установкою" | titlecase }}</mat-label>
+          <input
+            class="form-field-input"
+            type="installationPrice"
+            type="number"
+            formControlName="installationPrice"
+            matInput
+            placeholder="Введіть ціну товари з установкою"
+          />
+          <mat-error
+            *ngIf="
+              interiorDoorForm.get('installationPrice')?.invalid ||
+              (interiorDoorForm.get('installationPrice')?.touched &&
+                interiorDoorForm.get('installationPrice')?.dirty)
+            "
+          >
+            Обов'язкове поле
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+  
+      <div class="product-form-input">
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>{{ "Країна Виробник" | titlecase }}</mat-label>
+          <mat-select
+            class="form-field-input"
+            formControlName="country"
+            matInput
+            placeholder="Введіть країну виробника"
+          >
+            <mat-option value="Україна">Україна</mat-option>
+            <mat-option value="Туреччина">Туреччина</mat-option>
+            <mat-option value="Китай">Китай</mat-option>
+            <mat-option value="Польща">Польща</mat-option>
+            <mat-option value="Італія">Італія</mat-option>
+            <mat-option value="Німеччина">Німеччина</mat-option>
+          </mat-select>
+          <mat-error
+            *ngIf="
+              interiorDoorForm.get('country')?.invalid ||
+              (interiorDoorForm.get('country')?.touched &&
+                interiorDoorForm.get('country')?.dirty)
+            "
+          >
+            Обов'язкове поле
+          </mat-error>
+        </mat-form-field>
+      </div>
+  
+      <div class="product-form-input">
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>{{ "Стан" | titlecase }}</mat-label>
+          <mat-select
+            class="form-field-input"
+            formControlName="state"
+            matInput
+            placeholder="Введіть стан продукта"
+          >
+            <mat-option value="Новий">Новий</mat-option>
+            <mat-option value="Акційний">Акційний</mat-option>
+            <mat-option value="Распродаж">Распродаж</mat-option>
+          </mat-select>
+          <mat-error
+            *ngIf="
+              interiorDoorForm.get('state')?.invalid ||
+              (interiorDoorForm.get('state')?.touched &&
+                interiorDoorForm.get('state')?.dirty)
+            "
+          >
+            Обов'язкове поле
+          </mat-error>
+        </mat-form-field>
+      </div>
+  
+      <div class="product-form-input">
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-select
+            class="form-field-input"
+            formControlName="inStock"
+            matInput
+            placeholder="Наявність на складі"
+          >
+          <mat-option value="В наявності">В наявності</mat-option>
+          <mat-option value="Немає в наявності">Немає в наявності</mat-option>
+          <mat-option value="Під замовлення">Під замовлення</mat-option>
+          </mat-select>
+          <mat-error
+            *ngIf="
+              interiorDoorForm.get('inStock')?.invalid ||
+              (interiorDoorForm.get('inStock')?.touched &&
+                interiorDoorForm.get('inStock')?.dirty)
+            "
+          >
+            Обов'язкове поле
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+
+      <div class="product-form-input">
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-select
+            class="form-field-input"
+            formControlName="guarantee"
+            matInput
+            placeholder="Гарантійний термін"
+          >
+          <mat-option value="12 місяців">12 місяців</mat-option>
+          <mat-option value="18 місяців">18 місяців</mat-option>
+          <mat-option value="2 роки">2 роки</mat-option>
+          <mat-option value="3 роки">3 роки</mat-option>
+          </mat-select>
+          <mat-error
+            *ngIf="
+              interiorDoorForm.get('guarantee')?.invalid ||
+              (interiorDoorForm.get('guarantee')?.touched &&
+                interiorDoorForm.get('guarantee')?.dirty)
+            "
+          >
+            Обов'язкове поле
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+
+      <div class="product-form-input-multi-wrap">
+        <div class="product-form-input">
+          <mat-form-field appearance="outline" class="form-field">
+            <mat-label>{{ "Оздоблення поверхні" | titlecase }}</mat-label>
+            <mat-select
+              class="form-field-input"
+              formControlName="finishingTheSurface"
+              multiple
+            >
+              <mat-option value="Екошпон">Екошпон</mat-option>
+              <mat-option value="Грунтовані">Грунтовані</mat-option>
+              <mat-option value="Фарбовані">Фарбовані</mat-option>
+              <mat-option value="Шпоновані">Шпоновані</mat-option>
+            </mat-select>
+            <mat-error
+              *ngIf="
+                interiorDoorForm.get('finishingTheSurface')?.invalid ||
+                (interiorDoorForm.get('finishingTheSurface')?.touched &&
+                  interiorDoorForm.get('finishingTheSurface')?.dirty)
+              "
+            >
+              Обов'язкове поле
+            </mat-error>
+          </mat-form-field>
+          <p>{{slashStylingOfFormField('finishingTheSurface')}}</p>
+        </div>
+  
+        <div class="product-form-input">
+          <mat-form-field appearance="outline" class="form-field">
+            <mat-label>{{ "Матеріал дверної коробки" | titlecase }}</mat-label>
+            <mat-select
+              class="form-field-input"
+              formControlName="frameMaterial"
+              multiple
+            >
+              <mat-option value="Дерево">Дерево</mat-option>
+              <mat-option value="Дерево + МДФ">Дерево + МДФ</mat-option>
+              <mat-option value="Дерево + фанера">Дерево + фанера</mat-option>
+              <mat-option value="Алюміній + МДФ">Алюміній + МДФ</mat-option>
+              <mat-option value="Алюміній + дерево">Алюміній + дерево</mat-option>
+              <mat-option value="Алюміній + фанера">Алюміній + фанера</mat-option>
+            </mat-select>
+            <mat-error
+              *ngIf="
+                interiorDoorForm.get('frameMaterial')?.invalid ||
+                (interiorDoorForm.get('frameMaterial')?.touched &&
+                  interiorDoorForm.get('frameMaterial')?.dirty)
+              "
+            >
+              Обов'язкове поле
+            </mat-error>
+          </mat-form-field>
+          <p>{{slashStylingOfFormField('frameMaterial')}}</p>
+        </div>
+  
+        <div class="product-form-input">
+          <mat-form-field appearance="outline" class="form-field">
+            <mat-label>{{ "Конструктивні особливості" | titlecase }}</mat-label>
+            <mat-select
+              class="form-field-input"
+              formControlName="structuralFeatures"
+              multiple
+            >
+              <mat-option value="Глухі">Глухі</mat-option>
+              <mat-option value="Зі склом">Зі склом</mat-option>
+              <mat-option value="Дзеркало">Дзеркало</mat-option>
+            </mat-select>
+            <mat-error
+              *ngIf="
+                interiorDoorForm.get('structuralFeatures')?.invalid ||
+                (interiorDoorForm.get('structuralFeatures')?.touched &&
+                  interiorDoorForm.get('structuralFeatures')?.dirty)
+              "
+            >
+              Обов'язкове поле
+            </mat-error>
+          </mat-form-field>
+          <p>{{slashStylingOfFormField('structuralFeatures')}}</p>
+        </div>
+  
+        <div class="product-form-input">
+          <mat-form-field appearance="outline" class="form-field">
+            <mat-label>{{ "Тип відкривання" | titlecase }}</mat-label>
+            <mat-select
+              class="form-field-input"
+              formControlName="openingType"
+              multiple
+            >
+              <mat-option value="Розпашна">Розпашна</mat-option>
+              <mat-option value="Розсувна">Розсувна</mat-option>
+            </mat-select>
+            <mat-error
+              *ngIf="
+                interiorDoorForm.get('openingType')?.invalid ||
+                (interiorDoorForm.get('openingType')?.touched &&
+                  interiorDoorForm.get('openingType')?.dirty)
+              "
+            >
+              Обов'язкове поле
+            </mat-error>
+          </mat-form-field>
+          <p>{{slashStylingOfFormField('openingType')}}</p>
+        </div>
+  
+        <div class="product-form-input">
+          <mat-form-field appearance="outline" class="form-field">
+            <mat-label>{{ "Тип монтажу" | titlecase }}</mat-label>
+            <mat-select
+              class="form-field-input"
+              formControlName="installationType"
+              multiple
+            >
+              <mat-option value="Двері звичайного монтажу">Двері звичайного монтажу</mat-option>
+              <mat-option value="Двері прихованого монтажу">Двері прихованого монтажу</mat-option>
+            </mat-select>
+            <mat-error
+              *ngIf="
+                interiorDoorForm.get('installationType')?.invalid ||
+                (interiorDoorForm.get('installationType')?.touched &&
+                  interiorDoorForm.get('installationType')?.dirty)
+              "
+            >
+              Обов'язкове поле
+            </mat-error>
+          </mat-form-field>
+          <p>{{slashStylingOfFormField('installationType')}}</p>
+        </div>
+  
+        <div class="product-form-input">
+          <mat-form-field appearance="outline" class="form-field">
+            <mat-label>{{ "Спосіб відкривання" | titlecase }}</mat-label>
+            <mat-select
+              class="form-field-input"
+              formControlName="openingMethod"
+              multiple
+            >
+              <mat-option value="Право">Право</mat-option>
+              <mat-option value="Ліво">Ліво</mat-option>
+              <mat-option value="Двостворчаті">Двостворчаті</mat-option>
+            </mat-select>
+            <mat-error
+              *ngIf="
+                interiorDoorForm.get('openingMethod')?.invalid ||
+                (interiorDoorForm.get('openingMethod')?.touched &&
+                  interiorDoorForm.get('openingMethod')?.dirty)
+              "
+            >
+              Обов'язкове поле
+            </mat-error>
+          </mat-form-field>
+          <p>{{slashStylingOfFormField('openingMethod')}}</p>
+        </div>
+        <div class="home_page-checkbox">
+          <p><mat-checkbox formControlName="homePage" >На головній сторінці</mat-checkbox></p>
+        </div>
+        <div>
+          <h4 class="textarea-title">Опис</h4>
+          <textarea formControlName="description" cols="30" rows="10"></textarea>
+        </div>
+        <div class="file-container">
+          <input #inputFileRef hidden type="file" (change)="onFileUpload($event)">
+          <button (click)="triggerInput()" mat-raised-button color="primary">Add image</button>
+          <img [ngStyle]="{'display': imagePreview === '' ? 'none' : 'block'}" class="img-preview" [src]="imagePreview" alt="">
+        </div>
+      </div>
+      <div align="end">
+        <button 
+          mat-dialog-close
+          class="product-form-btn btn-close font-p-sm"
+          > Закрити 
+        </button>
+        <button 
+          [disabled]="interiorDoorForm.invalid"
+          class="product-form-btn font-p-sm"
+          (click)="submit()"
+          > Створити
+        </button>
+      </div>
+        
+    
+
+      
+      
+
+
+      
+    </form>
+  </div>
+</div>

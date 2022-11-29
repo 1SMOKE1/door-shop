@@ -1,0 +1,22 @@
+// Двері міжкімнатні
+export interface interiorDoorI{
+  typeOfProduct: string,
+  brand: string,
+  name: string,
+  country: string,
+  guarantee: string,
+  state: string,
+  price: number,
+  installationPrice: number,
+  inStock: string,
+  description: string,
+  _id: string,
+  finishingTheSurface: string[] | string ,
+  frameMaterial: string | string[],
+  structuralFeatures: string | string[],
+  openingType: string | string[],
+  installationType: string | string[],
+  openingMethod: string | string[],
+  imageSrc: string,
+  homePage?: string,
+}

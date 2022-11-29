@@ -24,7 +24,8 @@ import { MatListModule } from '@angular/material/list';
 import { OurWorksDialogComponent } from './main/our-works/our-works-dialog/our-works-dialog.component';
 import { OurCommentsDialogComponent } from './main/our-works/our-comments-dialog/our-comments-dialog.component';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-
+import { InterirorDoorsComponent } from './main/product/interiror-doors/interiror-doors.component';
+import { EntranceDoorsComponent } from './main/product/entrance-doors/entrance-doors.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,8 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     ProductProducerComponent,
     OurWorksDialogComponent,
     OurCommentsDialogComponent,
+    InterirorDoorsComponent,
+    EntranceDoorsComponent,
   ],
   imports: [
     CommonModule,
@@ -53,7 +56,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     MatButtonToggleModule,
     MatButtonModule,
     MatListModule,
-    MatCheckboxModule
+    MatCheckboxModule,
   ]
 })
 export class AdminModule { }

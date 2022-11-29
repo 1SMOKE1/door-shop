@@ -1,0 +1,22 @@
+// Двері вхідні
+export interface entranceDoorI {
+  typeOfProduct: string,
+  brand: string,
+  name: string,
+  country: string,
+  guarantee: string,
+  state: string,
+  price: number,
+  installationPrice: number,
+  inStock: string,
+  description: string,
+  _id: string,
+  amountOfSealingMaterials: number | number[],
+  fabricMaterial: string | string[],
+  purpose: string | string[],
+  openingMethod: string | string[],
+  covering: string | string[],
+  frameMaterial: string | string[],
+  imageSrc: string,
+  homePage?: string,
+}

@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { entranceDoorI } from 'src/app/interfaces/entranceDoor';
+import { interiorDoorI } from 'src/app/interfaces/interiorDoorI';
 import { ProductI } from 'src/app/interfaces/product';
 import { DataBaseService } from 'src/app/share/data-base.service';
+import { EntranceDoorsComponent } from '../product/entrance-doors/entrance-doors.component';
+import { InterirorDoorsComponent } from '../product/interiror-doors/interiror-doors.component';
 import { ProductCreateFormComponent } from '../product/product-create-form/product-create-form.component';
 
 @Component({
@@ -11,6 +15,8 @@ import { ProductCreateFormComponent } from '../product/product-create-form/produ
 })
 export class ProductsComponent implements OnInit {
   products: ProductI[] = [];
+  interiorDoors: interiorDoorI[] = [];
+  entranceDoors: entranceDoorI[] = [];
   constructor(
     private dataBaseService: DataBaseService,
     private dialog: MatDialog
@@ -19,7 +25,50 @@ export class ProductsComponent implements OnInit {
   counter: number = 1;
   ngOnInit(): void {
     this.getProducts()
+    this.getInteriorDoor();
+    this.getEntranceDoor();
+  }
 
+  private getInteriorDoor(): void{
+    this.dataBaseService  
+      .getInteriorDoor()
+      .subscribe((prods: interiorDoorI[]) => {
+        this.interiorDoors = prods;
+        console.log(this.interiorDoors); 
+      })
+  }
+
+  public createInteriorDoorCard(): void{
+    const dialogRef = this.dialog.open(InterirorDoorsComponent)
+
+    dialogRef.afterClosed()
+    .subscribe(() => this.getInteriorDoor())
+  }
+
+  public updateInteriorDoorCard(interiorDoor: interiorDoorI): void{
+    const dialogRef = this.dialog.open(InterirorDoorsComponent, {
+      data: interiorDoor
+    })
+
+    dialogRef.afterClosed()
+    .subscribe(() => this.getInteriorDoor())
+  }
+
+  public deleteInteriorDoorCard(id: string): void{
+    this.dataBaseService
+      .deleteInteriorDoor(id)
+      .subscribe(() => this.getInteriorDoor());
+  }
+
+
+
+  private getEntranceDoor(): void{
+    this.dataBaseService
+      .getEntranceDoor()
+      .subscribe((res: entranceDoorI[]) => {
+        this.entranceDoors = res;
+        console.log(this.entranceDoors);
+      })
   }
 
   private getProducts(): void{
@@ -36,6 +85,8 @@ export class ProductsComponent implements OnInit {
     .subscribe(() => this.getProducts())
   }
 
+  
+
   updateCard(product: ProductI): void{
     const dialogRef = this.dialog.open(ProductCreateFormComponent,{
       data: product
@@ -44,7 +95,7 @@ export class ProductsComponent implements OnInit {
     .subscribe(() => this.getProducts())
   }
 
-  getSelected(product: ProductI): void{
+  getSelected(product: any): void{
     this.counter++
     if(this.counter % 2 === 0){
       this.selectedCard = product;
@@ -61,5 +112,13 @@ export class ProductsComponent implements OnInit {
       .deleteProduct(id)
       .subscribe(() => this.getProducts())
   }
+
+  public createEntranceDoorCard(): void{
+    const dialogRef = this.dialog.open(EntranceDoorsComponent)
+
+    dialogRef.afterClosed()
+    .subscribe(() => this.getEntranceDoor())
+  }
+
 
 }
