@@ -86,13 +86,16 @@ router.put('/:id', upload.single('image'), async(req, res) => {
     const {imageSrc} = req.file ? req.file.path : '';
 
 
-
-    finishingTheSurface = JSON.parse(finishingTheSurface);
-    frameMaterial = JSON.parse(frameMaterial);
-    structuralFeatures = JSON.parse(structuralFeatures);
-    openingType = JSON.parse(openingType);
-    installationType = JSON.parse(installationType);
-    openingMethod = JSON.parse(openingMethod);
+    /**
+     * You are using bodyParser which does JSON.parse() itself.
+     * So you don't need to use JSON.parse() here.
+     */
+    // finishingTheSurface = JSON.parse(finishingTheSurface);
+    // frameMaterial = JSON.parse(frameMaterial);
+    // structuralFeatures = JSON.parse(structuralFeatures);
+    // openingType = JSON.parse(openingType);
+    // installationType = JSON.parse(installationType);
+    // openingMethod = JSON.parse(openingMethod);
 
 
     const updatedProd = new interiorDoor({
@@ -120,7 +123,12 @@ router.put('/:id', upload.single('image'), async(req, res) => {
       updatedProd.imageSrc = req.file.path;
     }
 
-    
+    /**
+     * You should include "_id" to updated object, otherwise you try
+     * to assign "undefined" value to "_id" field which is immutable.
+     * So you are getting appropriate error in this case.
+     */
+    updatedProd._id = req.params.id;
     
     
   
