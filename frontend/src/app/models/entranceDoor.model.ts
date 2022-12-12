@@ -11,14 +11,14 @@ export class entranceDoorModel{
   public inStock: string,
   public description: string,
   public _id: string,
-  public amountOfSealingMaterials: number | number[],
+  public amountOfSealingMaterials: string | string[],
   public fabricMaterial: string | string[],
   public purpose: string | string[],
   public openingMethod: string | string[],
   public covering: string | string[],
   public frameMaterial: string | string[],
   public imageSrc: string,
-  public homePage?: string,
+  public homePage?: boolean,
   ){
   typeOfProduct;
   brand;

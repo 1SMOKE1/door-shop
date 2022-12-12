@@ -42,10 +42,10 @@
     align-items: center;
     justify-items: center;
     grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(4, 1fr);
+    grid-template-rows: repeat(5, 1fr);
     @media(max-width: 1200px){
       grid-template-columns: repeat(3, 1fr);
-      grid-template-rows: repeat(4, 1fr);
+      grid-template-rows: repeat(5, 1fr);
       
     }
   }
@@ -65,6 +65,9 @@
     &:nth-child(8),
     &:nth-child(9){
       margin-bottom: 10px;
+    }
+    &:nth-child(13){
+      visibility: hidden;
     }
     @media(max-width: 1200px){
       width: 200px;

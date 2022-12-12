@@ -11,14 +11,14 @@ export class interiorDoorModel{
     public inStock: string,
     public description: string,
     public _id: string,
-    public finishingTheSurface: string[] | string ,
-    public frameMaterial: string | string[],
-    public structuralFeatures: string | string[],
-    public openingType: string | string[],
-    public installationType: string | string[],
-    public openingMethod: string | string[],
+    public finishingTheSurface: string[],
+    public frameMaterial: string[],
+    public structuralFeatures: string[],
+    public openingType: string[],
+    public installationType: string[],
+    public openingMethod: string[],
     public imageSrc: string,
-    public homePage?: string,
+    public homePage?: boolean,
   ){
     typeOfProduct;
     brand;

@@ -40,10 +40,9 @@ const entranceDoor = new Schema({
   },
   description: {
     type: String,
-    require: true,
   },
   amountOfSealingMaterials: {
-    type: [{type: Number, default: 1}],
+    type: [{type: String, default: undefined}],
     require: true
   },
   fabricMaterial: {
@@ -72,7 +71,6 @@ const entranceDoor = new Schema({
   },
   homePage: {
     type: Boolean, 
-    require: true
   }
 })
 

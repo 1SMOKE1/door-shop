@@ -73,16 +73,11 @@ export class InterirorDoorsComponent implements OnInit {
   }
 
   public slashStylingOfFormField(fieldName: string): string{
-    if(this.isEditMode()){
+    if(this.interiorDoorForm.get(fieldName)?.value === '' 
+    || this.interiorDoorForm.get(fieldName)?.value === null){
       return ''
-    } else {
-      if(this.interiorDoorForm.get(fieldName)?.value === '' 
-      || this.interiorDoorForm.get(fieldName)?.value === null){
-        return ''
-      }
-        return this.interiorDoorForm.get(fieldName)?.value.join('/')
     }
-    
+      return this.interiorDoorForm.get(fieldName)?.value.join('/')
   }
 
   public triggerInput(): void{

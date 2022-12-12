@@ -8,7 +8,6 @@ const app = express();
 
 
 
-const productRoutes = require('./routes/product');
 const orderRoutes = require('./routes/order');
 const productProducerRoutes = require('./routes/productProducer');
 const ourWorksRoutes = require('./routes/ourWork');
@@ -17,7 +16,8 @@ const consultationFormRouter = require('./routes/consultationForm');
 const freeSampleFormRotuter = require('./routes/freeSampleForm');
 const interiorDoorRouter = require('./routes/interiorDoor');
 const entranceDoorRouter = require('./routes/entranceDoor');
-
+const windowRouter = require('./routes/window');
+const furnituraRouter = require('./routes/furnitura');
 
 
 
@@ -54,7 +54,6 @@ mongoose.connect('mongodb+srv://kamyshan19:kamyshan19@door-shop.yqrrsud.mongodb.
   });
 })
 
-app.use('/api/products', productRoutes);
 app.use('/api/orders', orderRoutes);
 app.use('/api/product-producers', productProducerRoutes);
 app.use('/api/our-works', ourWorksRoutes);
@@ -63,6 +62,8 @@ app.use('/api/consultation-form', consultationFormRouter);
 app.use('/api/free-sample-form', freeSampleFormRotuter);
 app.use('/api/interiorDoors', interiorDoorRouter);
 app.use('/api/entranceDoors', entranceDoorRouter);
+app.use('/api/windows', windowRouter);
+app.use('/api/furnituras', furnituraRouter);
 app.use('/uploads', express.static('uploads'));
 app.use(express.static('public')); 
 

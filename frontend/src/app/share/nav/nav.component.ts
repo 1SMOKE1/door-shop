@@ -11,6 +11,7 @@ import { NavDialogComponent } from './nav-dialog/nav-dialog.component';
 })
 export class NavComponent implements OnInit {
   @Output() emitScrollAction: EventEmitter<Event> = new EventEmitter<Event>();
+  @Output() emitScrollAction2: EventEmitter<Event> = new EventEmitter<Event>();
   private window: Window | null;
   constructor(
     private dialog: MatDialog,
@@ -35,12 +36,11 @@ export class NavComponent implements OnInit {
     })
   }
 
-  emitScroll(e: Event): void{
-    if(this.router.url === '/store'){
-      this.emitScrollAction.emit(e)
-    } else {
-      this.router.navigate(['store'])
-      this.emitScrollAction.emit(e)
-    }
+  emitScroll(): void{
+    this.emitScrollAction.emit()
+  }
+
+  emitScroll2(): void{
+    this.emitScrollAction2.emit();
   }
 }

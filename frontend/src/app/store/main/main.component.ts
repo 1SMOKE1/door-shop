@@ -1,10 +1,11 @@
 import { Component, OnInit, Inject, ViewChild, ElementRef } from '@angular/core';
 import { DataBaseService } from 'src/app/share/data-base.service';
-import { map } from 'rxjs';
-import { ProductI } from 'src/app/interfaces/product';
+import { map, merge, Observable, reduce } from 'rxjs';
 import { Router } from '@angular/router';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { DOCUMENT } from '@angular/common';
+import { DOCUMENT, ViewportScroller } from '@angular/common';
+import { productMultiSingleType } from 'src/app/interfaces/multiType';
+import { NavService } from 'src/app/share/nav.service';
 
 @Component({
   selector: 'dsa-main',
@@ -12,7 +13,8 @@ import { DOCUMENT } from '@angular/common';
   styleUrls: ['./main.component.scss']
 })
 export class MainComponent implements OnInit {
-  @ViewChild('chooseDoor', {static: false}) private chooseDoorRef!: ElementRef
+  @ViewChild('chooseDoorFormTarget2', {static: true}) private chooseDoorFormRef2!: ElementRef
+  @ViewChild('chooseDoorFormTarget', {static: true}) private chooseDoorFormRef!: ElementRef
   private window: Window | null;
   consultationForm: FormGroup = new FormGroup({
     'name': new FormControl('', Validators.required),
@@ -30,23 +32,24 @@ export class MainComponent implements OnInit {
   })
 
   links: string[] = ['Наші виробники', 'Двері міжкімнатні', 'Двері вхідні', 'Вікна', 'Фурнітура'];
-  products: ProductI[] = [];
+  products: productMultiSingleType[] = [];
   constructor(
     private dataBaseService: DataBaseService,
     private router: Router,
-    @Inject(DOCUMENT) docRef: Document
+    @Inject(DOCUMENT) docRef: Document,
+    public navService: NavService,
+    private viewScroller: ViewportScroller
   ) { 
     this.window = docRef.defaultView
   }
 
   ngOnInit(): void {
-    this.window?.scrollTo(0,0)
-    this.dataBaseService
-      .getProducts()
-      .pipe(
-        map((el: ProductI[]) => el.filter((el: ProductI) => el.home_page === true))
-      ).subscribe((products: ProductI[]) => this.products = products)
-
+    // this.window?.scrollTo(0,0)
+    this.getProds()
+      .subscribe((res: productMultiSingleType[]) => {
+        console.log(res);
+        this.products = res
+      })
   }
 
   redirectToCard(id: string): void{
@@ -68,8 +71,41 @@ export class MainComponent implements OnInit {
   }
 
 
-  emitScrollAction(e: Event): void{
-    const chooseDoorRef = this.chooseDoorRef.nativeElement as HTMLElement;
-    chooseDoorRef.scrollIntoView({block: 'start', behavior: 'smooth'})
+  emitScrollAction(): void{
+    this.navService.animationScrollToConsultation();
+    const chooseDoorFormRef = this.chooseDoorFormRef.nativeElement as HTMLElement;
+    setTimeout(() => {
+      chooseDoorFormRef.classList.add('flashing')
+    }, 1000)
+    setTimeout(() => {
+      chooseDoorFormRef.classList.remove('flashing')
+    }, 2000) 
   }
+
+  emitScrollAction2(): void{
+    this.navService.animationScrollToConsultation();
+    const chooseDoorFormRef2 = this.chooseDoorFormRef2.nativeElement as HTMLElement;
+    setTimeout(() => {
+      chooseDoorFormRef2.classList.add('flashing2')
+    }, 1000)
+    setTimeout(() => {
+      chooseDoorFormRef2.classList.remove('flashing2')
+    }, 2000) 
+  }
+
+
+
+  private getProds():Observable<productMultiSingleType[]> {
+    return merge(
+      this.dataBaseService.getEntranceDoors(),
+      this.dataBaseService.getInteriorDoors(),
+      this.dataBaseService.getFurnituras(),
+      this.dataBaseService.getWindows()
+    ).pipe(
+      reduce((acc, cur): any => [...acc, ...cur], []),
+      map((el: productMultiSingleType[]) => el.filter((el:productMultiSingleType) => el.homePage === true))
+    )
+  }
+
+
 }

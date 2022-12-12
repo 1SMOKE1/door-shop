@@ -74,20 +74,11 @@ export class EntranceDoorsComponent implements OnInit {
   }
 
   public slashStylingOfFormField(fieldName: string): string | []{
-    console.log(this.entranceDoorForm.get(fieldName)?.value)
-    if(this.isEditMode()){
-      if(fieldName === 'amountOfSealingMaterials'){
-        return []
-      } 
-      return ''
-    } else {
-      
       if(this.entranceDoorForm.get(fieldName)?.value === ''
       || this.entranceDoorForm.get(fieldName)?.value === null){
       return ''
     } 
       return this.entranceDoorForm.get(fieldName)?.value.join('/')
-    }
   }
 
   public triggerInput(): void{

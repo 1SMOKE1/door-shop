@@ -69,7 +69,7 @@ import { NavDialogComponent } from './nav/nav-dialog/nav-dialog.component';
     SidebarComponent,
     OrderBasketComponent,
     OrderFormComponent,
-    FilterPipe
+    FilterPipe,
   ],
 })
 export class ShareModule { }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { DataBaseService } from 'src/app/share/data-base.service';
+import { NavService } from 'src/app/share/nav.service';
 
 @Component({
   selector: 'dsa-choose-door',
@@ -15,7 +16,10 @@ export class ChooseDoorComponent implements OnInit {
       Validators.pattern(/^(?:\+38)?(?:\(\d{3}\)[ .-]?[0-9]{3}[ .-]?[0-9]{2}[ .-]?[0-9]{2}|\d{3}[ .-]?[0-9]{3}[ .-]?[0-9]{2}[ .-]?[0-9]{2}|\d{3}[0-9]{7})$/)]),
 
   })
-  constructor(private dataBaseService: DataBaseService) { }
+  constructor(
+    private dataBaseService: DataBaseService,
+    private navService: NavService
+    ) { }
 
   ngOnInit(): void {
   }
@@ -24,6 +28,13 @@ export class ChooseDoorComponent implements OnInit {
   sendConsultationForm(): void{
     this.dataBaseService
       .sendConsultaionForm(this.consultationForm.value)
-      .subscribe((res: {name: string, phone: string}) => console.log(res));
+      .subscribe(() => '');
   }
+
+  emitScrollAction(): void{
+    this.navService.animationScrollToConsultation();
+  }
+
+
+  
 }

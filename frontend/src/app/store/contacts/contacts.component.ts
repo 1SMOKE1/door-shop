@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NavService } from 'src/app/share/nav.service';
 
 @Component({
   selector: 'dsa-contacts',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ContactsComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private navService: NavService
+  ) { }
 
   ngOnInit(): void {
+  }
+
+  emitScrollAction(): void{
+    this.navService.animationScrollToConsultation();
   }
 
 }

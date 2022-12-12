@@ -40,7 +40,6 @@ const interiorDoor = new Schema({
   },
   description: {
     type: String,
-    require: true,
   },
   finishingTheSurface: {
     type: [{type: String, default: undefined}],
@@ -72,7 +71,6 @@ const interiorDoor = new Schema({
   },
   homePage: {
     type: Boolean,
-    require: true
   }
 })
 

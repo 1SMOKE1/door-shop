@@ -53,7 +53,7 @@
     align-items: center;
     border: 1px solid $c3;
     width: 100px;
-    height: 105px;
+    min-height: 100px;
     padding: 1px 25px;
     margin-bottom: 10px;
     &:last-child{
@@ -137,6 +137,15 @@
   
   &-title{
     margin-bottom: 20px;
+    &-1{
+      color: $c8;
+    }
+    &-2{
+      color: $c16;
+    }
+    &-3{
+      color: $c4;
+    }
   }
   &-btn{
     padding: 12px 27px;
@@ -248,6 +257,7 @@
     &-wrap{
       display: flex;
       flex-direction: column;
+      min-width: 50%;
     }
 
     &-block{

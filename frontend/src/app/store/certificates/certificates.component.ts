@@ -1,6 +1,7 @@
 import { DOCUMENT } from '@angular/common';
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { NavService } from 'src/app/share/nav.service';
 import { ShowCertificateComponent } from './show-certificate/show-certificate.component';
 
 @Component({
@@ -12,7 +13,9 @@ export class CertificatesComponent implements OnInit {
   private window: Window | null;
   constructor(
     private dialog: MatDialog,
-    @Inject(DOCUMENT) docRef: Document ) {
+    @Inject(DOCUMENT) docRef: Document,
+    private navService: NavService
+     ) {
       this.window = docRef.defaultView
      }
 
@@ -30,5 +33,10 @@ export class CertificatesComponent implements OnInit {
     dialogRef.updateSize('600px');
     
   }
+
+  emitScrollAction(): void{
+    this.navService.animationScrollToConsultation();
+  }
+
 
 }

@@ -14,7 +14,7 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    @media (max-width: 1065px) {
+    @media (max-width: 1200px) {
       justify-content: center;
     }
     align-items: center;
@@ -27,6 +27,7 @@
     align-items: center;
     justify-content: space-between;
   }
+
   &-logo-block{
     display: flex;
     align-items: center;
@@ -34,7 +35,7 @@
   &-phone{
     color: #ffffff;
     &:last-child{
-      margin-left: 25px;
+      margin-left: 10px;
     }
   }
 }
@@ -74,13 +75,13 @@
 .logo{
   max-width: 50px;
   margin-right: 60px;
-  @media screen and (max-width: 465px) {
+  @media(max-width: 465px) {
     margin-right: 20px
   }
 }
 
 .phone-mobile-font{
   @media(max-width: 600px){
-    font-size: 0.8rem;
+    font-size: 0.6em;
   }
 }

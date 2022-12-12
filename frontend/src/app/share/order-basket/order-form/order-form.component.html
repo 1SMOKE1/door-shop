@@ -20,8 +20,8 @@
       <mat-form-field appearance="outline" class="form-field">
         <mat-label>{{'Телефон' | titlecase}}</mat-label>
         <input class="form-field-input" type="tel" formControlName="phone" matInput placeholder="Введіть свій телефон">
-        <mat-error *ngIf="orderForm.get('phone')?.invalid || (orderForm.get('phone')?.touched && orderForm.get('phone')?.dirty)">
-          Обов'язкове поле
+        <mat-error *ngIf="orderForm.get('phone')?.invalid || orderForm.get('phone')?.touched && orderForm.get('phone')?.dirty">
+          Не коррекно введений номер
         </mat-error>
       </mat-form-field>
     </div>
@@ -32,7 +32,7 @@
         <mat-label>{{'email' | titlecase}}</mat-label>
         <input class="form-field-input" type="email" formControlName="email" matInput placeholder="Введіть свій email">
         <mat-error *ngIf="orderForm.get('email')?.invalid || (orderForm.get('email')?.touched && orderForm.get('email')?.dirty)">
-          Обов'язкове поле
+          Не коррекно ведений email
         </mat-error>
       </mat-form-field>
     </div>

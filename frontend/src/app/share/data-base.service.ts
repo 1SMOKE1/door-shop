@@ -2,12 +2,14 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { carouselImageI } from '../interfaces/carouselImageI';
 import { Observable } from 'rxjs';
-import { ProductI } from '../interfaces/product';
 import { Order } from '../models/order.model';
 import { productProducerI } from '../interfaces/productProducer';
 import { BASE_URL } from './constants/urls';
 import { interiorDoorI } from '../interfaces/interiorDoorI';
 import { entranceDoorI } from '../interfaces/entranceDoor';
+import { windowI } from '../interfaces/window';
+import { furnituraI } from '../interfaces/furnitura';
+import { NumberInput } from '@angular/cdk/coercion';
 
 
 
@@ -66,75 +68,6 @@ export class DataBaseService {
     return this.http.delete<carouselImageI>(BASE_URL + '/api/our-comments/' + id);
   }
 
-  public createProduct(product: ProductI, image: File | null): Observable<ProductI>{
-    const formData = new FormData();
-    formData.append('name', product.name);
-    formData.append('price', product.price.toString());
-    formData.append('installationPrice', product.installationPrice.toString());
-    formData.append('brand', product.brand);
-    formData.append('country', product.country);
-    formData.append('guarantee_time', '12 Місяців');
-    formData.append('state', product.state);
-    formData.append('in_stock', product.in_stock);
-    formData.append('type_of_product', product.type_of_product);
-    formData.append('count_of_sealing_conturs', product.count_of_sealing_conturs.toString());
-    formData.append('door_leaf_material', product.door_leaf_material);
-    formData.append('door_frame_material', product.door_frame_material);
-    formData.append('door_purpose', product.door_purpose);
-    formData.append('door_fill', product.door_fill);
-    formData.append('door_application', product.door_application);
-    formData.append('door_opening_method', product.door_opening_method);
-    formData.append('door_type', product.door_type);
-    formData.append('door_opening_type', product.door_opening_type);
-    formData.append('door_area_material', product.door_area_material);
-    formData.append('sail', product.sail);
-    formData.append('home_page', product.home_page ? product.home_page.toString() : 'false')
-    formData.append('description', product.description);
-    if(image){
-      formData.append('image', image, image.name);
-    }
-
-    return this.http.post<ProductI>(BASE_URL + '/api/products', formData)
-  }
-
-  public updateProduct(product: ProductI, image: File | null): Observable<ProductI>{
-    const formData = new FormData();
-    formData.append('name', product.name);
-    formData.append('price', product.price.toString());
-    formData.append('installationPrice', product.installationPrice.toString());
-    formData.append('brand', product.brand);
-    formData.append('country', product.country);
-    formData.append('guarantee_time', product.guarantee_time);
-    formData.append('state', product.state);
-    formData.append('in_stock', product.in_stock);
-    formData.append('type_of_product', product.type_of_product);
-    formData.append('count_of_sealing_conturs', product.count_of_sealing_conturs.toString());
-    formData.append('door_leaf_material', product.door_leaf_material);
-    formData.append('door_frame_material', product.door_frame_material);
-    formData.append('door_purpose', product.door_purpose);
-    formData.append('door_fill', product.door_fill);
-    formData.append('door_application', product.door_application);
-    formData.append('door_opening_method', product.door_opening_method);
-    formData.append('door_type', product.door_type);
-    formData.append('door_opening_type', product.door_opening_type);
-    formData.append('door_area_material', product.door_area_material);
-    formData.append('sail', product.sail);
-    formData.append('home_page', product.home_page.toString());
-    formData.append('description', product.description);
-    if(image){
-      formData.append('image', image, image.name);
-    }
-    return this.http.put<ProductI>(BASE_URL + `/api/products/${product._id}`, formData)
-  }
-
-  public deleteProduct(id: string): Observable<ProductI>{
-    return this.http.delete<ProductI>(BASE_URL + `/api/products/${id}`)
-  }
-
-  public getProducts(): Observable<ProductI[]>{
-    return this.http.get<ProductI[]>(BASE_URL + '/api/products')
-  }
-
   public createOrder(order: Order): Observable<Order>{
     return this.http.post<Order>(BASE_URL + '/api/orders', order)
   }
@@ -175,7 +108,7 @@ export class DataBaseService {
     return this.http.post<{name: string, phone: string, address: string}>(BASE_URL + '/api/free-sample-form', userData);
   }
 
-  public getInteriorDoor(): Observable<interiorDoorI[]>{
+  public getInteriorDoors(): Observable<interiorDoorI[]>{
     return this.http.get<interiorDoorI[]>(BASE_URL + '/api/interiorDoors')
   }
 
@@ -243,7 +176,7 @@ export class DataBaseService {
     return this.http.delete<interiorDoorI>(BASE_URL + `/api/interiorDoors/${id}`)
   }
 
-  public getEntranceDoor(): Observable<entranceDoorI[]>{
+  public getEntranceDoors(): Observable<entranceDoorI[]>{
     return this.http.get<entranceDoorI[]>(BASE_URL + '/api/entranceDoors')
   }
 
@@ -316,6 +249,138 @@ export class DataBaseService {
   public deleteEntranceDoor(id: string): Observable<entranceDoorI>{
     return this.http.delete<entranceDoorI>(BASE_URL + '/api/entranceDoors/' + id)
   }
+
+  public getWindows(): Observable<windowI[]>{
+    return this.http.get<windowI[]>(BASE_URL + '/api/windows')
+  }
+
+  public createWindow(window: windowI, image: File | null): Observable<windowI>{
+    const formData = new FormData();
+
+    formData.append('name', window.name);
+    formData.append('price', window.price.toString());
+    formData.append('installationPrice', window.installationPrice.toString());
+    formData.append('typeOfProduct', window.typeOfProduct);
+    formData.append('brand', window.brand);
+    formData.append('country', window.country);
+    formData.append('guarantee', window.guarantee);
+    formData.append('state', window.state);
+    formData.append('inStock', window.inStock);
+    formData.append('description', window.description);
+
+    formData.append('profile',  JSON.stringify(window.profile))
+    formData.append('construction', JSON.stringify(window.construction))
+    formData.append('glassUnit',JSON.stringify(window.glassUnit));
+    formData.append('lamination', JSON.stringify(window.lamination));
+    formData.append('glasses', JSON.stringify(window.glasses));
+
+    if(image){
+      formData.append('image', image, image.name);
+    }
+
+    formData.append('homePage', window.homePage 
+    ? window.homePage.toString() 
+    : 'false')
+
+
+
+    return  this.http.post<windowI>(BASE_URL + '/api/windows', formData)
+  }
+
+  public updateWindow(window: windowI, image: File | null): Observable<windowI>{
+    const formData = new FormData();
+
+    formData.append('name', window.name);
+    formData.append('price', window.price.toString());
+    formData.append('installationPrice', window.installationPrice.toString());
+    formData.append('typeOfProduct', window.typeOfProduct);
+    formData.append('brand', window.brand);
+    formData.append('country', window.country);
+    formData.append('guarantee', window.guarantee);
+    formData.append('state', window.state);
+    formData.append('inStock', window.inStock);
+    formData.append('description', window.description);
+
+    formData.append('profile',  JSON.stringify(window.profile))
+    formData.append('construction', JSON.stringify(window.construction))
+    formData.append('glassUnit',JSON.stringify(window.glassUnit));
+    formData.append('lamination', JSON.stringify(window.lamination));
+    formData.append('glasses', JSON.stringify(window.glasses));
+
+    if(image){
+      formData.append('image', image, image.name);
+    }
+
+    formData.append('homePage', window.homePage 
+    ? window.homePage.toString() 
+    : 'false')
+
+
+
+    return  this.http.put<windowI>(BASE_URL + '/api/windows/' + window._id, formData)
+  }
+
+  public deleteWindow(id: string): Observable<windowI>{
+    return this.http.delete<windowI>(BASE_URL + '/api/windows/' + id)
+  }
+
+  public getFurnituras(): Observable<furnituraI[]>{
+    return this.http.get<furnituraI[]>(BASE_URL + '/api/furnituras');
+  }
+
+  public createFurnitura(furnitura: furnituraI, image: File | null): Observable<furnituraI>{
+    const formData = new FormData();
+
+    formData.append('name', furnitura.name);
+    formData.append('price', furnitura.price.toString());
+    formData.append('installationPrice', furnitura.installationPrice.toString());
+    formData.append('typeOfProduct', furnitura.typeOfProduct);
+    formData.append('brand', furnitura.brand);
+    formData.append('country', furnitura.country);
+    formData.append('guarantee', furnitura.guarantee);
+    formData.append('state', furnitura.state);
+    formData.append('inStock', furnitura.inStock);
+    formData.append('description', furnitura.description);
+    if(image){
+      formData.append('image', image, image.name);
+    }
+
+    formData.append('homePage', furnitura.homePage 
+    ? furnitura.homePage.toString() 
+    : 'false')
+
+
+    return this.http.post<furnituraI>(BASE_URL + '/api/furnituras', formData)
+  }
+
+  public updateFurnitura(furnitura: furnituraI, image: File | null): Observable<furnituraI>{
+    const formData = new FormData();
+
+    formData.append('name', furnitura.name);
+    formData.append('price', furnitura.price.toString());
+    formData.append('installationPrice', furnitura.installationPrice.toString());
+    formData.append('typeOfProduct', furnitura.typeOfProduct);
+    formData.append('brand', furnitura.brand);
+    formData.append('country', furnitura.country);
+    formData.append('guarantee', furnitura.guarantee);
+    formData.append('state', furnitura.state);
+    formData.append('inStock', furnitura.inStock);
+    formData.append('description', furnitura.description);
+    if(image){
+      formData.append('image', image, image.name);
+    }
+
+    formData.append('homePage', furnitura.homePage 
+    ? furnitura.homePage.toString() 
+    : 'false')
+    return this.http.put<furnituraI>(BASE_URL + '/api/furnituras/' + furnitura._id, formData)
+  }
+
+  public deleteFurnitura(id: string): Observable<furnituraI>{
+    return this.http.delete<furnituraI>(BASE_URL + '/api/furnituras/' + id)
+  }
+
+
 
 
 }

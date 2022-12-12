@@ -25,7 +25,7 @@
           <li [routerLink]="'/how-order'" class="dropdown_item-2">
             Оплата і доставка
           </li>
-          <li (click)="emitScroll($event)" class="dropdown_item-3">Замовити консультацію</li>
+          <li (click)="emitScroll()" class="dropdown_item-3">Замовити консультацію</li>
           <li [routerLink]="'/door-measurement'" class="dropdown_item-4">
             Замір дверей
           </li>
@@ -38,12 +38,17 @@
         {{ "Контакти" | uppercase }}
         <ul class="dropdown_menu dropdown_menu-4">
           <li class="dropdown_item-1">
-            <a class="link" href="tel:+380673223322">+38(067)322-33-22</a></li>
+            <a class="link" href="tel:+380507779151">+38(050)777-91-51</a>
+          </li>
           <li class="dropdown_item-2">
-            <a class="link" href="tel:+380503223322">+38(050)322-33-22</a></li>
+            <a class="link" href="tel:+380677779151">+38(067)777-91-51</a>
+          </li>
+          <li class="dropdown_item-2">
+            <a class="link" href="tel:+380937779151">+38(093)777-91-51</a>
+          </li>
         </ul>
       </li>
-      <li class="dropdown dropdown-4">
+      <li (click)="emitScroll2()" class="dropdown dropdown-4">
         {{ "Безкоштовний замір" | uppercase }}
       </li>
     </ul>

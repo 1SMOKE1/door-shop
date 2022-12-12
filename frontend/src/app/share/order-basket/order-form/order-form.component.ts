@@ -1,7 +1,7 @@
 import { Component, EventEmitter, OnInit, Output, Input } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { DataBaseService } from '../../data-base.service';
-import { kind_of_payvment_type, Order } from 'src/app/models/order.model';
+import { Order } from 'src/app/models/order.model';
 import { CartLine } from 'src/app/models/cart-line.model';
 
 export interface User {
@@ -19,8 +19,13 @@ export class OrderFormComponent implements OnInit {
   @Input() cartLines: CartLine[] = [];
   orderForm: FormGroup = new FormGroup({
     'name': new FormControl('', Validators.required),
-    'phone': new FormControl('', Validators.required),
-    'email': new FormControl('', Validators.required),
+    'phone': new FormControl('', [
+      Validators.required,
+      Validators.pattern(/^(?:\+38)?(?:\(\d{3}\)[ .-]?[0-9]{3}[ .-]?[0-9]{2}[ .-]?[0-9]{2}|\d{3}[ .-]?[0-9]{3}[ .-]?[0-9]{2}[ .-]?[0-9]{2}|\d{3}[0-9]{7})$/)]),
+    'email': new FormControl('', [
+      Validators.required,
+      Validators.pattern(/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$/)
+    ]),
     'address': new FormControl('', Validators.required),
     'kindOfPayvment': new FormControl('')
   })

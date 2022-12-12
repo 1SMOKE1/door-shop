@@ -1,6 +1,6 @@
 <dsa-header></dsa-header>
 
-<dsa-nav (emitScrollAction)="emitScrollAction($event)"></dsa-nav>
+<dsa-nav (emitScrollAction)="emitScrollAction()" (emitScrollAction2)="emitScrollAction2()"></dsa-nav>
 
 
 <dsa-nav-logo></dsa-nav-logo>
@@ -8,10 +8,23 @@
   <section class="door-photos">
     <div class="img-wrap" href="#">
       <img class="img" src="assets/section_door_in_or_through/door_through.png" alt="">
+      <div class="img-text-block-top">
+        <p>Міжкінатні</p>
+      </div>
+      <div class="img-text-block-top">
+        <p>Двері</p>
+      </div>
     </div>
     <div class="img-wrap" href="#">
       <img class="img" src="assets/section_door_in_or_through/door_in.png" alt="">
+      <div class="img-text-block-top-2">
+        <p>Вхідні</p>
+      </div>
+      <div class="img-text-block-top-2">
+        <p>Двері</p>
+      </div>
     </div>
+   
   </section>
   <div class="container">
     <section class="second-nav">
@@ -68,8 +81,8 @@
   
 
   </div>
-  <section class="free-sample">
-    <div class="free-sample-form-wrap">
+  <section  class="free-sample">
+    <div #chooseDoorFormTarget2 class="free-sample-form-wrap">
       <h1 class="free-sample-title">{{'Замовити безкоштовний замір' | uppercase}}</h1>
       <form class="free-sample-form" [formGroup]="freeSampleForm">
         <input formControlName="name" type="text" placeholder="Ім'я">
@@ -83,8 +96,8 @@
     </div>
   </section>
 
-  <section #chooseDoor class="choose-door">
-    <div class="choose-door-form-wrap">
+  <div class="choose-door">
+    <section #chooseDoorFormTarget class="choose-door-form-wrap">
       <h1 class="choose-door-title">{{'підібрати двері і розрахувати вартість' | uppercase}}</h1>
       <form class="choose-door-form" [formGroup]="consultationForm">
         <input formControlName="name" type="text" placeholder="Ім'я">
@@ -95,14 +108,16 @@
           >{{'Залишити запит' | uppercase}}</button>
       </form>
 
-    </div>
+    </section>
     
     <div class="container">
       <div class="dsa-line-choose-door">
         <dsa-line></dsa-line>
       </div>
-      
-      <div class="choose-door-group">
+
+      <div [ngStyle]="{ 'justify-content': products.length === 1 ? 'center' : 'space-between'}" 
+           [ngStyle]="{ 'justify-content': products.length === 2 ? 'space-evenly' : 'space-between'}"
+           class="choose-door-group">
         <div *ngFor="let card of products| slice:0:3" class="choose-door-card">
           <div class="choose-door-img-wrap">
             <img class="choose-door-img" [src]="card.imageSrc" alt="">
@@ -114,7 +129,7 @@
       </div>
     </div>
     
-  </section>
+  </div>
 </main>
 
 

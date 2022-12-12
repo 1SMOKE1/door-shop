@@ -45,7 +45,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
     MatCardModule,
     MatIconModule, 
     MatSidenavModule, 
-    FormsModule
+    FormsModule,
   ],
   exports: [
     StoreRoutingModule

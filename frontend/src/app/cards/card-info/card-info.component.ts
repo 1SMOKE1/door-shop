@@ -1,12 +1,21 @@
 import { Component, OnInit, Inject} from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
-import { ProductI } from 'src/app/interfaces/product';
 import { DataBaseService } from 'src/app/share/data-base.service';
-import { map } from 'rxjs';
+import { map, merge, scan } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import { OrderBasketComponent } from 'src/app/share/order-basket/order-basket.component';
 import { CartService } from 'src/app/share/cart.service';
+import { productMultiSingleType } from 'src/app/interfaces/multiType';
+import { entranceDoorModel } from 'src/app/models/entranceDoor.model';
+import { interiorDoorModel } from 'src/app/models/interiorDoor.model';
+import { windowModel } from 'src/app/models/window.model';
+import { FurnituraModel } from 'src/app/models/furnitura.model';
+import { NavService } from 'src/app/share/nav.service';
+import { entranceDoorI } from 'src/app/interfaces/entranceDoor';
+import { interiorDoorI } from 'src/app/interfaces/interiorDoorI';
+import { windowI } from 'src/app/interfaces/window';
+import { furnituraI } from 'src/app/interfaces/furnitura';
 
 
 @Component({
@@ -17,29 +26,57 @@ import { CartService } from 'src/app/share/cart.service';
 export class CardInfoComponent implements OnInit {
   window: Window | null;
   
-  product: ProductI | null = null;
+  product: productMultiSingleType | null | any = null;
   prodId: string = '';
   photoArr: string[] = ['', '', '', ''];
+  entranceDoor: entranceDoorModel | null = null;
+  interiorDoor: interiorDoorModel | null = null;
+  windowM: windowModel | null = null;
+  furnitura: FurnituraModel | null = null;
+
   constructor(
     private dataBaseService: DataBaseService,
     private route: ActivatedRoute,
     public dialog: MatDialog,
     public cartService: CartService,
     @Inject(DOCUMENT) private docRef: Document,
+    private navService: NavService
     ) {
       this.prodId = route.snapshot.params?.['id'];
       this.window = docRef.defaultView;
+      {
+        switch(this.product?.typeOfProduct){
+          case 'Двері вхідні': 
+            this.product = this.entranceDoor;
+              break;
+          case 'Двері міжкімнатні':
+            this.product = this.interiorDoor;
+              break;
+          case 'Вікна':
+            this.product = this.windowM;      
+            break;
+          case 'Фурнітура':
+            this.product = this.furnitura;
+              break
+          default: null
+        }
+      }
   }
 
   ngOnInit(): void {
     this.window?.scrollTo(0,350)
-    this.dataBaseService
-      .getProducts()
+    merge(
+      this.dataBaseService.getEntranceDoors(),
+      this.dataBaseService.getInteriorDoors(),
+      this.dataBaseService.getWindows(),
+      this.dataBaseService.getFurnituras()
+      )
       .pipe(
-        map((data: ProductI[]) => 
-        data.filter((el: ProductI) => el._id === this.prodId)[0]
-      ))
-        .subscribe((product: ProductI) => this.product = product  )
+        scan((acc, cur) => [...acc, ...cur]),
+        map((data: productMultiSingleType[]) => data.filter((el: productMultiSingleType) => el._id === this.prodId)[0])
+      ).subscribe((res: any) => {
+        this.product = res
+      })
   }
 
   toBasket(): void{
@@ -53,5 +90,10 @@ export class CardInfoComponent implements OnInit {
     }
     
   }
+
+  emitScrollAction(): void{
+    this.navService.animationScrollToConsultation();
+  }
+
 
 }

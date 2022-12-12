@@ -1,10 +1,15 @@
-import { Component, OnInit, QueryList, ViewChildren } from '@angular/core';
+import { Component, OnDestroy, OnInit, QueryList, ViewChildren } from '@angular/core';
 import { Router } from '@angular/router';
-import { ProductI } from 'src/app/interfaces/product';
-import { ProductModel } from 'src/app/models/product.model';
 import { DataBaseService } from 'src/app/share/data-base.service';
 import { SidebarComponent } from 'src/app/share/sidebar/sidebar.component';
-import { map } from 'rxjs';
+import { merge, reduce, Observable, switchAll, map} from 'rxjs';
+import { productMultiSingleType } from 'src/app/interfaces/multiType';
+import { SidebarService } from 'src/app/share/sidebar.service';
+import { productProducerI } from 'src/app/interfaces/productProducer';
+import { NavService } from 'src/app/share/nav.service';
+import { Subscription } from 'rxjs';
+
+
 
 
 @Component({
@@ -23,14 +28,20 @@ export class CatalogComponent implements OnInit{
 
   constructor(
     private dataBaseService: DataBaseService,
-    private router: Router
+    private router: Router,
+    private sidebarService: SidebarService,
+    private navService: NavService
     ) { }
 
-  doors: ProductI[] = [];
+  prods: productMultiSingleType[] = []; 
   search: string = '';
 
   ngOnInit(): void {
-    this.getDoors()
+    this.getProds()
+      .subscribe((res: productMultiSingleType[]) => {
+        this.prods = res
+      })
+    this.sidebarService.getProds();
   }
 
   cardBigRedirect(id: string): void{
@@ -42,37 +53,37 @@ export class CatalogComponent implements OnInit{
     })
   }
   
-  getFilteredProducts(products: ProductModel[]): void{
-    if(products.length === 0){
-      this.getDoors();
-    } 
-    this.doors = products;
+  public getFilteredProducts(products$?: Observable<productMultiSingleType[]> | any): void{
+    products$ 
+    .subscribe((res: productMultiSingleType[]) => {
+      this.prods = res;
+    })
   }
 
-  public getFilterSlider(value: number| null): void{
-    if(value === 0){
-      this.getDoors();
-    } else {
-      if(value)
-      this.dataBaseService
-        .getProducts()
-        .pipe(
-          map((el: ProductI[]) => el.filter((el: ProductI) => el.price <= value))
-        )
-        .subscribe((res: ProductI[]) => this.doors = res);
-    }
-    
+  emitScrollAction(): void{
+    this.navService.animationScrollToConsultation();
   }
 
   public getSearch(value: string){
     this.search = value;
   }
 
-  private getDoors(): void{
-    this.dataBaseService
-      .getProducts()
-      .subscribe((products: ProductI[]) => this.doors = products)
+  private getProds(): Observable<productMultiSingleType[]>{
+    return merge(
+      this.dataBaseService.getEntranceDoors(),
+      this.dataBaseService.getInteriorDoors(),
+      this.dataBaseService.getWindows(),
+      this.dataBaseService.getFurnituras()
+      )
+      .pipe(
+        reduce((acc, cur): any => [...acc, ...cur], []),
+      )
+      
   }
+
+  
+
+
 
 
 }

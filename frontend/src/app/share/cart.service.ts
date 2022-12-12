@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { CartLine } from 'src/app/models/cart-line.model';
-import { ProductI } from '../interfaces/product';
+import { productMultiSingleType } from '../interfaces/multiType';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +13,7 @@ export class CartService {
     return this.cartLines
   }
 
-  public addCartLine(product: ProductI): void{
+  public addCartLine(product: productMultiSingleType): void{
     if(this.hasCartLine(product._id)){
       this.increase(product._id);
     } else {

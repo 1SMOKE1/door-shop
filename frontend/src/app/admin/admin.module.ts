@@ -12,7 +12,6 @@ import { MainComponent } from './main/main.component';
 import { ProductsComponent } from './main/products/products.component';
 import { OrdersComponent } from './main/orders/orders.component';
 import { OurWorksComponent } from './main/our-works/our-works.component';
-import { ProductCreateFormComponent } from './main/product/product-create-form/product-create-form.component';
 import { MatSelectModule } from '@angular/material/select';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatDialogModule } from '@angular/material/dialog';
@@ -26,6 +25,8 @@ import { OurCommentsDialogComponent } from './main/our-works/our-comments-dialog
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { InterirorDoorsComponent } from './main/product/interiror-doors/interiror-doors.component';
 import { EntranceDoorsComponent } from './main/product/entrance-doors/entrance-doors.component';
+import { WindowComponent } from './main/product/window/window.component';
+import { FurnituraComponent } from './main/product/furnitura/furnitura.component';
 
 @NgModule({
   declarations: [
@@ -33,12 +34,13 @@ import { EntranceDoorsComponent } from './main/product/entrance-doors/entrance-d
     ProductsComponent,
     OrdersComponent,
     OurWorksComponent,
-    ProductCreateFormComponent,
     ProductProducerComponent,
     OurWorksDialogComponent,
     OurCommentsDialogComponent,
     InterirorDoorsComponent,
     EntranceDoorsComponent,
+    WindowComponent,
+    FurnituraComponent,
   ],
   imports: [
     CommonModule,

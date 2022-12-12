@@ -1,12 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { map, merge, Observable, reduce } from 'rxjs';
 import { entranceDoorI } from 'src/app/interfaces/entranceDoor';
+import { furnituraI } from 'src/app/interfaces/furnitura';
 import { interiorDoorI } from 'src/app/interfaces/interiorDoorI';
-import { ProductI } from 'src/app/interfaces/product';
+import { productMultiSingleType } from 'src/app/interfaces/multiType';
+import { windowI } from 'src/app/interfaces/window';
 import { DataBaseService } from 'src/app/share/data-base.service';
 import { EntranceDoorsComponent } from '../product/entrance-doors/entrance-doors.component';
+import { FurnituraComponent } from '../product/furnitura/furnitura.component';
 import { InterirorDoorsComponent } from '../product/interiror-doors/interiror-doors.component';
-import { ProductCreateFormComponent } from '../product/product-create-form/product-create-form.component';
+import { WindowComponent } from '../product/window/window.component';
 
 @Component({
   selector: 'dsa-products',
@@ -14,35 +18,36 @@ import { ProductCreateFormComponent } from '../product/product-create-form/produ
   styleUrls: ['./products.component.scss']
 })
 export class ProductsComponent implements OnInit {
-  products: ProductI[] = [];
   interiorDoors: interiorDoorI[] = [];
   entranceDoors: entranceDoorI[] = [];
+  windows: windowI[] = [];
+  furnituras: furnituraI[] = [];
+  products: productMultiSingleType[] = [];
   constructor(
     private dataBaseService: DataBaseService,
     private dialog: MatDialog
   ) { }
-  selectedCard: ProductI | null = null;
+  selectedCard: productMultiSingleType | null = null;
   counter: number = 1;
   ngOnInit(): void {
-    this.getProducts()
-    this.getInteriorDoor();
-    this.getEntranceDoor();
+    this.getInteriorDoors();
+    this.getEntranceDoors();
+    this.getWindows();
+    this.getFurnituras();
+    this.getProductsOnMainScreen();
   }
 
-  private getInteriorDoor(): void{
+  private getInteriorDoors(): void{
     this.dataBaseService  
-      .getInteriorDoor()
-      .subscribe((prods: interiorDoorI[]) => {
-        this.interiorDoors = prods;
-        console.log(this.interiorDoors); 
-      })
+      .getInteriorDoors()
+      .subscribe((prods: interiorDoorI[]) => this.interiorDoors = prods)
   }
 
   public createInteriorDoorCard(): void{
     const dialogRef = this.dialog.open(InterirorDoorsComponent)
 
     dialogRef.afterClosed()
-    .subscribe(() => this.getInteriorDoor())
+    .subscribe(() => this.getInteriorDoors())
   }
 
   public updateInteriorDoorCard(interiorDoor: interiorDoorI): void{
@@ -51,49 +56,30 @@ export class ProductsComponent implements OnInit {
     })
 
     dialogRef.afterClosed()
-    .subscribe(() => this.getInteriorDoor())
+    .subscribe(() => this.getInteriorDoors())
   }
 
   public deleteInteriorDoorCard(id: string): void{
     this.dataBaseService
       .deleteInteriorDoor(id)
-      .subscribe(() => this.getInteriorDoor());
+      .subscribe(() => this.getInteriorDoors());
   }
 
 
 
-  private getEntranceDoor(): void{
+  private getEntranceDoors(): void{
     this.dataBaseService
-      .getEntranceDoor()
+      .getEntranceDoors()
       .subscribe((res: entranceDoorI[]) => {
         this.entranceDoors = res;
         console.log(this.entranceDoors);
       })
   }
 
-  private getProducts(): void{
-    this.dataBaseService
-    .getProducts()
-    .subscribe((products: ProductI[]) => this.products = products)
-  }
-
-  createCard(): void{
-    const dialogRef = this.dialog.open(ProductCreateFormComponent);
-
-
-    dialogRef.afterClosed()
-    .subscribe(() => this.getProducts())
-  }
-
   
 
-  updateCard(product: ProductI): void{
-    const dialogRef = this.dialog.open(ProductCreateFormComponent,{
-      data: product
-    });
-    dialogRef.afterClosed()
-    .subscribe(() => this.getProducts())
-  }
+ 
+  
 
   getSelected(product: any): void{
     this.counter++
@@ -107,17 +93,11 @@ export class ProductsComponent implements OnInit {
     }
   }
 
-  public deleteCard(id: string): void{
-    this.dataBaseService
-      .deleteProduct(id)
-      .subscribe(() => this.getProducts())
-  }
-
   public createEntranceDoorCard(): void{
     const dialogRef = this.dialog.open(EntranceDoorsComponent)
 
     dialogRef.afterClosed()
-    .subscribe(() => this.getEntranceDoor())
+    .subscribe(() => this.getEntranceDoors())
   }
 
   public updateEntranceDoorCard(entranceDoor: entranceDoorI): void{
@@ -126,14 +106,81 @@ export class ProductsComponent implements OnInit {
     })
 
     dialogRef.afterClosed()
-    .subscribe(() => this.getEntranceDoor())
+    .subscribe(() => this.getEntranceDoors())
   }
 
   public deleteEntranceDoorCard(id: string): void{
     this.dataBaseService
      .deleteEntranceDoor(id)
-     .subscribe(() => this.getEntranceDoor())
+     .subscribe(() => this.getEntranceDoors())
   }
 
+  public createWindowCard(): void{
+    const dialogRef = this.dialog.open(WindowComponent);
+
+    dialogRef.afterClosed()
+      .subscribe(() => this.getWindows())
+  }
+
+  public updateWindowCard(window: windowI): void{
+    const dialogRef = this.dialog.open(WindowComponent, {
+      data: window
+    })
+
+    dialogRef.afterClosed()
+    .subscribe(() => this.getWindows());
+  }
+
+  public deleteWindowCard(id: string): void{
+    this.dataBaseService
+     .deleteWindow(id)
+     .subscribe(() => this.getWindows())
+  }
+
+  private getWindows(): void{
+    this.dataBaseService
+      .getWindows()
+      .subscribe((res: windowI[]) => this.windows = res)
+  }
+
+  private getFurnituras(): void{
+    this.dataBaseService
+      .getFurnituras()
+      .subscribe((res: furnituraI[]) => this.furnituras = res)
+  }
+
+  public createFurnituraCard(): void{
+    const dialogRef = this.dialog.open(FurnituraComponent);
+
+    dialogRef.afterClosed()
+      .subscribe(() => this.getFurnituras())
+  }
+
+  public updateFurnituraCard(furnitura: furnituraI): void{
+    const dialogRef = this.dialog.open(FurnituraComponent, {
+      data: furnitura
+    })
+
+    dialogRef.afterClosed()
+      .subscribe(() => this.getFurnituras());
+  }
+
+  public deleteFurnituraCard(id: string): void{
+    this.dataBaseService
+      .deleteFurnitura(id)
+        .subscribe(() => this.getFurnituras());
+  }
+
+  private getProductsOnMainScreen(): void{
+    merge(
+      this.dataBaseService.getEntranceDoors(),
+      this.dataBaseService.getInteriorDoors(),
+      this.dataBaseService.getFurnituras(),
+      this.dataBaseService.getWindows()
+    ).pipe(
+      reduce((acc, cur): any => [...acc, ...cur], []),
+      map((el: productMultiSingleType[]) => el.filter((el:productMultiSingleType) => el.homePage === true))
+    ).subscribe((res: productMultiSingleType[]) => this.products = res);
+  }
 
 }

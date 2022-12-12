@@ -9,8 +9,8 @@
       <h3 class="sidebar-title">{{'бренди'|uppercase}}</h3>
       <mat-checkbox class="sidebar-checkbox"
         color="primary"
-       *ngFor="let checkbox of comeThrowDoors"
-       (change)="filtrationProducts(checkbox)">
+       *ngFor="let checkbox of interiorDoorProducers"
+       (change)="fillConditionArr(checkbox)">
         {{checkbox.producerName}}
       </mat-checkbox>
       <hr color="#999999" width="100%" size="0.5px">
@@ -32,8 +32,8 @@
       <h3 class="sidebar-title">{{'бренди'|uppercase}}</h3>
       <mat-checkbox class="sidebar-checkbox"
         color="primary"
-       *ngFor="let checkbox of comeInDoors"
-       (change)="filtrationProducts(checkbox)">
+       *ngFor="let checkbox of entranceDoorProducers"
+       (change)="fillConditionArr(checkbox)">
         {{checkbox.producerName}}
       </mat-checkbox>
       <hr color="#999999" width="100%" size="0.5px">
@@ -54,8 +54,24 @@
       <h3 class="sidebar-title">{{'бренди'|uppercase}}</h3>
       <mat-checkbox class="sidebar-checkbox"
         color="primary"
-       *ngFor="let checkbox of furniture"
-       (change)="filtrationProducts(checkbox)">
+       *ngFor="let checkbox of furnitureProducers"
+       (change)="fillConditionArr(checkbox)">
+        {{checkbox.producerName}}
+      </mat-checkbox>
+    </div>
+  </mat-expansion-panel>
+  <mat-expansion-panel >
+    <mat-expansion-panel-header>
+      <mat-panel-title class="sidebar-link">
+        {{'Вікна'}}
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <div class="mat-expansion-panel-body">
+      <h3 class="sidebar-title">{{'бренди'|uppercase}}</h3>
+      <mat-checkbox class="sidebar-checkbox"
+        color="primary"
+       *ngFor="let checkbox of windowProducers"
+       (change)="fillConditionArr(checkbox)">
         {{checkbox.producerName}}
       </mat-checkbox>
     </div>

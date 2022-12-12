@@ -1,0 +1,396 @@
+<div mat-dialog-content class="create-product-wrap">
+  <h1 class="create-product-title font-h1-title">
+    Форма {{ isEditMode() ? "редагування" : "створення" }} продукта
+  </h1>
+  <div class="product-form-input">
+    <form class="product-form" [formGroup]="windowForm">
+      <div class="product-form-input">
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-select
+            class="form-field-input"
+            formControlName="brand"
+            matInput
+            placeholder="Виробник"
+          >
+            <mat-option
+              *ngFor="let brand of productProducers"
+              [value]="brand.producerName"
+              >{{ brand.producerName }} ФП:{{
+                brand.filtrationField
+              }}</mat-option
+            >
+          </mat-select>
+          <mat-error
+            *ngIf="
+              windowForm.get('brand')?.invalid ||
+              (windowForm.get('brand')?.touched &&
+                windowForm.get('brand')?.dirty)
+            "
+          >
+            Обов'язкове поле
+          </mat-error>
+        </mat-form-field>
+        <button
+          (click)="openProductProducerDialog()"
+          class="btn-add-producer"
+          mat-icon-button
+        >
+          <mat-icon>add</mat-icon>
+        </button>
+      </div>
+
+      <div class="product-form-input">
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>{{ "Назва продукту" | titlecase }}</mat-label>
+          <input
+            class="form-field-input"
+            type="text"
+            formControlName="name"
+            matInput
+            placeholder="Введіть назву продукту"
+          />
+          <mat-error
+            *ngIf="
+              windowForm.get('name')?.invalid ||
+              (windowForm.get('name')?.touched && windowForm.get('name')?.dirty)
+            "
+          >
+            Обов'язкове поле
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="product-form-input">
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>{{ "Ціна" | titlecase }}</mat-label>
+          <input
+            class="form-field-input"
+            type="number"
+            formControlName="price"
+            matInput
+            placeholder="Введіть ціну продукта"
+          />
+          <mat-error
+            *ngIf="
+              windowForm.get('price')?.invalid ||
+              (windowForm.get('price')?.touched &&
+                windowForm.get('price')?.dirty)
+            "
+          >
+            Обов'язкове поле
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="product-form-input">
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>{{ "Ціна з Установкою" | titlecase }}</mat-label>
+          <input
+            class="form-field-input"
+            type="installationPrice"
+            type="number"
+            formControlName="installationPrice"
+            matInput
+            placeholder="Введіть ціну товари з установкою"
+          />
+          <mat-error
+            *ngIf="
+              windowForm.get('installationPrice')?.invalid ||
+              (windowForm.get('installationPrice')?.touched &&
+                windowForm.get('installationPrice')?.dirty)
+            "
+          >
+            Обов'язкове поле
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="product-form-input">
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>{{ "Країна Виробник" | titlecase }}</mat-label>
+          <mat-select
+            class="form-field-input"
+            formControlName="country"
+            matInput
+            placeholder="Введіть країну виробника"
+          >
+            <mat-option value="Україна">Україна</mat-option>
+            <mat-option value="Туреччина">Туреччина</mat-option>
+            <mat-option value="Китай">Китай</mat-option>
+            <mat-option value="Польща">Польща</mat-option>
+            <mat-option value="Італія">Італія</mat-option>
+            <mat-option value="Німеччина">Німеччина</mat-option>
+          </mat-select>
+          <mat-error
+            *ngIf="
+              windowForm.get('country')?.invalid ||
+              (windowForm.get('country')?.touched &&
+                windowForm.get('country')?.dirty)
+            "
+          >
+            Обов'язкове поле
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="product-form-input">
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>{{ "Стан" | titlecase }}</mat-label>
+          <mat-select
+            class="form-field-input"
+            formControlName="state"
+            matInput
+            placeholder="Введіть стан продукта"
+          >
+            <mat-option value="Новий">Новий</mat-option>
+            <mat-option value="Акційний">Акційний</mat-option>
+            <mat-option value="Распродаж">Распродаж</mat-option>
+          </mat-select>
+          <mat-error
+            *ngIf="
+              windowForm.get('state')?.invalid ||
+              (windowForm.get('state')?.touched &&
+                windowForm.get('state')?.dirty)
+            "
+          >
+            Обов'язкове поле
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="product-form-input">
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-select
+            class="form-field-input"
+            formControlName="inStock"
+            matInput
+            placeholder="Наявність на складі"
+          >
+            <mat-option value="В наявності">В наявності</mat-option>
+            <mat-option value="Немає в наявності">Немає в наявності</mat-option>
+            <mat-option value="Під замовлення">Під замовлення</mat-option>
+          </mat-select>
+          <mat-error
+            *ngIf="
+              windowForm.get('inStock')?.invalid ||
+              (windowForm.get('inStock')?.touched &&
+                windowForm.get('inStock')?.dirty)
+            "
+          >
+            Обов'язкове поле
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="product-form-input">
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-select
+            class="form-field-input"
+            formControlName="guarantee"
+            matInput
+            placeholder="Гарантійний термін"
+          >
+            <mat-option value="12 місяців">12 місяців</mat-option>
+            <mat-option value="18 місяців">18 місяців</mat-option>
+            <mat-option value="2 роки">2 роки</mat-option>
+            <mat-option value="3 роки">3 роки</mat-option>
+          </mat-select>
+          <mat-error
+            *ngIf="
+              windowForm.get('guarantee')?.invalid ||
+              (windowForm.get('guarantee')?.touched &&
+                windowForm.get('guarantee')?.dirty)
+            "
+          >
+            Обов'язкове поле
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="product-form-input-multi-wrap">
+        <div class="product-form-input">
+          <mat-form-field appearance="outline" class="form-field">
+            <mat-label>{{"Профіль" | titlecase}}</mat-label>
+            <mat-select
+              class="form-field-input"
+              formControlName="profile"
+              multiple
+            >
+              <mat-option value="STEKO 4S">STEKO 4S</mat-option>
+              <mat-option value="STEKO S700">STEKO S700</mat-option>
+              <mat-option value="IDEAL 4000">IDEAL 4000</mat-option>
+              <mat-option value="STEKO 7P">STEKO 7P</mat-option>
+              <mat-option value="STEKO V71">STEKO V71</mat-option>
+              <mat-option value="STEKO S500">STEKO S500</mat-option>
+              <mat-option value="STEKO V60">STEKO V60</mat-option>
+              <mat-option value="STEKO V62">STEKO V62</mat-option>
+              <mat-option value="V90">V90</mat-option>
+              <mat-option value="IDEAL 7000">IDEAL 7000</mat-option>
+            </mat-select>
+            <mat-error
+              *ngIf="
+                windowForm.get('profile')?.invalid ||
+                (windowForm.get('profile')?.touched &&
+                  windowForm.get('profile')?.dirty)
+              "
+            >
+              Обов'язкове поле
+            </mat-error>
+          </mat-form-field>
+          <p>{{ slashStylingOfFormField("profile") }}</p>
+        </div>
+
+        <div class="product-form-input">
+          <mat-form-field appearance="outline" class="form-field">
+            <mat-label>{{ "Конструкція" | titlecase }}</mat-label>
+            <mat-select
+              class="form-field-input"
+              formControlName="construction"
+              multiple
+            >
+              <mat-option value="Одностворчате">Одностворчате</mat-option>
+              <mat-option value="Двостворчате">Двостворчате</mat-option>
+              <mat-option value="Двостворчате фрамужне">Двостворчате фрамужне</mat-option>
+              <mat-option value="Трьохстворчате">Трьохстворчате</mat-option>
+              <mat-option value="Трьохстворчате фрамужне">Трьохстворчате фрамужне</mat-option>
+            </mat-select>
+            <mat-error
+              *ngIf="
+                windowForm.get('construction')?.invalid ||
+                (windowForm.get('construction')?.touched &&
+                  windowForm.get('construction')?.dirty)
+              "
+            >
+              Обов'язкове поле
+            </mat-error>
+          </mat-form-field>
+          <p>{{ slashStylingOfFormField("construction") }}</p>
+        </div>
+
+        <div class="product-form-input">
+          <mat-form-field appearance="outline" class="form-field">
+            <mat-label>{{ "Склопакети" | titlecase }}</mat-label>
+            <mat-select
+              class="form-field-input"
+              formControlName="glassUnit"
+              multiple
+            >
+              <mat-option value="1 Камера">1 Камера</mat-option>
+              <mat-option value="2 Камери">2 Камери</mat-option>
+              <mat-option value="3 Камери">3 Камери</mat-option>
+            </mat-select>
+            <mat-error
+              *ngIf="
+                windowForm.get('glassUnit')?.invalid ||
+                (windowForm.get('glassUnit')?.touched &&
+                  windowForm.get('glassUnit')?.dirty)
+              "
+            >
+              Обов'язкове поле
+            </mat-error>
+          </mat-form-field>
+          <p>{{ slashStylingOfFormField("glassUnit") }}</p>
+        </div>
+
+        <div class="product-form-input">
+          <mat-form-field appearance="outline" class="form-field">
+            <mat-label>{{ "Ламінація" | titlecase }}</mat-label>
+            <mat-select
+              class="form-field-input"
+              formControlName="lamination"
+              multiple
+            >
+              <mat-option value="Дерево">Дерево</mat-option>
+              <mat-option value="Натуральні">Натуральні</mat-option>
+              <mat-option value="Новий преміум">Новий преміум</mat-option>
+              <mat-option value="Метал">Метал</mat-option>
+            </mat-select>
+            <mat-error
+              *ngIf="
+                windowForm.get('lamination')?.invalid ||
+                (windowForm.get('lamination')?.touched &&
+                  windowForm.get('lamination')?.dirty)
+              "
+            >
+              Обов'язкове поле
+            </mat-error>
+          </mat-form-field>
+          <p>{{ slashStylingOfFormField("lamination") }}</p>
+        </div>
+
+        <div class="product-form-input">
+          <mat-form-field appearance="outline" class="form-field">
+            <mat-label>{{ "Стекла" | titlecase }}</mat-label>
+            <mat-select
+              class="form-field-input"
+              formControlName="glasses"
+              multiple
+            >
+              <mat-option value="Декоративні"
+                >Декоративні</mat-option
+              >
+              <mat-option value="Рефлекторні">Рефлекторні</mat-option>
+            </mat-select>
+            <mat-error
+              *ngIf="
+                windowForm.get('glasses')?.invalid ||
+                (windowForm.get('glasses')?.touched &&
+                  windowForm.get('glasses')?.dirty)
+              "
+            >
+              Обов'язкове поле
+            </mat-error>
+          </mat-form-field>
+          <p>{{ slashStylingOfFormField("glasses") }}</p>
+        </div>
+
+        
+
+        <div class="home_page-checkbox">
+          <p>
+            <mat-checkbox formControlName="homePage"
+              >На головній сторінці</mat-checkbox
+            >
+          </p>
+        </div>
+        <div>
+          <h4 class="textarea-title">Опис</h4>
+          <textarea
+            formControlName="description"
+            cols="30"
+            rows="10"
+          ></textarea>
+        </div>
+        <div class="file-container">
+          <input
+            #inputFileRef
+            hidden
+            type="file"
+            (change)="onFileUpload($event)"
+          />
+          <button (click)="triggerInput()" mat-raised-button color="primary">
+            Add image
+          </button>
+          <img
+            [ngStyle]="{ display: imagePreview === '' ? 'none' : 'block' }"
+            class="img-preview"
+            [src]="imagePreview"
+            alt=""
+          />
+        </div>
+      </div>
+      <div align="end">
+        <button mat-dialog-close class="product-form-btn btn-close font-p-sm">
+          Закрити
+        </button>
+        <button
+          [disabled]="windowForm.invalid"
+          class="product-form-btn font-p-sm"
+          (click)="submit()"
+        >
+          {{ isEditMode() ? "Редагувати" : "Створити" }}
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
