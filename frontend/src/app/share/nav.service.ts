@@ -14,10 +14,14 @@ export class NavService {
   
   
 
-  animationScrollToConsultation(): void{
-    this.router.navigateByUrl('store').then(() => {
-      this.viewportScroll.scrollToPosition([2700, 2700]);
-    })
+  async animationScrollToConsultation(): Promise<any>{
+    await this.router.navigateByUrl('store');
+    this.viewportScroll.scrollToPosition([2700, 2700]);
+  }
+
+  async animationScrollToConsultationMobile(): Promise<any>{
+    await this.router.navigateByUrl('store');
+    this.viewportScroll.scrollToPosition([2500, 2500]);
   }
   
 

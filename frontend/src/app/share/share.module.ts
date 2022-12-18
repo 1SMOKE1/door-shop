@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './header/header.component';
 import { NavComponent } from './nav/nav.component';
@@ -25,6 +25,8 @@ import { FilterPipe } from '../pipes/filter.pipe';
 import { MatIconModule } from '@angular/material/icon';
 import { NavLogoComponent } from './nav-logo/nav-logo.component';
 import { NavDialogComponent } from './nav/nav-dialog/nav-dialog.component';
+import { CarouselModule } from 'ngx-owl-carousel-o';
+import { OwlCarouselComponent } from './owl-carousel/owl-carousel.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +41,8 @@ import { NavDialogComponent } from './nav/nav-dialog/nav-dialog.component';
     OrderFormComponent,
     FilterPipe,
     NavLogoComponent,
-    NavDialogComponent
+    NavDialogComponent,
+    OwlCarouselComponent
   ],
   imports: [
     CommonModule,
@@ -57,6 +60,7 @@ import { NavDialogComponent } from './nav/nav-dialog/nav-dialog.component';
     MatRadioModule,
     FormsModule,
     MatIconModule,
+    CarouselModule
     ],
   exports: [
     HeaderComponent,
@@ -70,6 +74,7 @@ import { NavDialogComponent } from './nav/nav-dialog/nav-dialog.component';
     OrderBasketComponent,
     OrderFormComponent,
     FilterPipe,
-  ],
+    OwlCarouselComponent
+  ]
 })
 export class ShareModule { }

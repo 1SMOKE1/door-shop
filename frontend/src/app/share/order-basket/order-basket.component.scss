@@ -3,7 +3,7 @@
 
 
 .order-basket{
-  width: 960px; // 960px
+  // width: 960px; // 960px
   min-width: 345px;
   height: 610px;
   min-height: 100%;
@@ -56,6 +56,10 @@
   }
   &-text{
     margin-right: 95px;
+    @media (max-width: 600px) {
+      width: 50%;
+      margin-right: 0;
+    }
   }
   &-count-wrap{
     display: flex;
@@ -172,6 +176,7 @@
   }
   &-delete-wrap{
     display: flex;
+    cursor: pointer;
   }
   &-wrap{
     display: flex;
@@ -212,8 +217,14 @@
     width: 960px;
     overflow-x: hidden;
   }
-  
+  &-owl{
+    width: 100%;
+    height: auto;
+    min-height: 600px;
+  }
 }
+
+
 
 .after-message{
   display: flex;
@@ -246,11 +257,21 @@
 ::ng-deep .mat-dialog-container{
   padding: 0 !important;
   min-width: 100%;
+  overflow-x: hidden;
 }
 
 ::ng-deep .cdk-overlay-pane{
-  @media(max-width: 500px){
-    max-width: 90vw !important;
-  }
+  max-width: 100% !important;
 }
 
+
+
+::ng-deep .owl-dot span{
+  background-color: red !important;
+}
+
+// ::ng-deep .mat-form-field-flex{
+//   @media (max-width: 550px){
+//     width: 55% !important;
+//   }
+// }

@@ -27,6 +27,9 @@
 .p-sm-i{
   @include fontMain(400, 1.1rem, 23px);
   font-style: italic;
+  @media (max-width: 500px) {
+    @include fontMain(400, 0.8rem, 15px);
+  }
 }
 
 @mixin container($mw: 1500px){

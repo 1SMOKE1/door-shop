@@ -30,7 +30,7 @@ import { NotFoundPageComponent } from './not-found-page/not-found-page.component
     MatFormFieldModule,
     ReactiveFormsModule,
     MatIconModule,
-    MatInputModule
+    MatInputModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

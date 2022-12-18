@@ -17,6 +17,9 @@
     margin: 105px 0 40px 0;
     @include fontMain(700, 2.65rem, 46px);
     text-align: center; 
+    @media (max-width: 500px) {
+      @include fontMain(700, 2rem, 30px);
+    }
   }
   &-banner{
     width: 100%;
@@ -27,6 +30,10 @@
     list-style-type: square ;
     list-style-image: url('../../../assets/how-order/romb_1.svg');
     list-style-position: square;
+    @media (max-width: 500px) {
+      @include fontMain(400, 0.9rem, 30px);
+      text-align: end;
+    }
     & > li{
       margin-bottom: 40px;
       & > p{
@@ -63,6 +70,7 @@
     justify-content: space-between;
     margin: 0 0 40px 260px;
     @media(max-width:700px){
+      width: 100%;
       margin: 0 0 40px 0;
     }
   }
@@ -72,16 +80,25 @@
       @include fontMain(400, 1.6rem, 36.8px);
       align-self: center;
       margin-right: 16px;
+      @media (max-width: 500px) {
+        @include fontMain(400, 0.9rem, 30px);
+      }
     }
   }
   &-text{
     margin-bottom: 20px;
     @include fontMain(400, 1.5rem, 27.6px);
+    @media (max-width: 500px) {
+      @include fontMain(400, 0.9rem, 21px);
+    }
   }
 }
 
 .p-sm{
   margin-top: 20px;
   @include fontMain(400, 1.2rem, 23px);
+  @media (max-width: 500px) {
+    @include fontMain(400, 0.8rem, 15px);
+  }
 }
 

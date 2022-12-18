@@ -31,7 +31,12 @@ export class MainComponent implements OnInit {
     'address': new FormControl('', Validators.required)
   })
 
-  links: string[] = ['Наші виробники', 'Двері міжкімнатні', 'Двері вхідні', 'Вікна', 'Фурнітура'];
+  links: any[] = [
+    {text: 'Наші виробники',  path:'/contacts'},
+    {text: 'Двері міжкімнатні', path:'/catalog'},
+    {text: 'Двері вхідні', path:'/catalog'},
+    {text: 'Вікна', path:'/catalog'},
+    {text: 'Фурнітура', path:'/catalog'}];
   products: productMultiSingleType[] = [];
   constructor(
     private dataBaseService: DataBaseService,

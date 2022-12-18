@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 import { CartLine } from 'src/app/models/cart-line.model';
 import { CartService } from '../cart.service';
 import { DataBaseService } from '../data-base.service';
-
+import { OwlOptions } from 'ngx-owl-carousel-o';
 
 
 
@@ -27,6 +27,7 @@ export class OrderBasketComponent implements OnInit, AfterViewInit {
   @ViewChild('carouselWrap', {static: false}) public carouselWrap!: ElementRef;
   @ViewChild('orderBasket', {static: false}) public orderBasket!: ElementRef;
   @ViewChild('emptyBasket', {static: true}) public emptyBasket!: TemplateRef<any>;
+  @ViewChild('btnToForm', {static: true}) public btnToForm!: ElementRef;
   cartLines: CartLine[] = [];
   constructor(
     @Inject(DOCUMENT) docRef: Document,
@@ -43,6 +44,8 @@ export class OrderBasketComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
     this.getCarts();
   }
+  
+
 
   clearCarts(): void{
     this.cartService.clearCarts();
@@ -63,10 +66,14 @@ export class OrderBasketComponent implements OnInit, AfterViewInit {
     this.router.navigate(['/catalog'])
   }
 
-  toOrderForm(): void{
+  toOrderForm(e: Event): void{
+    this.btnMove(e);
+
+
     const carouselLine = this.carouselLine.nativeElement as HTMLElement;
-    carouselLine.style.transform = (`translate(-${carouselLine.offsetWidth / 2}px)`)
+    // carouselLine.style.transform = (`translate(-${carouselLine.offsetWidth / 2}px)`)
     const orderForm = this.elemOrderForm.nativeElement as HTMLElement;
+    carouselLine.style.transform = (`translate(-${orderForm.offsetWidth}px)`)
     setTimeout(() => {
       orderForm.scrollIntoView({block: 'start', behavior: 'smooth'})
     }, 1500);
@@ -74,6 +81,8 @@ export class OrderBasketComponent implements OnInit, AfterViewInit {
   }
 
   goBackFromForm(e?: Event): void{
+    this.btnMove(e);
+    
     const carouselLine = this.carouselLine.nativeElement as HTMLElement;
     carouselLine.style.transform = (`translate(${0}px)`)
     
@@ -92,20 +101,29 @@ export class OrderBasketComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    if(this.emptyBasket){
-      const emptyBasket = this.emptyBasket.elementRef.nativeElement.previousElementSibling.children[2] as HTMLElement;
-    }
+
+   
     
     const adaptiveFn = (): void => {
+
       
-      if(this.carouselWrap && this.orderBasket && this.carouselLine && this.window!.innerWidth <= 1200){
+  
+      if(this.carouselWrap  && this.carouselLine && this.window!.innerWidth <= 1200){     // && this.orderBasket
         const carouselWrap = this.carouselWrap?.nativeElement as HTMLElement;
         carouselWrap.style.width = this.window!.innerWidth - 240 + 'px';
         const orderBasket = this.orderBasket?.nativeElement as HTMLElement;
         orderBasket.style.width = this.window!.innerWidth - 240 + 'px';
         const carouselLine = this.carouselLine?.nativeElement as HTMLElement;
         carouselLine.style.width = (this.window!.innerWidth - 240) * 2 + 'px';
-        if(this.window!.innerWidth <= 550){
+        // if(this.window!.innerWidth <= 1000){
+        //   const carouselWrap = this.carouselWrap?.nativeElement as HTMLElement;
+        // carouselWrap.style.width = this.window!.innerWidth - 100 + 'px';
+        // const orderBasket = this.orderBasket?.nativeElement as HTMLElement;
+        // orderBasket.style.width = this.window!.innerWidth - 100 + 'px';
+        // const carouselLine = this.carouselLine?.nativeElement as HTMLElement;
+        // carouselLine.style.width = (this.window!.innerWidth - 100) * 2 + 'px';
+        // }
+        if(this.window!.innerWidth < 750){
           carouselWrap.style.width = this.window!.innerWidth - 30 + 'px';
           orderBasket.style.width = this.window!.innerWidth - 30 + 'px';
           carouselLine.style.width = (this.window!.innerWidth - 30) * 2 + 'px';
@@ -116,10 +134,23 @@ export class OrderBasketComponent implements OnInit, AfterViewInit {
           child.style.height = 'auto';
         }
         this.goBackFromForm();
+
+
     }
     }
     this.window?.addEventListener('resize', adaptiveFn);
     adaptiveFn();
+  }
+
+  private btnMove(e: Event | undefined): void{
+    if(e){
+      const curBtn = e.target as HTMLElement;
+      curBtn.setAttribute('disabled', 'true');
+      setTimeout(() => {
+        curBtn.removeAttribute('disabled');
+      }, 2500);
+    }
+    
   }
 
   

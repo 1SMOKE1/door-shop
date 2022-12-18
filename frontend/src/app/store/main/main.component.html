@@ -29,7 +29,7 @@
   <div class="container">
     <section class="second-nav">
       <div *ngFor="let link of links" class="link-wrap">
-        <p class="link" href="#">{{link}}</p>
+        <p class="link" [routerLink]="link.path" >{{link.text}}</p>
       </div>
     </section>
     <dsa-line></dsa-line>

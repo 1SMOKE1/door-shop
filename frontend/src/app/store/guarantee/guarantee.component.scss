@@ -4,6 +4,9 @@
 .main{
   margin-top: 35px;
   @include fontMain(400, 1.41rem, 27.6px);
+  @media(max-width: 700px){
+    @include fontMain(400, 1rem, 20.6px);
+  }
 }
 
 

@@ -6,6 +6,9 @@
     <button class="order-basket-close" mat-dialog-close><img src="assets/catalog/icons/close_icon.svg" alt=""></button>
   </div>
   <hr width="100%" size="0.5px" color="#999999">
+
+
+
   <div class="carousel-wrap" #carouselWrap>
     <div class="carousel-line" #carouselLine>
       <div class="carousel-item">
@@ -13,7 +16,7 @@
           <div class="delete-btn-wrap">
             <button class="font-p-sm delete-btn" (click)="clearCarts()">Видалити все</button>
           </div>
-          
+
           <div class="cart" *ngFor="let cart of cartLines">
             <div class="cart-img-wrap">
               <img class="cart-img" [src]="cart.product.imageSrc" alt="">
@@ -48,7 +51,7 @@
                 <p class="price font-p">{{cartService.getTotal()}}.00 грн</p>
               </div>
             </div>
-            <button (click)="toOrderForm()" class="cart-btn-order c1 bg6">Оформити замовлення</button>
+            <button (click)="toOrderForm($event)" #btnToForm class="cart-btn-order c1 bg6">Оформити замовлення</button>
           </div>
         </div>
       </div>
