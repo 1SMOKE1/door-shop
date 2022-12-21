@@ -2,6 +2,7 @@ import { DOCUMENT } from '@angular/common';
 import { Component, Inject, OnInit, Output, EventEmitter } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { NavService } from '../nav.service';
 import { NavDialogComponent } from './nav-dialog/nav-dialog.component';
 
 @Component({
@@ -16,8 +17,7 @@ export class NavComponent implements OnInit {
   constructor(
     private dialog: MatDialog,
     @Inject(DOCUMENT) docRef: Document,
-    private router: Router,
-
+    private navService: NavService
   ) {
     this.window = docRef.defaultView;
    }
@@ -37,10 +37,12 @@ export class NavComponent implements OnInit {
   }
 
   emitScroll(): void{
-    this.emitScrollAction.emit()
+    this.emitScrollAction.emit();
+    this.navService.animationScrollToConsultation();
   }
 
   emitScroll2(): void{
     this.emitScrollAction2.emit();
+    this.navService.animationScrollToConsultation();
   }
 }

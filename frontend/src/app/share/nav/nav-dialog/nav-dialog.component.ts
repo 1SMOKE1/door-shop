@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
+import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { NavService } from '../../nav.service';
@@ -9,12 +10,15 @@ import { NavService } from '../../nav.service';
   styleUrls: ['./nav-dialog.component.scss']
 })
 export class NavDialogComponent implements OnInit {
-
+  private window: Window | null;
   constructor(
     private dialogRef: MatDialogRef<NavDialogComponent>,
     private navService: NavService,
-    private router: Router
-  ) { }
+    private router: Router,
+    @Inject(DOCUMENT) docref: Document
+  ) { 
+    this.window = docref.defaultView
+  }
 
   ngOnInit(): void {
   }

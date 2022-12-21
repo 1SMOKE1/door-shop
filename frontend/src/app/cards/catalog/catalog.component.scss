@@ -33,22 +33,19 @@
   } 
   &-cards-wrap{
     width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    @media (max-width: 675px) {
-      justify-content: center;
-    }
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+    justify-items:  center;
   }
 }
 
 .card{
   width: calc(80% / 4);
+  max-height: 400px;
   margin-bottom: 30px;
   margin-right: 10px;
   min-width: 200px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  display: grid;
   padding: 10px 5px;
   color: $c3;
   transition: all .3s cubic-bezier(0.075, 0.82, 0.165, 1);
@@ -63,6 +60,7 @@
   &-img{
     width: 110px;
     height: 205px;
+    margin: 0 auto 10px;
     margin-bottom: 10px;
   }
   &-body{

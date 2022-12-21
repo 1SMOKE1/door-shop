@@ -2,7 +2,7 @@
 @import 'colors';
 
 .main{
-  margin: 35px 0 1500px 0;
+  margin: 35px 0 200px 0;
 }
 
 .container{
@@ -15,12 +15,15 @@
     text-align: center;
     color: $c6;
     margin: 35px 0 40px 0;
+    @media(max-width: 1000px){
+      font-size: 1.35rem;
+    }
   }
   &-baner{
     width: 100%;
   }
   &-text-block{
-    margin: 60px 0 1350px 0;
+    margin: 60px 0 200px 0;
   }
   &-text{
     margin-bottom: 20px;

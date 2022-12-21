@@ -2,7 +2,7 @@
 @import 'colors';
 
 .main{
-  margin: 35px 0 890px 0;
+  margin: 35px 0 200px 0;
 }
 
 .container{
@@ -24,6 +24,9 @@
     @include fontMain(400, 1.2rem, 23px);
     &:last-child{
       margin: 135px 0 0 0;
+      @media(max-width: 1000px){
+        margin: 40px 0 0 0;
+      }
     }
   }
   &-text{

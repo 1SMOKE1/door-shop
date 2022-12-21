@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { NavService } from 'src/app/share/nav.service';
 
 @Component({
@@ -7,10 +7,11 @@ import { NavService } from 'src/app/share/nav.service';
   styleUrls: ['./contacts.component.scss']
 })
 export class ContactsComponent implements OnInit {
-
   constructor(
     private navService: NavService
-  ) { }
+
+  ) {
+   }
 
   ngOnInit(): void {
   }

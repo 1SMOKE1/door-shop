@@ -1,13 +1,13 @@
-import { Component, OnDestroy, OnInit, QueryList, ViewChildren } from '@angular/core';
+import { Component, Inject, OnDestroy, OnInit, QueryList, ViewChildren } from '@angular/core';
 import { Router } from '@angular/router';
 import { DataBaseService } from 'src/app/share/data-base.service';
 import { SidebarComponent } from 'src/app/share/sidebar/sidebar.component';
 import { merge, reduce, Observable, switchAll, map} from 'rxjs';
 import { productMultiSingleType } from 'src/app/interfaces/multiType';
 import { SidebarService } from 'src/app/share/sidebar.service';
-import { productProducerI } from 'src/app/interfaces/productProducer';
 import { NavService } from 'src/app/share/nav.service';
-import { Subscription } from 'rxjs';
+import { DOCUMENT } from '@angular/common';
+
 
 
 
@@ -23,15 +23,18 @@ import { Subscription } from 'rxjs';
 
 export class CatalogComponent implements OnInit{
   @ViewChildren(SidebarComponent) routerLinks?: QueryList<any>;
-
+  private window: Window | null;
   selectedId: string = '';
 
   constructor(
     private dataBaseService: DataBaseService,
     private router: Router,
     private sidebarService: SidebarService,
-    private navService: NavService
-    ) { }
+    private navService: NavService,
+    @Inject(DOCUMENT) docRef: Document,
+    ) { 
+      this.window = docRef.defaultView;
+    }
 
   prods: productMultiSingleType[] = []; 
   search: string = '';

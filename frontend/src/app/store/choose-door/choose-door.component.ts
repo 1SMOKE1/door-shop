@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
+import { Component, OnInit, Inject } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { DataBaseService } from 'src/app/share/data-base.service';
 import { NavService } from 'src/app/share/nav.service';
@@ -16,12 +17,18 @@ export class ChooseDoorComponent implements OnInit {
       Validators.pattern(/^(?:\+38)?(?:\(\d{3}\)[ .-]?[0-9]{3}[ .-]?[0-9]{2}[ .-]?[0-9]{2}|\d{3}[ .-]?[0-9]{3}[ .-]?[0-9]{2}[ .-]?[0-9]{2}|\d{3}[0-9]{7})$/)]),
 
   })
+
+  private window: Window | null;
   constructor(
     private dataBaseService: DataBaseService,
-    private navService: NavService
-    ) { }
+    private navService: NavService,
+    @Inject(DOCUMENT) docref: Document
+    ) {
+      this.window = docref.defaultView;
+     }
 
   ngOnInit(): void {
+    this.window?.scrollTo(0,0)
   }
 
 

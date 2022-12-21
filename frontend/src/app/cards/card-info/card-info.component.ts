@@ -12,10 +12,6 @@ import { interiorDoorModel } from 'src/app/models/interiorDoor.model';
 import { windowModel } from 'src/app/models/window.model';
 import { FurnituraModel } from 'src/app/models/furnitura.model';
 import { NavService } from 'src/app/share/nav.service';
-import { entranceDoorI } from 'src/app/interfaces/entranceDoor';
-import { interiorDoorI } from 'src/app/interfaces/interiorDoorI';
-import { windowI } from 'src/app/interfaces/window';
-import { furnituraI } from 'src/app/interfaces/furnitura';
 
 
 @Component({
