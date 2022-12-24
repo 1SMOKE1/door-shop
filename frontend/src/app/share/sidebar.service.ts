@@ -31,6 +31,7 @@ export class SidebarService {
     else {
       this.checkBoxArr.splice(this.checkBoxArr.indexOf(condition), 1);
     }
+    console.log(this.checkBoxArr)
     // this.trigger()
   }
 
@@ -54,9 +55,7 @@ export class SidebarService {
 
   public filtration(): Observable<productMultiSingleType[]>{
 
-    if(this.checkBoxArr.length === 0 && this.searchValue === '' && this.sliderMinValue === 0 && this.sliderMaxValue === 20000){
-      return of(this.products)
-    } 
+    
 
     const $filtrationCheckbox: Observable<productMultiSingleType[]> = new Observable((suber) => {
       if(this.sliderMinValue === 0 && this.sliderMaxValue === 20000){
@@ -74,7 +73,6 @@ export class SidebarService {
         }
       }
       if(this.checkBoxArr.length === 0){
-
         this.getProds()
           .pipe(
             map((el: productMultiSingleType[]) => 
@@ -103,11 +101,14 @@ export class SidebarService {
             })
         }
       }
-    }
-  
-      
-      
-    )
+      if(this.checkBoxArr.length === 0 && this.searchValue === '' && this.sliderMinValue === 0 && this.sliderMaxValue === 20000){
+        this.getProds()
+          .subscribe((res: productMultiSingleType[]) => {
+            const arr = res.sort((a: any, b: any): any => a.price - b.price)
+            suber.next(arr)
+          })
+      } 
+    })
 
  
     return $filtrationCheckbox.pipe(  
