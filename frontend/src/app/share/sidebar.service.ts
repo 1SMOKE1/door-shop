@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { merge, Observable, reduce, map, of, mergeMap, takeWhile } from 'rxjs';
+import { merge, Observable, reduce, map, of, mergeMap, takeWhile, distinctUntilChanged, debounceTime } from 'rxjs';
 import { productMultiSingleType } from '../interfaces/multiType';
 import { productProducerI } from '../interfaces/productProducer';
 import { DataBaseService } from './data-base.service';
@@ -10,7 +10,8 @@ import { DataBaseService } from './data-base.service';
 export class SidebarService {
   products: productMultiSingleType[] = [];
   checkBoxArr: productProducerI[] = [];
-  sliderValue: number = 0;
+  sliderMinValue: number = 0;
+  sliderMaxValue: number = 20000;
   searchValue: string = '';
   constructor(
     private dataBaseService: DataBaseService
@@ -21,7 +22,6 @@ export class SidebarService {
   trigger(): void{
     this.getProds()
       .subscribe((res: productMultiSingleType[]) => this.products = res);
-    console.log(this.products, this.searchValue, this.sliderValue, 'all conds')
   }
 
   fillConditionArr(condition: productProducerI): void{
@@ -34,8 +34,13 @@ export class SidebarService {
     this.trigger()
   }
 
-  setSliderValue(value: number): void{
-    this.sliderValue = value;
+  setSliderMinValue(value: number): void{
+    this.sliderMinValue = value;
+    this.trigger()
+  }
+
+  setSliderMaxValue(value: number): void{
+    this.sliderMaxValue = value;
     this.trigger()
   }
 
@@ -48,50 +53,53 @@ export class SidebarService {
 
 
   public filtration(): Observable<productMultiSingleType[]>{
-    console.log('фильтруй')
 
-    if(this.checkBoxArr.length === 0 && this.searchValue === '' && this.sliderValue === 0 ){
+    if(this.checkBoxArr.length === 0 && this.searchValue === '' && (this.sliderMinValue === 0 && this.sliderMaxValue === 20000)){
       return of(this.products)
     } 
 
     const $filtrationCheckbox: Observable<productMultiSingleType[]> = new Observable((suber) => {
-      if(this.sliderValue === 0){
-        console.log('checkboxArrWorks')
+      if(this.sliderMinValue === 0 && this.sliderMaxValue === 20000){
+
         for(let item of this.checkBoxArr){
           this.getProds()
             .pipe(
               map((el: productMultiSingleType[]) => 
-              el.filter((el: productMultiSingleType) => el.brand === item.producerName && el.typeOfProduct === item.filtrationField))
+              el.filter((el: productMultiSingleType) => el.brand === item.producerName && el.typeOfProduct === item.filtrationField)),
             )
             .subscribe((res: productMultiSingleType[]) => {
-              suber.next(res)
+              const arr = res.sort((a: any, b: any): any => a.price - b.price)
+              suber.next(arr)
             })
         }
       }
       if(this.checkBoxArr.length === 0){
-        console.log('slider works')
+
         this.getProds()
           .pipe(
             map((el: productMultiSingleType[]) => 
-            el.filter((el: productMultiSingleType) => el.price <= this.sliderValue))
+            el.filter((el: productMultiSingleType) => 
+            (el.price >= this.sliderMinValue && el.price <= this.sliderMaxValue))),
           )
-          .subscribe((res: productMultiSingleType[]) => {
-            suber.next(res);
-
+          .subscribe((res: productMultiSingleType[]) => { 
+            const arr = res.sort((a: any, b: any): any => a.price - b.price)
+            suber.next(arr)
+            
           })
       }
-      if(this.checkBoxArr.length !== 0 && this.sliderValue !== 0){
-        console.log('both works')
+      if(this.checkBoxArr.length !== 0 && (this.sliderMinValue !== 0 && this.sliderMaxValue !== 20000)){
+
         for(let item of this.checkBoxArr){
           this.getProds()
             .pipe(
               map((el: productMultiSingleType[]) => 
               el.filter((el: productMultiSingleType) => el.brand === item.producerName && el.typeOfProduct === item.filtrationField)),
               map((el: productMultiSingleType[]) => 
-              el.filter((el: productMultiSingleType) => el.price <= this.sliderValue)),
+              el.filter((el: productMultiSingleType) => (el.price >= this.sliderMinValue && el.price <= this.sliderMaxValue))),
             )
             .subscribe((res: productMultiSingleType[]) => {
-              suber.next(res)
+              const arr = res.sort((a: any, b: any): any => a.price - b.price)
+              suber.next(arr)
             })
         }
       }

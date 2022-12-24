@@ -92,6 +92,10 @@
 
 
   <h4 class="filter-title">Ціна</h4>
+  <div #slider>
+    <ngx-slider  [(value)]="value" [(highValue)]="highValue" [options]="options" (userChange)="getEvent($event)"></ngx-slider>
+  </div>
+  
   <!-- <mat-slider min="0" max="20000" (valueChange)="changeSlider($event)" [displayWith]="formatLabel" min="0" step="1000" max="20000">
     <input value="300" matSliderStartThumb>
     <input value="400" matSliderEndThumb>

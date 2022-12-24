@@ -1,8 +1,8 @@
-import { Component, Inject, OnDestroy, OnInit, QueryList, ViewChildren } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, Inject, OnDestroy, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { Router } from '@angular/router';
 import { DataBaseService } from 'src/app/share/data-base.service';
 import { SidebarComponent } from 'src/app/share/sidebar/sidebar.component';
-import { merge, reduce, Observable, switchAll, map} from 'rxjs';
+import { merge, reduce, Observable, switchAll, map, distinctUntilChanged} from 'rxjs';
 import { productMultiSingleType } from 'src/app/interfaces/multiType';
 import { SidebarService } from 'src/app/share/sidebar.service';
 import { NavService } from 'src/app/share/nav.service';
@@ -22,6 +22,7 @@ import { DOCUMENT } from '@angular/common';
 
 
 export class CatalogComponent implements OnInit{
+
   @ViewChildren(SidebarComponent) routerLinks?: QueryList<any>;
   private window: Window | null;
   selectedId: string = '';
@@ -40,6 +41,7 @@ export class CatalogComponent implements OnInit{
   search: string = '';
 
   ngOnInit(): void {
+    this.window?.scrollTo(0,0)
     this.getProds()
       .subscribe((res: productMultiSingleType[]) => {
         this.prods = res
@@ -57,7 +59,7 @@ export class CatalogComponent implements OnInit{
   }
   
   public getFilteredProducts(products$?: Observable<productMultiSingleType[]> | any): void{
-    products$ 
+    products$
     .subscribe((res: productMultiSingleType[]) => {
       this.prods = res;
     })
@@ -83,6 +85,7 @@ export class CatalogComponent implements OnInit{
       )
       
   }
+
 
   
 

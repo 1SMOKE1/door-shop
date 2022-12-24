@@ -1,9 +1,10 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 import { productProducerI } from 'src/app/interfaces/productProducer';
 import { DataBaseService } from '../data-base.service';
 import { productMultiSingleType } from 'src/app/interfaces/multiType';
 import { SidebarService } from '../sidebar.service';
-import { merge, Observable, reduce } from 'rxjs';
+import { distinct, distinctUntilChanged, merge, Observable, reduce } from 'rxjs';
+import { ChangeContext, CombineLabelsFunction, LabelType, Options } from '@angular-slider/ngx-slider';
 
 
 @Component({
@@ -14,8 +15,29 @@ import { merge, Observable, reduce } from 'rxjs';
 export class SidebarComponent implements OnInit {
   @Output() public filteredProducts: EventEmitter<Observable<productMultiSingleType[]>> = new EventEmitter<Observable<productMultiSingleType[]>>();
   @Output() public search: EventEmitter<string> = new EventEmitter<string>();
-  
-
+  @ViewChild('slider', {static: false}) public slider: ElementRef | undefined;
+  value: number = 0;
+  highValue: number = 20000;
+  options: Options = {
+    floor: 0,
+    ceil: 20000,
+    translate: (value: number, label: LabelType): string => {
+      switch (label) {
+        case LabelType.Low:
+          return "<b>Min price:</b> $" + value;
+        case LabelType.High:
+          return "<b>Max price:</b> $" + value;
+        default:
+          return "$" + value;
+      }
+    },
+    combineLabels: (minValue: string, maxValue: string): string => {
+      if (minValue === 'Any' && maxValue === 'Any') return minValue;
+      if (minValue === '5+' && maxValue === '5+') return maxValue;
+      if (minValue === maxValue) return minValue;
+      else return minValue + ' - ' + maxValue;
+    },
+  };
   checkBoxArr: productProducerI[] = [];
 
   entranceDoorProducers: productProducerI[] = [];
@@ -33,7 +55,7 @@ export class SidebarComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.getProductProducers();
+    this.getProductProducers();  
   }
 
   toggle(e: Event): void{
@@ -42,14 +64,6 @@ export class SidebarComponent implements OnInit {
   }
 
 
-
-  formatLabel(value: number) {
-    if (value >= 1000) {
-      return Math.round(value / 1000) + 'k';
-    }
-    
-    return value;
-  }
 
   private getProductProducers(): void{
     this.dataBaseService
@@ -66,16 +80,8 @@ export class SidebarComponent implements OnInit {
   fillConditionArr(condition: productProducerI): void{
     this.sidebarService.fillConditionArr(condition);
     this.filteredProducts.emit(this.sidebarService.filtration())
-    
   }
 
-
-  changeSlider(value: number | null): void{
-    if(typeof value === 'number'){
-      this.sidebarService.setSliderValue(value);
-      this.filteredProducts.emit(this.sidebarService.filtration())
-    }
-  }
 
   inputSearch(e: Event): void{
     let cur = e.target as HTMLInputElement;
@@ -83,6 +89,23 @@ export class SidebarComponent implements OnInit {
     this.search.emit(cur.value)
 
     this.filteredProducts.emit(this.sidebarService.filtration())
+  }
+
+  
+
+  getEvent(e: ChangeContext) {
+
+  
+    this.sidebarService.setSliderMinValue(e.value);
+    if(e.highValue){
+      this.sidebarService.setSliderMaxValue(e.highValue);
+    } 
+    this.filteredProducts.emit(this.sidebarService.filtration())
+    if(e.highValue){
+      if (e.highValue > 0) {
+        this.value = 1;
+      }
+    }
   }
 
 }

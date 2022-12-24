@@ -48,7 +48,7 @@
   display: grid;
   padding: 10px 5px;
   color: $c3;
-  transition: all .3s cubic-bezier(0.075, 0.82, 0.165, 1);
+  transition: all .3s ease;
   border-radius: 10px;
   box-shadow: 0 5px 25px rgb(30 31 33 / 12%);
   @media (max-width: 455px) {
@@ -92,6 +92,11 @@
   &-price{
     @include fontMain(700, 1.6rem, 27.6px);
     color: $c6;
+  }
+  &-fixed{
+    &:hover{
+      transform: none;
+    }
   }
 }
 

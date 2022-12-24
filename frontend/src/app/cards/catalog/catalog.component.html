@@ -12,7 +12,7 @@
           <dsa-sidebar (filteredProducts)="getFilteredProducts($event)" (search)="getSearch($event)" class="catalog-sidebar"></dsa-sidebar>
         </div>
         <div class="catalog-cards-wrap">
-          <div *ngFor="let product of prods | filter:search  " class="card">  <!-- | filter:search -->
+          <div *ngFor="let product of prods | filter:search  " class="card">  
             <img class="card-img" [src]="product.imageSrc" alt="">
             <div class="card-body">
               <h3 class="card-title">{{product.name}}</h3>

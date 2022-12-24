@@ -27,7 +27,7 @@ import { NavLogoComponent } from './nav-logo/nav-logo.component';
 import { NavDialogComponent } from './nav/nav-dialog/nav-dialog.component';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { OwlCarouselComponent } from './owl-carousel/owl-carousel.component';
-
+import { NgxSliderModule } from '@angular-slider/ngx-slider';
 
 @NgModule({
   declarations: [
@@ -62,7 +62,7 @@ import { OwlCarouselComponent } from './owl-carousel/owl-carousel.component';
     FormsModule,
     MatIconModule,
     CarouselModule,
-
+    NgxSliderModule
     ],
   exports: [
     HeaderComponent,
