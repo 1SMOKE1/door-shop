@@ -1,10 +1,10 @@
-import { Component, OnInit, Output, EventEmitter, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { productProducerI } from 'src/app/interfaces/productProducer';
 import { DataBaseService } from '../data-base.service';
 import { productMultiSingleType } from 'src/app/interfaces/multiType';
 import { SidebarService } from '../sidebar.service';
-import { distinct, distinctUntilChanged, merge, Observable, reduce } from 'rxjs';
-import { ChangeContext, CombineLabelsFunction, LabelType, Options } from '@angular-slider/ngx-slider';
+import { Observable } from 'rxjs';
+import { ChangeContext, LabelType, Options } from '@angular-slider/ngx-slider';
 
 
 @Component({
@@ -15,7 +15,6 @@ import { ChangeContext, CombineLabelsFunction, LabelType, Options } from '@angul
 export class SidebarComponent implements OnInit {
   @Output() public filteredProducts: EventEmitter<Observable<productMultiSingleType[]>> = new EventEmitter<Observable<productMultiSingleType[]>>();
   @Output() public search: EventEmitter<string> = new EventEmitter<string>();
-  @ViewChild('slider', {static: false}) public slider: ElementRef | undefined;
   value: number = 0;
   highValue: number = 20000;
   options: Options = {
@@ -101,11 +100,11 @@ export class SidebarComponent implements OnInit {
       this.sidebarService.setSliderMaxValue(e.highValue);
     } 
     this.filteredProducts.emit(this.sidebarService.filtration())
-    if(e.highValue){
-      if (e.highValue > 0) {
-        this.value = 1;
-      }
-    }
+    // if(e.highValue){
+    //   if (e.highValue > 0) {
+    //     this.value = 1;
+    //   }
+    // }
   }
 
 }

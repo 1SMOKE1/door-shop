@@ -31,22 +31,22 @@ export class SidebarService {
     else {
       this.checkBoxArr.splice(this.checkBoxArr.indexOf(condition), 1);
     }
-    this.trigger()
+    // this.trigger()
   }
 
   setSliderMinValue(value: number): void{
     this.sliderMinValue = value;
-    this.trigger()
+    // this.trigger()
   }
 
   setSliderMaxValue(value: number): void{
     this.sliderMaxValue = value;
-    this.trigger()
+    // this.trigger()
   }
 
   setSearchValue(value: string): void{
     this.searchValue = value;
-    this.trigger()
+    // this.trigger()
   }
 
 
@@ -54,7 +54,7 @@ export class SidebarService {
 
   public filtration(): Observable<productMultiSingleType[]>{
 
-    if(this.checkBoxArr.length === 0 && this.searchValue === '' && (this.sliderMinValue === 0 && this.sliderMaxValue === 20000)){
+    if(this.checkBoxArr.length === 0 && this.searchValue === '' && this.sliderMinValue === 0 && this.sliderMaxValue === 20000){
       return of(this.products)
     } 
 
@@ -87,7 +87,7 @@ export class SidebarService {
             
           })
       }
-      if(this.checkBoxArr.length !== 0 && (this.sliderMinValue !== 0 && this.sliderMaxValue !== 20000)){
+      if(this.checkBoxArr.length !== 0 && this.sliderMinValue !== 0 && this.sliderMaxValue !== 20000){
 
         for(let item of this.checkBoxArr){
           this.getProds()
@@ -110,8 +110,7 @@ export class SidebarService {
     )
 
  
-    return $filtrationCheckbox.pipe(
-      debounceTime(1000),
+    return $filtrationCheckbox.pipe(  
       distinctUntilChanged()
     )
   }

@@ -22,7 +22,6 @@ import { DOCUMENT } from '@angular/common';
 
 
 export class CatalogComponent implements OnInit{
-
   @ViewChildren(SidebarComponent) routerLinks?: QueryList<any>;
   private window: Window | null;
   selectedId: string = '';
