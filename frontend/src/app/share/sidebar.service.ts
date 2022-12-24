@@ -110,7 +110,10 @@ export class SidebarService {
     )
 
  
-    return $filtrationCheckbox
+    return $filtrationCheckbox.pipe(
+      debounceTime(1000),
+      distinctUntilChanged()
+    )
   }
 
 
