@@ -10,6 +10,7 @@ import { entranceDoorI } from '../interfaces/entranceDoor';
 import { windowI } from '../interfaces/window';
 import { furnituraI } from '../interfaces/furnitura';
 import { NumberInput } from '@angular/cdk/coercion';
+import { productMultiSingleType } from '../interfaces/multiType';
 
 
 
@@ -380,7 +381,9 @@ export class DataBaseService {
     return this.http.delete<furnituraI>(BASE_URL + '/api/furnituras/' + id)
   }
 
-
+  public filterCheckBox(data: productProducerI[]): Observable<productMultiSingleType[]>{
+    return this.http.post<productMultiSingleType[]>(BASE_URL + `/api/checkboxFiltration`, data)
+  }
 
 
 }

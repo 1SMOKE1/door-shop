@@ -93,18 +93,11 @@ export class SidebarComponent implements OnInit {
   
 
   getEvent(e: ChangeContext) {
-
-  
     this.sidebarService.setSliderMinValue(e.value);
     if(e.highValue){
       this.sidebarService.setSliderMaxValue(e.highValue);
     } 
     this.filteredProducts.emit(this.sidebarService.filtration())
-    // if(e.highValue){
-    //   if (e.highValue > 0) {
-    //     this.value = 1;
-    //   }
-    // }
   }
 
 }

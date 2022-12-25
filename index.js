@@ -18,6 +18,7 @@ const interiorDoorRouter = require('./routes/interiorDoor');
 const entranceDoorRouter = require('./routes/entranceDoor');
 const windowRouter = require('./routes/window');
 const furnituraRouter = require('./routes/furnitura');
+const checkboxFiltration = require('./routes/checkboxFiltration');
 
 
 
@@ -64,6 +65,7 @@ app.use('/api/interiorDoors', interiorDoorRouter);
 app.use('/api/entranceDoors', entranceDoorRouter);
 app.use('/api/windows', windowRouter);
 app.use('/api/furnituras', furnituraRouter);
+app.use('/api/checkboxFiltration', checkboxFiltration)
 app.use('/uploads', express.static('uploads'));
 app.use(express.static('public')); 
 
