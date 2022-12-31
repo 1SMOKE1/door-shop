@@ -6,6 +6,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { DOCUMENT, ViewportScroller } from '@angular/common';
 import { productMultiSingleType } from 'src/app/interfaces/multiType';
 import { NavService } from 'src/app/share/nav.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'dsa-main',
@@ -43,7 +44,8 @@ export class MainComponent implements OnInit {
     private router: Router,
     @Inject(DOCUMENT) docRef: Document,
     public navService: NavService,
-    private viewScroller: ViewportScroller
+    private viewScroller: ViewportScroller,
+    private snackBar: MatSnackBar
   ) { 
     this.window = docRef.defaultView
   }
@@ -64,21 +66,27 @@ export class MainComponent implements OnInit {
   sendConsultationForm(): void{
     this.dataBaseService
       .sendConsultaionForm(this.consultationForm.value)
-      .subscribe((res: {name: string, phone: string}) => console.log(res));
+      .subscribe((res: {name: string, phone: string}) => this.openSnackBar('\"консультацію\"'));
     this.consultationForm.reset();
+  }
+
+  private openSnackBar(text: string): void{
+    this.snackBar.open(`Заявка на ${text} була відправлено успішно`, 'X', {
+      duration: 5000
+    })
   }
 
   sendFreeSampleForm(): void{
     this.dataBaseService
       .sendFreeSampleForm(this.freeSampleForm.value)
-      .subscribe((res: {name: string, phone: string, address: string}) => console.log(res))
+      .subscribe((res: {name: string, phone: string, address: string}) =>  this.openSnackBar('\"підбір дверей та розрахування вартості\"'))
     this.freeSampleForm.reset();
   }
 
 
   emitScrollAction(): void{
     this.navService.animationScrollToConsultation();
-    const chooseDoorFormRef = this.chooseDoorFormRef.nativeElement as HTMLElement;
+    const chooseDoorFormRef = this.chooseDoorFormRef.nativeElement as HTMLElement;  
     setTimeout(() => {
       chooseDoorFormRef.classList.add('flashing')
     }, 1000)

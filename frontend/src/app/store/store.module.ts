@@ -19,7 +19,7 @@ import { CommentsComponent } from './comments/comments.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSidenavModule } from '@angular/material/sidenav';
-
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -46,6 +46,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
     MatIconModule, 
     MatSidenavModule, 
     FormsModule,
+    MatSnackBarModule
   ],
   exports: [
     StoreRoutingModule

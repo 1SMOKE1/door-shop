@@ -23,11 +23,11 @@ export class SidebarComponent implements OnInit {
     translate: (value: number, label: LabelType): string => {
       switch (label) {
         case LabelType.Low:
-          return "<b>Min price:</b> $" + value;
+          return "Від " + value + " грн";
         case LabelType.High:
-          return "<b>Max price:</b> $" + value;
+          return "До " + value + " грн";
         default:
-          return "$" + value;
+          return "грн" + value;
       }
     },
     combineLabels: (minValue: string, maxValue: string): string => {

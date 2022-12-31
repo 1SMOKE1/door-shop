@@ -87,7 +87,7 @@
       <form class="free-sample-form" [formGroup]="freeSampleForm">
         <input formControlName="name" type="text" placeholder="Ім'я">
         <input formControlName="phone" type="tel" placeholder="Телефон">
-        <input formControlName="address" type="text" placeholder="Адресса">        
+        <input formControlName="address" type="text" placeholder="Адреса">        
         <button 
           (click)="sendFreeSampleForm()"
           [disabled]="freeSampleForm.invalid" 
@@ -124,7 +124,7 @@
           </div>
           <h5 class="choose-door-text">{{card.name}}</h5>
           <button (click)="redirectToCard(card._id)" class="choose-door-button">Докладніше</button>
-          <h4 class="choose-door-price">{{card.price}}</h4>
+          <h4 class="choose-door-price">{{card.price}} грн</h4>
         </div>
       </div>
     </div>
