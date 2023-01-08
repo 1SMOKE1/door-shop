@@ -1,6 +1,7 @@
 import { DOCUMENT } from '@angular/common';
 import { Component, Inject, OnInit, Output, EventEmitter } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { NavService } from '../nav.service';
 import { NavDialogComponent } from './nav-dialog/nav-dialog.component';
 
@@ -37,11 +38,11 @@ export class NavComponent implements OnInit {
 
   emitScroll(): void{
     this.emitScrollAction.emit();
-    this.navService.scrollToConsultationAnim();
+    this.navService.animationScrollToConsultation();
   }
 
   emitScroll2(): void{
     this.emitScrollAction2.emit();
-    this.navService.scrollToFreeSampleAnim();
+    this.navService.animationScrollToConsultation();
   }
 }

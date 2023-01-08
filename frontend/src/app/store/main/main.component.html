@@ -28,27 +28,11 @@
   </section>
   <div class="container">
     <section class="second-nav">
-      <div *ngFor="let link of links" routerLink="{{'/' + link.path}}" class="link-wrap">
-        <p class="link">{{link.text}}</p>
+      <div *ngFor="let link of links" class="link-wrap">
+        <p class="link" [routerLink]="link.path" >{{link.text}}</p>
       </div>
     </section>
     <dsa-line></dsa-line>
-  </div>
-  <section  class="free-sample">
-    <div #chooseDoorFormTarget class="free-sample-form-wrap">
-      <h1 class="free-sample-title">{{'Замовити безкоштовний замір' | uppercase}}</h1>
-      <form class="free-sample-form" [formGroup]="freeSampleForm">
-        <input formControlName="name" type="text" placeholder="Ім'я">
-        <input formControlName="phone" type="tel" placeholder="Телефон">
-        <input formControlName="address" type="text" placeholder="Адреса">        
-        <button 
-          (click)="sendFreeSampleForm()"
-          [disabled]="freeSampleForm.invalid" 
-          >{{'Безкоштовний замір' | uppercase}}</button>
-      </form>
-    </div>
-  </section>
-  <div class="container">
     <section  class="our-manufacturers">
       <dsa-our-manufacturers></dsa-our-manufacturers>
       <h3 class="our-manufacturers-subtitle">
@@ -97,10 +81,23 @@
   
 
   </div>
-  
+  <section  class="free-sample">
+    <div #chooseDoorFormTarget2 class="free-sample-form-wrap">
+      <h1 class="free-sample-title">{{'Замовити безкоштовний замір' | uppercase}}</h1>
+      <form class="free-sample-form" [formGroup]="freeSampleForm">
+        <input formControlName="name" type="text" placeholder="Ім'я">
+        <input formControlName="phone" type="tel" placeholder="Телефон">
+        <input formControlName="address" type="text" placeholder="Адреса">        
+        <button 
+          (click)="sendFreeSampleForm()"
+          [disabled]="freeSampleForm.invalid" 
+          >{{'Безкоштовний замір' | uppercase}}</button>
+      </form>
+    </div>
+  </section>
 
   <div class="choose-door">
-    <section #chooseDoorFormTarget2 class="choose-door-form-wrap">
+    <section #chooseDoorFormTarget class="choose-door-form-wrap">
       <h1 class="choose-door-title">{{'підібрати двері і розрахувати вартість' | uppercase}}</h1>
       <form class="choose-door-form" [formGroup]="consultationForm">
         <input formControlName="name" type="text" placeholder="Ім'я">

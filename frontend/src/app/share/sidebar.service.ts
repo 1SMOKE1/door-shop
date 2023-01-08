@@ -44,7 +44,7 @@ export class SidebarService {
   public filtration(): Observable<productMultiSingleType[]>{
 
     
-    // для чекбоксов
+
     const $filtrationCheckbox: Observable<productMultiSingleType[]> = new Observable((suber) => {
       if(this.sliderMinValue === 0 && this.sliderMaxValue === 20000){
 

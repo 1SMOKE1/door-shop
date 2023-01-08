@@ -17,7 +17,7 @@ export class ContactsComponent implements OnInit {
   }
 
   emitScrollAction(): void{
-    this.navService.scrollToConsultationAnim();
+    this.navService.animationScrollToConsultation();
   }
 
 }

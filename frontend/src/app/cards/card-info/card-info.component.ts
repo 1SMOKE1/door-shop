@@ -88,7 +88,7 @@ export class CardInfoComponent implements OnInit {
   }
 
   emitScrollAction(): void{
-    this.navService.scrollToConsultationAnim();
+    this.navService.animationScrollToConsultation();
   }
 
 

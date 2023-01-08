@@ -30,7 +30,7 @@ export class CommentsComponent implements OnInit {
   }
 
   emitScrollAction(): void{
-    this.navService.scrollToConsultationAnim();
+    this.navService.animationScrollToConsultation();
   }
 
 
