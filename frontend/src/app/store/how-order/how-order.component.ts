@@ -19,7 +19,7 @@ export class HowOrderComponent implements OnInit {
   }
 
   emitScrollAction(): void{
-    this.navService.animationScrollToConsultation();
+    this.navService.scrollToConsultationAnim();
   }
 
 

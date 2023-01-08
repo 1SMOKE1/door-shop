@@ -39,7 +39,7 @@ export class ChooseDoorComponent implements OnInit {
   }
 
   emitScrollAction(): void{
-    this.navService.animationScrollToConsultation();
+    this.navService.scrollToConsultationAnim();
   }
 
 

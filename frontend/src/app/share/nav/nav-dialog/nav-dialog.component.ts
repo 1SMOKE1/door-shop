@@ -30,7 +30,14 @@ export class NavDialogComponent implements OnInit {
   public closeDialogToConsultationForm(): void{
     this.closeDialog();
     this.dialogRef.afterClosed().subscribe(() => {
-      this.navService.animationScrollToConsultationMobile();
+      this.navService.scrollToConsultationAnim();
+    })
+  }
+
+  public closeDialogToFreeSampleForm(): void{
+    this.closeDialog();
+    this.dialogRef.afterClosed().subscribe(() => {
+      this.navService.scrollToFreeSampleAnim();
     })
   }
  

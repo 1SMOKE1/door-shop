@@ -20,7 +20,7 @@ export class DesignersBuildersComponent implements OnInit {
   }
 
   emitScrollAction(): void{
-    this.navService.animationScrollToConsultation();
+    this.navService.scrollToConsultationAnim();
   }
 
 

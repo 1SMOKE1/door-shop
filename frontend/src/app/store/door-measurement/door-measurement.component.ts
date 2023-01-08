@@ -22,7 +22,7 @@ export class DoorMeasurementComponent implements OnInit {
 
 
   emitScrollAction(): void{
-    this.navService.animationScrollToConsultation();
+    this.navService.scrollToConsultationAnim();
   }
 
 

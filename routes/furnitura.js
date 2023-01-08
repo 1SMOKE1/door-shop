@@ -30,7 +30,7 @@ router.post('/', upload.single('image'), async(req, res) => {
       inStock, description, homePage } = req.body
 
     const {imageSrc} = req.file ? req.file.path : ''
-
+    // console.log(imageSrc)
     const newFurnitura = new furnitura({
       typeOfProduct, brand, name, country,
       guarantee, state, price, installationPrice, 

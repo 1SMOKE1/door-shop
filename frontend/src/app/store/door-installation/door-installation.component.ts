@@ -19,7 +19,7 @@ export class DoorInstallationComponent implements OnInit {
   }
 
   emitScrollAction(): void{
-    this.navService.animationScrollToConsultation();
+    this.navService.scrollToConsultationAnim();
   }
 
 

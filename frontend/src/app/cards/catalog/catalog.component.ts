@@ -57,15 +57,19 @@ export class CatalogComponent implements OnInit{
     })
   }
   
-  public getFilteredProducts(products$?: Observable<productMultiSingleType[]> | any): void{
-    products$
+  public getFilteredProducts(products$: Observable<productMultiSingleType[]>): void{
+    const subscription = products$
     .subscribe((res: productMultiSingleType[]) => {
       this.prods = res;
+      subscription.unsubscribe();
     })
+
+
+    
   }
 
   emitScrollAction(): void{
-    this.navService.animationScrollToConsultation();
+    this.navService.scrollToConsultationAnim();
   }
 
   public getSearch(value: string){

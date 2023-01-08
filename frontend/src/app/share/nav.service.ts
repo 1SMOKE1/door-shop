@@ -16,45 +16,44 @@ export class NavService {
     this.screenWidth = window.innerWidth;
   }
 
-  public async animationScrollToConsultation(): Promise<any>{
+  public async scrollToConsultationAnim(): Promise<any>{
     this.getScreenSize();
     if(this.screenWidth <= 3000){
-      await this.animationScroll()
+      await this.animationScroll(600, 600)
     }
-    if(this.screenWidth <= 1400){
-      await this.animationScroll(2550, 2550)
+    if(this.screenWidth <= 1300){
+      await this.animationScroll(700, 700)
     }
     if(this.screenWidth <= 1200){
-      await this.animationScroll(2425, 2425)
-    }
-
-  }
-
-  public async animationScrollToConsultationMobile(): Promise<any>{
-    this.getScreenSize();
-    if(this.screenWidth <= 1000){
-      await this.animationScroll(2425, 2425)
-    }
-    if(this.screenWidth <= 900){
-      await this.animationScroll(2700, 2700)
+      await this.animationScroll(900, 900)
     }
     if(this.screenWidth <= 800){
-      await this.animationScroll(2000, 2000)
+      await this.animationScroll(500, 500)
+    }
+  }
+
+  public async scrollToFreeSampleAnim(): Promise<any>{
+    this.getScreenSize();
+    if(this.screenWidth <= 3000){
+      await this.animationScroll(2600, 2600)
+    }
+    if(this.screenWidth <= 1300){
+      await this.animationScroll(2800, 2800)
+    }
+    if(this.screenWidth <= 1200){
+      await this.animationScroll(2700, 2700)
+    }
+    if(this.screenWidth <= 900){
+      await this.animationScroll(3000, 3000)
+    }
+    if(this.screenWidth <= 800){
+      await this.animationScroll(2110, 2110)
     }
     if(this.screenWidth <= 700){
-      await this.animationScroll(1900, 1900)
-    }
-    if(this.screenWidth <= 600){
-      await this.animationScroll(1875, 1875)
+      await this.animationScroll(2100, 2100)
     }
     if(this.screenWidth <= 500){
-      await this.animationScroll(2500, 2500)
-    }
-    if(this.screenWidth <= 400){
-      await this.animationScroll(2475, 2475)
-    }
-    if(this.screenWidth <= 375){
-      await this.animationScroll(2450, 2450)
+      await this.animationScroll(2700, 2700)
     }
   }
   

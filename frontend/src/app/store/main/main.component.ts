@@ -34,10 +34,10 @@ export class MainComponent implements OnInit {
 
   links: any[] = [
     {text: 'Наші виробники',  path:'/contacts'},
-    {text: 'Двері міжкімнатні', path:'/catalog'},
-    {text: 'Двері вхідні', path:'/catalog'},
-    {text: 'Вікна', path:'/catalog'},
-    {text: 'Фурнітура', path:'/catalog'}];
+    {text: 'Двері міжкімнатні', path:'catalog'},
+    {text: 'Двері вхідні', path:'catalog'},
+    {text: 'Вікна', path:'catalog'},
+    {text: 'Фурнітура', path:'catalog'}];
   products: productMultiSingleType[] = [];
   constructor(
     private dataBaseService: DataBaseService,
@@ -85,24 +85,24 @@ export class MainComponent implements OnInit {
 
 
   emitScrollAction(): void{
-    this.navService.animationScrollToConsultation();
+    this.navService.scrollToConsultationAnim();
     const chooseDoorFormRef = this.chooseDoorFormRef.nativeElement as HTMLElement;  
     setTimeout(() => {
-      chooseDoorFormRef.classList.add('flashing')
+      chooseDoorFormRef.classList.add('flashing2')
     }, 1000)
     setTimeout(() => {
-      chooseDoorFormRef.classList.remove('flashing')
+      chooseDoorFormRef.classList.remove('flashing2')
     }, 2000) 
   }
 
   emitScrollAction2(): void{
-    this.navService.animationScrollToConsultation();
+    this.navService.scrollToFreeSampleAnim();
     const chooseDoorFormRef2 = this.chooseDoorFormRef2.nativeElement as HTMLElement;
     setTimeout(() => {
-      chooseDoorFormRef2.classList.add('flashing2')
+      chooseDoorFormRef2.classList.add('flashing')
     }, 1000)
     setTimeout(() => {
-      chooseDoorFormRef2.classList.remove('flashing2')
+      chooseDoorFormRef2.classList.remove('flashing')
     }, 2000) 
   }
 
